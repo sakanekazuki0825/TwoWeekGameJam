@@ -6,7 +6,7 @@ using MyEnum;
 // 汽車クラス
 public class Train : MonoBehaviour, ITrain
 {
-	// 現在の向き
+	// 移動する向き
 	Direction direction;
 	// 向いている方向に対して動く方向
 	[SerializeField]
@@ -32,6 +32,8 @@ public class Train : MonoBehaviour, ITrain
 
 	// 目的地
 	Vector3 targetPos;
+	// 目的地
+	Direction targetDir;
 
 	private void Start()
 	{
@@ -48,10 +50,104 @@ public class Train : MonoBehaviour, ITrain
 		{
 			return;
 		}
+
+		// 左に移動中
+		if (rb.velocity.x < 0)
+		{
+			if(transform.position.x < targetPos.x)
+			{
+				switch (direction)
+				{
+				case Direction.LEFT:
+					targetPos = transform.position - new Vector3(1.92f, 0, 0);
+					break;
+				case Direction.RIGHT:
+					targetPos = transform.position + new Vector3(1.92f, 0, 0);
+					break;
+				case Direction.UP:
+					targetPos = transform.position - new Vector3(0, 1.6f, 0);
+					break;
+				case Direction.DOWN:
+					targetPos = transform.position - new Vector3(0, 1.6f, 0);
+					break;
+				}
+			}
+		}
+		// 下に移動中
+		else if (rb.velocity.y < 0)
+		{
+			if (transform.position.y < targetPos.y)
+			{
+				switch (direction)
+				{
+				case Direction.LEFT:
+					targetPos = transform.position - new Vector3(1.92f, 0, 0);
+					break;
+				case Direction.RIGHT:
+					targetPos = transform.position + new Vector3(1.92f, 0, 0);
+					break;
+				case Direction.UP:
+					targetPos = transform.position - new Vector3(0, 1.6f, 0);
+					break;
+				case Direction.DOWN:
+					targetPos = transform.position - new Vector3(0, 1.6f, 0);
+					break;
+				}
+			}
+		}
+		// 右に移動中
+		else if (rb.velocity.x > 0)
+		{
+			if (transform.position.x > targetPos.x)
+			{
+				switch (direction)
+				{
+				case Direction.LEFT:
+					targetPos = transform.position - new Vector3(1.92f, 0, 0);
+					break;
+				case Direction.RIGHT:
+					targetPos = transform.position + new Vector3(1.92f, 0, 0);
+					break;
+				case Direction.UP:
+					targetPos = transform.position - new Vector3(0, 1.6f, 0);
+					break;
+				case Direction.DOWN:
+					targetPos = transform.position - new Vector3(0, 1.6f, 0);
+					break;
+				}
+			}
+		}
+		// 上に移動中
+		else if(rb.velocity.y > 0)
+		{
+			if (transform.position.y > targetPos.y)
+			{
+				switch (direction)
+				{
+				case Direction.LEFT:
+					targetPos = transform.position - new Vector3(1.92f, 0, 0);
+					break;
+				case Direction.RIGHT:
+					targetPos = transform.position + new Vector3(1.92f, 0, 0);
+					break;
+				case Direction.UP:
+					targetPos = transform.position - new Vector3(0, 1.6f, 0);
+					break;
+				case Direction.DOWN:
+					targetPos = transform.position - new Vector3(0, 1.6f, 0);
+					break;
+				}
+			}
+		}
+		// 動いていないからゲームオーバー
+		else
+		{
+			GameObject.FindObjectOfType<GameManager>().GameFinish();
+		}
 		// 移動
 		rb.velocity = (targetPos - transform.position) * speed;
 		// 移動速度更新
-		speed = Mathf.Lerp(speed, afterSpeed, complement);
+		speed = Mathf.Lerp(speed, afterSpeed, 0);
 	}
 
 	private void OnTriggerEnter(Collider other)

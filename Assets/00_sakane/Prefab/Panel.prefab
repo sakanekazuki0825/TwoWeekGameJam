@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1805449332185770302}
   - component: {fileID: 8728129505279010228}
   - component: {fileID: 8876434836825769174}
+  - component: {fileID: 7726030686857697705}
   m_Layer: 0
   m_Name: Panel
   m_TagString: Panel
@@ -98,3 +99,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.92, y: 1.6, z: 0.2}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &7726030686857697705
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6239445011731032555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65249f19cbdab8448bd33830626a04bc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

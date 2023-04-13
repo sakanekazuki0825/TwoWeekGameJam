@@ -22,7 +22,7 @@ public class PanelManager : MonoBehaviour
 	Vector2 spawnStartPos = new Vector2(5, 5);
 
 	// 生成したパネル
-	List<GameObject> panels;
+	List<GameObject> panels = new List<GameObject>();
 
 	// スプライトのサイズ
 	Vector2 spriteSize;
@@ -53,7 +53,7 @@ public class PanelManager : MonoBehaviour
 		// 最初に横に移動するパネルの生成
 		for (int i = 0; i < startHorizontalPanel; ++i)
 		{
-			Instantiate(panel, new Vector3(spawnStartPos.x, spawnStartPos.y + spriteSize.y * Mathf.Floor(spawnNum.y / 2), 0), Quaternion.identity);
+			panels.Add(Instantiate(panel, new Vector3(spawnStartPos.x, spawnStartPos.y + spriteSize.y * Mathf.Floor(spawnNum.y / 2), 0), Quaternion.identity));
 		}
 		// 初期配置
 		for (int i = 0; i < spawnNum.x; ++i)
@@ -72,7 +72,7 @@ public class PanelManager : MonoBehaviour
 		for (int i = 0; i < spawnNum.y; ++i)
 		{
 			// 生成
-			Instantiate(panel, new Vector2(lastObjPos.x + spriteSize.x, spriteSize.y * i + spawnStartPos.y), Quaternion.identity);
+			panels.Add(Instantiate(panel, new Vector2(lastObjPos.x + spriteSize.x, spriteSize.y * i + spawnStartPos.y), Quaternion.identity));
 		}
 	}
 }

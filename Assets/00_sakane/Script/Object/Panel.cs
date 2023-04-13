@@ -8,6 +8,10 @@ public class Panel : MonoBehaviour
 	// 繋がっている方向
 	List<Direction> linkDirections;
 
+	// true = 電車が乗っている
+	bool isTrain = false;
+	public bool IsTrain { get => isTrain; }
+
 	private void OnTriggerEnter(Collider other)
 	{
 		// プレイヤーが当たった場合

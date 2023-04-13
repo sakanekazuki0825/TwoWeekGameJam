@@ -43,6 +43,8 @@ public class GameManager : MonoBehaviour,IGameManager
 	// ゲーム開始
 	public void GameStart()
 	{
+		// 電車生成
+		train = Instantiate(trainPrefab, new Vector3(0, 0, 0), Quaternion.identity);
 		StartCoroutine(EGameStart());
 	}
 
@@ -53,17 +55,13 @@ public class GameManager : MonoBehaviour,IGameManager
 		//isInPlay = false;
 
 		// フェードイン
-		fade.FadeIn();
-
-		// 電車生成
-		train = Instantiate(trainPrefab);
-
+		//fade.FadeIn();
 
 		// フェードが終わるまでループ
-		while (fade.IsFading)
-		{
-			yield return null;
-		}
+		//while (fade.IsFading)
+		//{
+		yield return null;
+		//}
 
 		// プレイヤー生成
 		playerObj = Instantiate(playerPrefab);
@@ -92,7 +90,7 @@ public class GameManager : MonoBehaviour,IGameManager
 		// 操作できない状態にする
 		//isInPlay = false;
 		// フェードアウト
-		fade.FadeOut();
+		//fade.FadeOut();
 
 		// フェードが終わるまでループ
 		while (fade.IsFading)
