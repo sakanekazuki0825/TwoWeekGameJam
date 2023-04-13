@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour,IGameManager
 	private void Start()
 	{
 		// リザルトを非表示にする
-		resultCanvas.SetActive(false);
+		//resultCanvas.SetActive(false);
 
 		// フェードクラス取得
 		fade = GameObject.FindObjectOfType<FadeIO>();
@@ -88,7 +88,7 @@ public class GameManager : MonoBehaviour,IGameManager
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
 		// リザルトを表示
-		resultCanvas.SetActive(true);
+		//resultCanvas.SetActive(true);
 		// 操作できない状態にする
 		//isInPlay = false;
 		// フェードアウト
