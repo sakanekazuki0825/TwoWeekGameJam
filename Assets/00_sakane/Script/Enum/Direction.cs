@@ -1,16 +1,17 @@
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace MyEnum
-{
-	// •ûŒü
-	public enum Direction
-	{
-		UP,
-		DOWN,
-		RIGHT,
-		LEFT,
-	}
-}
+//namespace MyEnum
+//{
+//	// •ûŒü
+//	public enum Direction
+//	{
+//		UP,
+//		DOWN,
+//		RIGHT,
+//		LEFT,
+//	}
+//}
 
 //// •ûŒüƒNƒ‰ƒX
 //public class Direction

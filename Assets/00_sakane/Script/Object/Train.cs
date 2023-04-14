@@ -1,16 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MyEnum;
 
 // 汽車クラス
 public class Train : MonoBehaviour, ITrain
 {
-	// 移動する向き
-	Direction direction;
-	// 向いている方向に対して動く方向
-	[SerializeField]
-	List<Vector2> dir;
+	//// 移動する向き
+	//Vector2 direction;
+	//// 向いている方向に対して動く方向
+	//[SerializeField]
+	//List<Vector2> dir;
+
+	// 曲がる位置
+	Vector3 curvePos = new Vector3(0, 0, 0);
+	// 目的地
+	Vector3 targetPos = new Vector3(10, 0, 0);
+	//// 目的地
+	//Vector2 targetDir;
 
 	// 物理
 	Rigidbody rb;
@@ -30,11 +36,7 @@ public class Train : MonoBehaviour, ITrain
 	// 補完速度
 	float complement = 0;
 
-	// 目的地
-	Vector3 targetPos = new Vector3(10, 0, 0);
-	// 目的地
-	Direction targetDir;
-
+	// 止まった時に速さを保存
 	Vector3 stopBeforSpeed = new Vector3 (0, 0, 0);
 
 	// とりあえず
@@ -162,14 +164,14 @@ public class Train : MonoBehaviour, ITrain
 		//speed = Mathf.Lerp(speed, afterSpeed, 0);
 	}
 
-	private void OnTriggerEnter(Collider other)
-	{
-		// パネルに当たった場合目的地設定
-		if (other.gameObject.CompareTag("Panel"))
-		{
-			targetPos = other.transform.position;
-		}
-	}
+	//private void OnTriggerEnter(Collider other)
+	//{
+	//	// パネルに当たった場合目的地設定
+	//	if (other.gameObject.CompareTag("Panel"))
+	//	{
+	//		targetPos = other.transform.position;
+	//	}
+	//}
 
 	// 進む
 	void ITrain.Go()
@@ -199,8 +201,10 @@ public class Train : MonoBehaviour, ITrain
 	}
 
 	// 方向を変更
-	void ITrain.Curve(Direction dir)
+	void ITrain.Curve(Vector3 curvePos, Vector3 targetPos)
 	{
-		direction = dir;
+		// (方向 * パネルスプライトのサイズ)パネルスプライトのサイズの取得方法を考える
+		this.curvePos = curvePos;
+		this.targetPos = targetPos;
 	}
 }

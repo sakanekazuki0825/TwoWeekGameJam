@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using MyEnum;
 
 // パネル
 public class Panel : MonoBehaviour,IPanel
@@ -24,6 +23,24 @@ public class Panel : MonoBehaviour,IPanel
 		// プレイヤーが当たった場合
 		if (other.gameObject.CompareTag("Train"))
 		{
+			var hitPoint = other.ClosestPoint(transform.position);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 			// 当たった方向に道があるか調べる
 			Direction hitDir = HitDirection(other.transform.position);
 			var isLoad = IsLoad(hitDir);
