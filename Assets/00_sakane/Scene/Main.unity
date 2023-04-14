@@ -257,11 +257,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7726030686857697705, guid: f2430f98a2f01c44f8cb0b3ba840f871, type: 3}
       propertyPath: linkDirections.Array.data[0]
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7726030686857697705, guid: f2430f98a2f01c44f8cb0b3ba840f871, type: 3}
       propertyPath: linkDirections.Array.data[1]
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8728129505279010228, guid: f2430f98a2f01c44f8cb0b3ba840f871, type: 3}
       propertyPath: m_Sprite

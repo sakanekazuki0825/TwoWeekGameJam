@@ -35,6 +35,9 @@ public class Train : MonoBehaviour, ITrain
 	// ñ⁄ìIín
 	Direction targetDir;
 
+	Vector3 stopBeforSpeed = new Vector3 (0, 0, 0);
+
+	// Ç∆ÇËÇ†Ç¶Ç∏
 	float hokan = 0.1f;
 
 	private void Start()
@@ -70,7 +73,7 @@ public class Train : MonoBehaviour, ITrain
 					targetPos = transform.position + new Vector3(1.92f, 0, 0);
 					break;
 				case Direction.UP:
-					targetPos = transform.position - new Vector3(0, 1.6f, 0);
+					targetPos = transform.position + new Vector3(0, 1.6f, 0);
 					break;
 				case Direction.DOWN:
 					targetPos = transform.position - new Vector3(0, 1.6f, 0);
@@ -92,7 +95,7 @@ public class Train : MonoBehaviour, ITrain
 					targetPos = transform.position + new Vector3(1.92f, 0, 0);
 					break;
 				case Direction.UP:
-					targetPos = transform.position - new Vector3(0, 1.6f, 0);
+					targetPos = transform.position + new Vector3(0, 1.6f, 0);
 					break;
 				case Direction.DOWN:
 					targetPos = transform.position - new Vector3(0, 1.6f, 0);
@@ -114,7 +117,7 @@ public class Train : MonoBehaviour, ITrain
 					targetPos = transform.position + new Vector3(1.92f, 0, 0);
 					break;
 				case Direction.UP:
-					targetPos = transform.position - new Vector3(0, 1.6f, 0);
+					targetPos = transform.position + new Vector3(0, 1.6f, 0);
 					break;
 				case Direction.DOWN:
 					targetPos = transform.position - new Vector3(0, 1.6f, 0);
@@ -136,7 +139,7 @@ public class Train : MonoBehaviour, ITrain
 					targetPos = transform.position + new Vector3(1.92f, 0, 0);
 					break;
 				case Direction.UP:
-					targetPos = transform.position - new Vector3(0, 1.6f, 0);
+					targetPos = transform.position + new Vector3(0, 1.6f, 0);
 					break;
 				case Direction.DOWN:
 					targetPos = transform.position - new Vector3(0, 1.6f, 0);
@@ -169,12 +172,16 @@ public class Train : MonoBehaviour, ITrain
 	void ITrain.Go()
 	{
 		canMove = true;
+		//rb.velocity = stopBeforSpeed;
 	}
 
 	// í‚é~
 	void ITrain.Stop()
 	{
 		canMove = false;
+		stopBeforSpeed = rb.velocity;
+		rb.velocity = Vector3.zero;
+
 	}
 
 	// ë¨ìxÇè„Ç∞ÇÈ

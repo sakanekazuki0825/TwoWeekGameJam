@@ -40,12 +40,24 @@ public class GameManager : MonoBehaviour,IGameManager
 		GameStart();
 	}
 
+	private void Update()
+	{
+#if UNITY_EDITOR
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			LevelManager.GameFinish();
+		}
+#endif
+	}
+
 	// ゲーム開始
 	public void GameStart()
 	{
 		// 電車生成
 		train = Instantiate(trainPrefab, new Vector3(-2, 0, 0), Quaternion.identity);
+		// 電車を動くことができる状態にする
 		train.GetComponent<ITrain>().Go();
+		// ゲーム開始
 		StartCoroutine(EGameStart());
 	}
 
@@ -106,12 +118,14 @@ public class GameManager : MonoBehaviour,IGameManager
 	{
 		resultCanvas.GetComponent<IResult>().GameOver();
 		GameFinish();
+		train.GetComponent<ITrain>().Stop();
 	}
 
 	public void GameClear()
 	{
 		resultCanvas.GetComponent<IResult>().GameClear();
 		GameFinish();
+		train.GetComponent<ITrain>().Stop();
 	}
 
 	// プレイヤーが道から外れた

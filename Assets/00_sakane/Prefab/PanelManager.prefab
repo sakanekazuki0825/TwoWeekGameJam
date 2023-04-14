@@ -47,4 +47,4 @@ MonoBehaviour:
   panel: {fileID: 6239445011731032555, guid: f2430f98a2f01c44f8cb0b3ba840f871, type: 3}
   startHorizontalPanel: 3
   spawnNum: {x: 7, y: 5}
-  spawnStartPos: {x: 0, y: 5}
+  spawnStartPos: {x: 0, y: -3.2}

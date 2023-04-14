@@ -418,7 +418,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6187444576096720154, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
       propertyPath: spawnStartPos.y
-      value: 0
+      value: -3.2
       objectReference: {fileID: 0}
     - target: {fileID: 6187444576096720155, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
       propertyPath: m_RootOrder
