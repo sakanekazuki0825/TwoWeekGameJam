@@ -48,6 +48,17 @@ public class Player : MonoBehaviour,IPlayer
 			// レイにあたっているか
 			if (Physics.Raycast(ray.origin, ray.direction, out hit))
 			{
+				var hitObj = hit.collider.gameObject;
+				// 
+				if (!hitObj.CompareTag("Panel"))
+				{
+					return;
+				}
+				if (hitObj.GetComponent<IPanel>().IsOnTrain())
+				{
+					return;
+				}
+
 				// 選択しているオブジェクトが無い場合代入
 				if (nowSelectObj == null)
 				{

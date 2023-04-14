@@ -3,14 +3,14 @@ using UnityEngine;
 using MyEnum;
 
 // パネル
-public class Panel : MonoBehaviour
+public class Panel : MonoBehaviour,IPanel
 {
+	[SerializeField]
 	// 繋がっている方向
 	List<Direction> linkDirections;
 
 	// true = 電車が乗っている
 	bool isTrain = false;
-	public bool IsTrain { get => isTrain; }
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -23,10 +23,20 @@ public class Panel : MonoBehaviour
 			if (!isLoad)
 			{
 				// ゲーム終了
-				GameObject.FindObjectOfType<GameManager>().GameFinish();
+				GameObject.FindObjectOfType<GameManager>().GameOver();
 			}
 			else
 			{
+				// 直線か調べる
+				if ((linkDirections.IndexOf(Direction.LEFT) != -1) && (linkDirections.IndexOf(Direction.RIGHT) != -1) || (linkDirections.IndexOf(Direction.DOWN) != -1) && (linkDirections.IndexOf(Direction.UP) != -1))
+				{
+					other.GetComponent<ITrain>().AddSpeed(1);
+				}
+				else
+				{
+					other.GetComponent<ITrain>().AddSpeed(-1);
+				}
+
 				// 電車の移動方向を設定
 				other.GetComponent<ITrain>().Curve(linkDirections[(linkDirections.IndexOf(hitDir) + 1) % 2]);
 			}
@@ -40,9 +50,9 @@ public class Panel : MonoBehaviour
 		var x = Mathf.Abs(dir.x);
 		var y = Mathf.Abs(dir.y);
 
-		if (x < y)
+		if (x > y)
 		{
-			if (x < 0)
+			if (x > 0)
 			{
 				return Direction.LEFT;
 			}
@@ -75,5 +85,17 @@ public class Panel : MonoBehaviour
 			}
 		}
 		return false;
+	}
+
+	// 方向設定
+	void IPanel.SetLinkDirection(List<Direction> directions)
+	{
+		linkDirections = directions;
+	}
+
+	// 電車が乗っているか判定
+	bool IPanel.IsOnTrain()
+	{
+		return isTrain;
 	}
 }

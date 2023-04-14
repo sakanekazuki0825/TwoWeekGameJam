@@ -31,7 +31,7 @@ public class GameManager : MonoBehaviour,IGameManager
 	private void Start()
 	{
 		// リザルトを非表示にする
-		//resultCanvas.SetActive(false);
+		resultCanvas.SetActive(false);
 
 		// フェードクラス取得
 		fade = GameObject.FindObjectOfType<FadeIO>();
@@ -44,7 +44,8 @@ public class GameManager : MonoBehaviour,IGameManager
 	public void GameStart()
 	{
 		// 電車生成
-		train = Instantiate(trainPrefab, new Vector3(0, 0, 0), Quaternion.identity);
+		train = Instantiate(trainPrefab, new Vector3(-2, 0, 0), Quaternion.identity);
+		train.GetComponent<ITrain>().Go();
 		StartCoroutine(EGameStart());
 	}
 
@@ -77,7 +78,7 @@ public class GameManager : MonoBehaviour,IGameManager
 	// ゲーム終了
 	public void GameFinish()
 	{
-		StartCoroutine (EGameFinish());
+		StartCoroutine(EGameFinish());
 	}
 
 	// ゲーム終了コルーチン
@@ -86,26 +87,38 @@ public class GameManager : MonoBehaviour,IGameManager
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
 		// リザルトを表示
-		//resultCanvas.SetActive(true);
+		resultCanvas.SetActive(true);
 		// 操作できない状態にする
 		//isInPlay = false;
 		// フェードアウト
 		//fade.FadeOut();
 
 		// フェードが終わるまでループ
-		while (fade.IsFading)
-		{
-			yield return null;
-		}
+		//while (fade.IsFading)
+		//{
+		yield return null;
+		//}
 
 		// シーン読み込み
+	}
+
+	public void GameOver()
+	{
+		resultCanvas.GetComponent<IResult>().GameOver();
+		GameFinish();
+	}
+
+	public void GameClear()
+	{
+		resultCanvas.GetComponent<IResult>().GameClear();
+		GameFinish();
 	}
 
 	// プレイヤーが道から外れた
 	void IGameManager.GetOffTheRoad()
 	{
-		// ゲームオーバー
-		playerObj.GetComponent<IPlayer>().GameFinish();
-		GameFinish();
+		//// ゲームオーバー
+		//playerObj.GetComponent<IPlayer>().GameFinish();
+		//GameFinish();
 	}
 }

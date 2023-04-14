@@ -19,7 +19,7 @@ public class Train : MonoBehaviour, ITrain
 	[SerializeField]
 	float startSpeed = 4;
 	// 現在の速度
-	float speed = 0;
+	float speed = 1;
 
 	// 最終的に到達する速度
 	float afterSpeed;
@@ -31,9 +31,11 @@ public class Train : MonoBehaviour, ITrain
 	float complement = 0;
 
 	// 目的地
-	Vector3 targetPos;
+	Vector3 targetPos = new Vector3(10, 0, 0);
 	// 目的地
 	Direction targetDir;
+
+	float hokan = 0.1f;
 
 	private void Start()
 	{
@@ -51,10 +53,13 @@ public class Train : MonoBehaviour, ITrain
 			return;
 		}
 
+		// ---------------------------------------------
+		// とりあえず実装
+
 		// 左に移動中
 		if (rb.velocity.x < 0)
 		{
-			if(transform.position.x < targetPos.x)
+			if(transform.position.x < targetPos.x + hokan)
 			{
 				switch (direction)
 				{
@@ -76,7 +81,7 @@ public class Train : MonoBehaviour, ITrain
 		// 下に移動中
 		else if (rb.velocity.y < 0)
 		{
-			if (transform.position.y < targetPos.y)
+			if (transform.position.y < targetPos.y + hokan)
 			{
 				switch (direction)
 				{
@@ -98,7 +103,7 @@ public class Train : MonoBehaviour, ITrain
 		// 右に移動中
 		else if (rb.velocity.x > 0)
 		{
-			if (transform.position.x > targetPos.x)
+			if (transform.position.x > targetPos.x - hokan)
 			{
 				switch (direction)
 				{
@@ -120,7 +125,7 @@ public class Train : MonoBehaviour, ITrain
 		// 上に移動中
 		else if(rb.velocity.y > 0)
 		{
-			if (transform.position.y > targetPos.y)
+			if (transform.position.y > targetPos.y - hokan)
 			{
 				switch (direction)
 				{
@@ -138,16 +143,17 @@ public class Train : MonoBehaviour, ITrain
 					break;
 				}
 			}
+			// ---------------------------------------------
 		}
 		// 動いていないからゲームオーバー
 		else
 		{
-			GameObject.FindObjectOfType<GameManager>().GameFinish();
+			GameObject.FindObjectOfType<GameManager>().GameOver();
 		}
 		// 移動
-		rb.velocity = (targetPos - transform.position) * speed;
+		rb.velocity = (targetPos - transform.position).normalized * speed;
 		// 移動速度更新
-		speed = Mathf.Lerp(speed, afterSpeed, 0);
+		//speed = Mathf.Lerp(speed, afterSpeed, 0);
 	}
 
 	private void OnTriggerEnter(Collider other)
@@ -174,9 +180,11 @@ public class Train : MonoBehaviour, ITrain
 	// 速度を上げる
 	void ITrain.AddSpeed(float speed)
 	{
-		afterSpeed = speed;
+		afterSpeed += speed;
 		// 補完速度計算
 		complement = (speed + afterSpeed) / 2;// / スプライトサイズ
+
+		this.speed += speed;
 	}
 
 	// 方向を変更

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using MyEnum;
 
 // パネル管理クラス
 public class PanelManager : MonoBehaviour
@@ -29,9 +30,9 @@ public class PanelManager : MonoBehaviour
 
 	private void Start()
 	{
-		InitSpawn();
 		// スプライトのサイズ設定
 		spriteSize = panel.GetComponent<SpriteRenderer>().bounds.size;
+		InitSpawn();
 	}
 
 	private void Update()
@@ -53,7 +54,12 @@ public class PanelManager : MonoBehaviour
 		// 最初に横に移動するパネルの生成
 		for (int i = 0; i < startHorizontalPanel; ++i)
 		{
-			panels.Add(Instantiate(panel, new Vector3(spawnStartPos.x, spawnStartPos.y + spriteSize.y * Mathf.Floor(spawnNum.y / 2), 0), Quaternion.identity));
+			// パネル生成
+			var insObj = Instantiate(panel, new Vector3(spawnStartPos.x + spriteSize.x * i, spawnStartPos.y + spriteSize.y * Mathf.Floor(spawnNum.y / 2), 0), Quaternion.identity);
+			// 生成したパネル保存
+			panels.Add(insObj);
+			// パネルに方向を設定
+			insObj.GetComponent<IPanel>().SetLinkDirection(new List<Direction> { Direction.LEFT, Direction.RIGHT });
 		}
 		// 初期配置
 		for (int i = 0; i < spawnNum.x; ++i)
@@ -71,8 +77,10 @@ public class PanelManager : MonoBehaviour
 		var spawnPos = new Vector2(lastObjPos.x + spriteSize.x, spriteSize.y);
 		for (int i = 0; i < spawnNum.y; ++i)
 		{
+			// パネル生成
+			var insObj = Instantiate(panel, new Vector2(lastObjPos.x + spriteSize.x, spriteSize.y * i + spawnStartPos.y), Quaternion.identity);
 			// 生成
-			panels.Add(Instantiate(panel, new Vector2(lastObjPos.x + spriteSize.x, spriteSize.y * i + spawnStartPos.y), Quaternion.identity));
+			panels.Add(insObj);
 		}
 	}
 }
