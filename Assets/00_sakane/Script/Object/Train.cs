@@ -56,103 +56,106 @@ public class Train : MonoBehaviour, ITrain
 			return;
 		}
 
-		// ---------------------------------------------
-		// とりあえず実装
+		//// ---------------------------------------------
+		//// とりあえず実装
 
-		// 左に移動中
-		if (rb.velocity.x < 0)
-		{
-			if(transform.position.x < targetPos.x + hokan)
-			{
-				switch (direction)
-				{
-				case Direction.LEFT:
-					targetPos = transform.position - new Vector3(1.92f, 0, 0);
-					break;
-				case Direction.RIGHT:
-					targetPos = transform.position + new Vector3(1.92f, 0, 0);
-					break;
-				case Direction.UP:
-					targetPos = transform.position + new Vector3(0, 1.6f, 0);
-					break;
-				case Direction.DOWN:
-					targetPos = transform.position - new Vector3(0, 1.6f, 0);
-					break;
-				}
-			}
-		}
-		// 下に移動中
-		else if (rb.velocity.y < 0)
-		{
-			if (transform.position.y < targetPos.y + hokan)
-			{
-				switch (direction)
-				{
-				case Direction.LEFT:
-					targetPos = transform.position - new Vector3(1.92f, 0, 0);
-					break;
-				case Direction.RIGHT:
-					targetPos = transform.position + new Vector3(1.92f, 0, 0);
-					break;
-				case Direction.UP:
-					targetPos = transform.position + new Vector3(0, 1.6f, 0);
-					break;
-				case Direction.DOWN:
-					targetPos = transform.position - new Vector3(0, 1.6f, 0);
-					break;
-				}
-			}
-		}
-		// 右に移動中
-		else if (rb.velocity.x > 0)
-		{
-			if (transform.position.x > targetPos.x - hokan)
-			{
-				switch (direction)
-				{
-				case Direction.LEFT:
-					targetPos = transform.position - new Vector3(1.92f, 0, 0);
-					break;
-				case Direction.RIGHT:
-					targetPos = transform.position + new Vector3(1.92f, 0, 0);
-					break;
-				case Direction.UP:
-					targetPos = transform.position + new Vector3(0, 1.6f, 0);
-					break;
-				case Direction.DOWN:
-					targetPos = transform.position - new Vector3(0, 1.6f, 0);
-					break;
-				}
-			}
-		}
-		// 上に移動中
-		else if(rb.velocity.y > 0)
-		{
-			if (transform.position.y > targetPos.y - hokan)
-			{
-				switch (direction)
-				{
-				case Direction.LEFT:
-					targetPos = transform.position - new Vector3(1.92f, 0, 0);
-					break;
-				case Direction.RIGHT:
-					targetPos = transform.position + new Vector3(1.92f, 0, 0);
-					break;
-				case Direction.UP:
-					targetPos = transform.position + new Vector3(0, 1.6f, 0);
-					break;
-				case Direction.DOWN:
-					targetPos = transform.position - new Vector3(0, 1.6f, 0);
-					break;
-				}
-			}			
-		}
-		// ---------------------------------------------
+		//// 左に移動中
+		//if (rb.velocity.x < 0)
+		//{
+		//	if(transform.position.x < targetPos.x + hokan)
+		//	{
+		//		switch (direction)
+		//		{
+		//		case Direction.LEFT:
+		//			targetPos = transform.position - new Vector3(1.92f, 0, 0);
+		//			break;
+		//		case Direction.RIGHT:
+		//			targetPos = transform.position + new Vector3(1.92f, 0, 0);
+		//			break;
+		//		case Direction.UP:
+		//			targetPos = transform.position + new Vector3(0, 1.6f, 0);
+		//			break;
+		//		case Direction.DOWN:
+		//			targetPos = transform.position - new Vector3(0, 1.6f, 0);
+		//			break;
+		//		}
+		//	}
+		//}
+		//// 下に移動中
+		//else if (rb.velocity.y < 0)
+		//{
+		//	if (transform.position.y < targetPos.y + hokan)
+		//	{
+		//		switch (direction)
+		//		{
+		//		case Direction.LEFT:
+		//			targetPos = transform.position - new Vector3(1.92f, 0, 0);
+		//			break;
+		//		case Direction.RIGHT:
+		//			targetPos = transform.position + new Vector3(1.92f, 0, 0);
+		//			break;
+		//		case Direction.UP:
+		//			targetPos = transform.position + new Vector3(0, 1.6f, 0);
+		//			break;
+		//		case Direction.DOWN:
+		//			targetPos = transform.position - new Vector3(0, 1.6f, 0);
+		//			break;
+		//		}
+		//	}
+		//}
+		//// 右に移動中
+		//else if (rb.velocity.x > 0)
+		//{
+		//	if (transform.position.x > targetPos.x - hokan)
+		//	{
+		//		switch (direction)
+		//		{
+		//		case Direction.LEFT:
+		//			targetPos = transform.position - new Vector3(1.92f, 0, 0);
+		//			break;
+		//		case Direction.RIGHT:
+		//			targetPos = transform.position + new Vector3(1.92f, 0, 0);
+		//			break;
+		//		case Direction.UP:
+		//			targetPos = transform.position + new Vector3(0, 1.6f, 0);
+		//			break;
+		//		case Direction.DOWN:
+		//			targetPos = transform.position - new Vector3(0, 1.6f, 0);
+		//			break;
+		//		}
+		//	}
+		//}
+		//// 上に移動中
+		//else if(rb.velocity.y > 0)
+		//{
+		//	if (transform.position.y > targetPos.y - hokan)
+		//	{
+		//		switch (direction)
+		//		{
+		//		case Direction.LEFT:
+		//			targetPos = transform.position - new Vector3(1.92f, 0, 0);
+		//			break;
+		//		case Direction.RIGHT:
+		//			targetPos = transform.position + new Vector3(1.92f, 0, 0);
+		//			break;
+		//		case Direction.UP:
+		//			targetPos = transform.position + new Vector3(0, 1.6f, 0);
+		//			break;
+		//		case Direction.DOWN:
+		//			targetPos = transform.position - new Vector3(0, 1.6f, 0);
+		//			break;
+		//		}
+		//	}			
+		//}
+		//// ---------------------------------------------
 		// 動いていないからゲームオーバー
-		else
-		{
-			GameObject.FindObjectOfType<GameManager>().GameOver();
-		}
+		//else
+		//{
+		//	GameObject.FindObjectOfType<GameManager>().GameOver();
+		//}
+
+
+
 		// 移動
 		rb.velocity = (targetPos - transform.position).normalized * speed;
 		// 移動速度更新
