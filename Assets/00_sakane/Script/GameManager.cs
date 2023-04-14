@@ -2,7 +2,7 @@ using System.Collections;
 using UnityEngine;
 
 // ルール管理クラス
-public class GameManager : MonoBehaviour,IGameManager
+public class GameManager : MonoBehaviour, IGameManager
 {
 	// true = ゲーム終了
 	//bool isGameFinish = false;

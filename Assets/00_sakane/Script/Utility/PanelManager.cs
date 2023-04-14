@@ -81,6 +81,8 @@ public class PanelManager : MonoBehaviour
 			var insObj = Instantiate(panel, new Vector2(lastObjPos.x + spriteSize.x, spriteSize.y * i + spawnStartPos.y), Quaternion.identity);
 			// ¶¬
 			panels.Add(insObj);
+
+			// Œq‚ª‚Á‚Ä‚¢‚é•ûŒü‚ğŒˆ‚ß‚é
 		}
 	}
 }

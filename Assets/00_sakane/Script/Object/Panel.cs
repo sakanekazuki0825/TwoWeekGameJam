@@ -12,6 +12,13 @@ public class Panel : MonoBehaviour,IPanel
 	// true = 電車が乗っている
 	bool isTrain = false;
 
+	// 直線で上がる速度
+	[SerializeField]
+	float speedUpValue = 0.4f;
+	// カーブで下がる速度
+	[SerializeField]
+	float speedDownValue = 0.4f;
+
 	private void OnTriggerEnter(Collider other)
 	{
 		// プレイヤーが当たった場合
@@ -30,11 +37,11 @@ public class Panel : MonoBehaviour,IPanel
 				// 直線か調べる
 				if ((linkDirections.IndexOf(Direction.LEFT) != -1) && (linkDirections.IndexOf(Direction.RIGHT) != -1) || (linkDirections.IndexOf(Direction.DOWN) != -1) && (linkDirections.IndexOf(Direction.UP) != -1))
 				{
-					other.GetComponent<ITrain>().AddSpeed(1);
+					other.GetComponent<ITrain>().AddSpeed(speedUpValue);
 				}
 				else
 				{
-					other.GetComponent<ITrain>().AddSpeed(-1);
+					other.GetComponent<ITrain>().AddSpeed(speedDownValue);
 				}
 
 				// 電車の移動方向を設定
@@ -63,7 +70,7 @@ public class Panel : MonoBehaviour,IPanel
 		}
 		else
 		{
-			if (y < 0)
+			if (y > 0)
 			{
 				return Direction.DOWN;
 			}
@@ -77,12 +84,9 @@ public class Panel : MonoBehaviour,IPanel
 	// 道があるか調べる
 	bool IsLoad(Direction dir)
 	{
-		foreach (var e in linkDirections)
+		if(linkDirections.IndexOf(dir) != -1)
 		{
-			if (e == dir)
-			{
-				return true;
-			}
+			return true;
 		}
 		return false;
 	}

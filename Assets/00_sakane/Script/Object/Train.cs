@@ -40,7 +40,7 @@ public class Train : MonoBehaviour, ITrain
 	// とりあえず
 	float hokan = 0.1f;
 
-	private void Start()
+	private void Awake()
 	{
 		// 物理取得
 		rb = GetComponent<Rigidbody>();
@@ -145,9 +145,9 @@ public class Train : MonoBehaviour, ITrain
 					targetPos = transform.position - new Vector3(0, 1.6f, 0);
 					break;
 				}
-			}
-			// ---------------------------------------------
+			}			
 		}
+		// ---------------------------------------------
 		// 動いていないからゲームオーバー
 		else
 		{
@@ -191,6 +191,7 @@ public class Train : MonoBehaviour, ITrain
 		// 補完速度計算
 		complement = (speed + afterSpeed) / 2;// / スプライトサイズ
 
+		// とりあえず
 		this.speed += speed;
 	}
 
