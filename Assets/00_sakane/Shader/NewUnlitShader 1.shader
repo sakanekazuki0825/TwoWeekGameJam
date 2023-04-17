@@ -1,63 +1,35 @@
 Shader "Unlit/NewUnlitShader 1"
 {
-    Properties
-    {
-        _MainTex ("Texture", 2D) = "white" {}
-        _Color("Main Color", Color) = (1, 1, 1, 1)
+	Properties
+	{
+		_MainTex("Texture", 2D) = "white" {}
+	_MainColor("Main Color", Color) = (1, 1, 1, 1)
+		_EmissionMap("EmissionMap", 2D) = "black"{}
+		[HDR] _EmissionColor("EmissionColor", Color) = (0, 0, 0)
+	}
+		SubShader
+		{
+			Pass
+			{
+				CGPROGRAM
+#pragma vertex vert_img
+#pragma fragment frag
 
-            _EmissionColor("EmissionColor",color) = (0,0,0,0)
-    }
-    SubShader
-    {
-        Tags { "RenderType"="Opaque" }
-        LOD 100
+#include "UnityCG.cginc"
 
-        Pass
-        {
-            CGPROGRAM
-            #pragma vertex vert
-            #pragma fragment frag
-            // make fog work
-            #pragma multi_compile_fog
+			uniform sampler2D _MainTex;
+		float4 _MainColor;
 
-            #include "UnityCG.cginc"
+		uniform sampler2D _EmissionMap;
+		float4 _EmissionColor;
 
-            struct appdata
-            {
-                float4 vertex : POSITION;
-                float2 uv : TEXCOORD0;
-            };
+		fixed4 frag(v2f_img i) : SV_Target
+		{
+			fixed albedo = tex2D(_MainTex, i.uv) * _MainColor;
+		return albedo + tex2D(_EmissionMap, i.uv) * _EmissionColor;
+		}
 
-            struct v2f
-            {
-                float2 uv : TEXCOORD0;
-                UNITY_FOG_COORDS(1)
-                float4 vertex : SV_POSITION;
-            };
-
-            fixed4 _Color;
-            sampler2D _MainTex;
-            float4 _MainTex_ST;
-            float4 _EmissionColor;
-
-            v2f vert (appdata v)
-            {
-                v2f o;
-                o.vertex = UnityObjectToClipPos(v.vertex);
-                o.uv = TRANSFORM_TEX(v.uv, _MainTex);
-                UNITY_TRANSFER_FOG(o,o.vertex);
-                return o;
-            }
-
-            fixed4 frag (v2f i) : SV_Target
-            {
-                // sample the texture
-                fixed4 col = tex2D(_MainTex, i.uv);
-                // apply fog
-                //UNITY_APPLY_FOG(i.fogCoord, col);
-                return col * _Color + _EmissionColor;
-            }
-            ENDCG
-        }
-    }
+			ENDCG
+		}
+	}
 }

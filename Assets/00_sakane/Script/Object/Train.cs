@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // 汽車クラス
@@ -13,9 +11,10 @@ public class Train : MonoBehaviour, ITrain
 	float startSpeed = 4;
 	// 現在の速度
 	float speed = 1;
-
 	// 最終的に到達する速度
 	float afterSpeed;
+	[SerializeField]
+	float acceleration = 0.08f;
 
 	// true = 移動できる
 	bool canMove = false;
@@ -44,6 +43,9 @@ public class Train : MonoBehaviour, ITrain
 		rb = GetComponent<Rigidbody>();
 		// 初期速度設定
 		rb.velocity = new Vector3(startSpeed, 0, 0);
+
+		afterSpeed = startSpeed;
+		stopBeforSpeed = new Vector3(startSpeed, 0, 0);
 	}
 
 	private void FixedUpdate()
@@ -54,7 +56,7 @@ public class Train : MonoBehaviour, ITrain
 			return;
 		}
 
-		if (!isCenter && Vector2.Distance(transform.position, curvePos) <= tolerance)
+		if (!isCenter && Vector2.Distance(transform.position, curvePos) <= (tolerance /** startSpeed / speed*/))
 		{
 			// 許容範囲に入ったら目的地を代入
 			transform.position = curvePos;
@@ -67,14 +69,14 @@ public class Train : MonoBehaviour, ITrain
 		// 移動
 		rb.velocity = (targetPos - transform.position).normalized * speed;
 		// 移動速度更新
-		//speed = Mathf.Lerp(speed, afterSpeed, 0);
+		speed = Mathf.Lerp(speed, afterSpeed, acceleration);
 	}
 
 	// 進む
 	void ITrain.Go()
 	{
 		canMove = true;
-		//rb.velocity = stopBeforSpeed;
+		rb.velocity = stopBeforSpeed;
 	}
 
 	// 停止
@@ -83,7 +85,6 @@ public class Train : MonoBehaviour, ITrain
 		canMove = false;
 		stopBeforSpeed = rb.velocity;
 		rb.velocity = Vector3.zero;
-
 	}
 
 	// 速度を上げる
@@ -91,10 +92,7 @@ public class Train : MonoBehaviour, ITrain
 	{
 		afterSpeed += speed;
 		// 補完速度計算
-		complement = (speed + afterSpeed) / 2;// / スプライトサイズ
-
-		// とりあえず
-		this.speed += speed;
+		complement = (speed + afterSpeed) / 2 / 1.92f;
 	}
 
 	// 方向を変更
@@ -104,6 +102,6 @@ public class Train : MonoBehaviour, ITrain
 
 		// 曲がる位置とパネルの繋がっている位置を取得
 		this.curvePos = curvePos;
-		this.finalDestination = targetPos;
+		finalDestination = targetPos;
 	}
 }

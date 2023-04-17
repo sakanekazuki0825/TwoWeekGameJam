@@ -8,6 +8,9 @@ public class PanelManager : MonoBehaviour
 	// 生成するパネルプレハブ
 	[SerializeField]
 	GameObject panel;
+	// ゴールパネルプレハブ
+	[SerializeField]
+	GameObject goalPanel;
 
 	// 最初に生成する横に移動するパネルの数
 	[SerializeField]
@@ -38,11 +41,11 @@ public class PanelManager : MonoBehaviour
 	private void Update()
 	{
 		// スクリーンの右下の座標を取得
-		var screenRightDownPos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height));
+		var screenRightDownPos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, 10));
 		// 最後のパネルの左端の位置を取得
 		var panelLeftPos = panels[panels.Count - 1].transform.position.x - spriteSize.x / 2;
 		// パネルの左が画面に入っていた場合生成
-		if(panelLeftPos < screenRightDownPos.x)
+		if (panelLeftPos < screenRightDownPos.x)
 		{
 			PanelSpawn();
 		}
