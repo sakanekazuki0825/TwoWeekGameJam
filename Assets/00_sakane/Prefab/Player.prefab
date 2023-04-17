@@ -44,3 +44,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f87b7ee3fc33bf74ba4ed60f0022b024, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  selectPanelFrame: {fileID: 5250365572347890679, guid: 9386c599114b2b34bbf3e5732e2fe3f6, type: 3}

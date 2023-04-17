@@ -16,6 +16,11 @@ public class Player : MonoBehaviour,IPlayer
 	// true = 動くことができる
 	bool canOperation = false;
 
+	// 選択しているパネルに表示するフレーム
+	[SerializeField]
+	GameObject selectPanelFrame;
+	GameObject frame;
+
 	private void Update()
 	{
 		// 操作できる状態でない場合は入力をとらない
@@ -63,6 +68,7 @@ public class Player : MonoBehaviour,IPlayer
 				if (nowSelectObj == null)
 				{
 					nowSelectObj = hit.collider.gameObject;
+					frame = Instantiate(selectPanelFrame, nowSelectObj.transform.position, Quaternion.identity);
 				}
 				// オブジェクトを選択している場合
 				else
@@ -81,6 +87,8 @@ public class Player : MonoBehaviour,IPlayer
 					// 選択しているオブジェクトを外す
 					nowSelectObj = null;
 					changeObj = null;
+					// 選択中フレーム削除
+					Destroy(frame);
 				}
 			}
 			// 選択していない状態にする
