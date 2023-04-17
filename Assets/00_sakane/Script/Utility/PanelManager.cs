@@ -1,7 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using MyEnum;
 
 // パネル管理クラス
 public class PanelManager : MonoBehaviour
@@ -26,7 +25,8 @@ public class PanelManager : MonoBehaviour
 	List<GameObject> panels = new List<GameObject>();
 
 	// スプライトのサイズ
-	Vector2 spriteSize;
+	static Vector2 spriteSize = new Vector2(1.92f, 1.6f);
+	public static Vector2 SpriteSize { get { return spriteSize; } }
 
 	private void Start()
 	{
@@ -59,7 +59,7 @@ public class PanelManager : MonoBehaviour
 			// 生成したパネル保存
 			panels.Add(insObj);
 			// パネルに方向を設定
-			insObj.GetComponent<IPanel>().SetLinkDirection(new List<Direction> { Direction.LEFT, Direction.RIGHT });
+			insObj.GetComponent<IPanel>().SetLinkDirection(new List<Vector2> { Vector2.left, Vector2.right });
 		}
 		// 初期配置
 		for (int i = 0; i < spawnNum.x; ++i)
