@@ -1,8 +1,8 @@
 using System.Collections.Generic;
-using MyEnum;
+using UnityEngine;
 
 public interface IPanel
 {
-	void SetLinkDirection(List<Direction> directions);
+	void SetLinkDirection(List<Vector2> directions);
 	bool IsOnTrain();
 }

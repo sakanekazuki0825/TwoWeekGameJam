@@ -6,7 +6,7 @@ public class Panel : MonoBehaviour,IPanel
 {
 	[SerializeField]
 	// 繋がっている方向
-	List<Direction> linkDirections;
+	List<Vector2> linkDirections;
 
 	// true = 電車が乗っている
 	bool isTrain = false;
@@ -25,24 +25,8 @@ public class Panel : MonoBehaviour,IPanel
 		{
 			var hitPoint = other.ClosestPoint(transform.position);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 			// 当たった方向に道があるか調べる
-			Direction hitDir = HitDirection(other.transform.position);
+			Vector2 hitDir = HitDirection(other.transform.position);
 			var isLoad = IsLoad(hitDir);
 			if (!isLoad)
 			{
@@ -52,7 +36,7 @@ public class Panel : MonoBehaviour,IPanel
 			else
 			{
 				// 直線か調べる
-				if ((linkDirections.IndexOf(Direction.LEFT) != -1) && (linkDirections.IndexOf(Direction.RIGHT) != -1) || (linkDirections.IndexOf(Direction.DOWN) != -1) && (linkDirections.IndexOf(Direction.UP) != -1))
+				if ((linkDirections[0] - linkDirections[1]).magnitude > 1.8f)
 				{
 					other.GetComponent<ITrain>().AddSpeed(speedUpValue);
 				}
@@ -61,14 +45,15 @@ public class Panel : MonoBehaviour,IPanel
 					other.GetComponent<ITrain>().AddSpeed(speedDownValue);
 				}
 
-				// 電車の移動方向を設定
-				other.GetComponent<ITrain>().Curve(linkDirections[(linkDirections.IndexOf(hitDir) + 1) % 2]);
+				var targetPos = linkDirections[(linkDirections.IndexOf(hitDir) + 1) % 2] * PanelManager.SpriteSize;
+				// 電車の目的地（パネルが目的地設定は違和感がある）
+				other.GetComponent<ITrain>().Curve(transform.position, transform.position + new Vector3(targetPos.x, targetPos.y));
 			}
 		}
 	}
 
 	// 当たった方向を調べる
-	Direction HitDirection(Vector3 position)
+	Vector3 HitDirection(Vector3 position)
 	{
 		var dir = transform.position - position;
 		var x = Mathf.Abs(dir.x);
@@ -76,40 +61,36 @@ public class Panel : MonoBehaviour,IPanel
 
 		if (x > y)
 		{
-			if (x > 0)
+			if (dir.x > 0)
 			{
-				return Direction.LEFT;
+				return Vector2.left;
 			}
 			else
 			{
-				return Direction.RIGHT;
+				return Vector2.right;
 			}
 		}
 		else
 		{
-			if (y > 0)
+			if (dir.y > 0)
 			{
-				return Direction.DOWN;
+				return Vector2.down;
 			}
 			else
 			{
-				return Direction.UP;
+				return Vector2.up;
 			}
 		}
 	}
 
 	// 道があるか調べる
-	bool IsLoad(Direction dir)
+	bool IsLoad(Vector2 dir)
 	{
-		if(linkDirections.IndexOf(dir) != -1)
-		{
-			return true;
-		}
-		return false;
+		return linkDirections.Contains(dir);
 	}
 
 	// 方向設定
-	void IPanel.SetLinkDirection(List<Direction> directions)
+	void IPanel.SetLinkDirection(List<Vector2> directions)
 	{
 		linkDirections = directions;
 	}

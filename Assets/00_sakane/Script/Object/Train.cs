@@ -5,19 +5,6 @@ using UnityEngine;
 // 汽車クラス
 public class Train : MonoBehaviour, ITrain
 {
-	//// 移動する向き
-	//Vector2 direction;
-	//// 向いている方向に対して動く方向
-	//[SerializeField]
-	//List<Vector2> dir;
-
-	// 曲がる位置
-	Vector3 curvePos = new Vector3(0, 0, 0);
-	// 目的地
-	Vector3 targetPos = new Vector3(10, 0, 0);
-	//// 目的地
-	//Vector2 targetDir;
-
 	// 物理
 	Rigidbody rb;
 
@@ -39,8 +26,17 @@ public class Train : MonoBehaviour, ITrain
 	// 止まった時に速さを保存
 	Vector3 stopBeforSpeed = new Vector3 (0, 0, 0);
 
-	// とりあえず
-	float hokan = 0.1f;
+	// 許容範囲
+	[SerializeField]
+	float tolerance = 0.1f;
+	// true = 真ん中を通過
+	bool isCenter = false;
+	// 曲がる位置
+	Vector3 curvePos = new Vector3(0, 0, 0);
+	// 最終目的地
+	Vector3 finalDestination = new Vector3(10, 0, 0);
+	// 目的地
+	Vector3 targetPos = new Vector3(10, 0, 0);
 
 	private void Awake()
 	{
@@ -58,120 +54,21 @@ public class Train : MonoBehaviour, ITrain
 			return;
 		}
 
-		//// ---------------------------------------------
-		//// とりあえず実装
-
-		//// 左に移動中
-		//if (rb.velocity.x < 0)
-		//{
-		//	if(transform.position.x < targetPos.x + hokan)
-		//	{
-		//		switch (direction)
-		//		{
-		//		case Direction.LEFT:
-		//			targetPos = transform.position - new Vector3(1.92f, 0, 0);
-		//			break;
-		//		case Direction.RIGHT:
-		//			targetPos = transform.position + new Vector3(1.92f, 0, 0);
-		//			break;
-		//		case Direction.UP:
-		//			targetPos = transform.position + new Vector3(0, 1.6f, 0);
-		//			break;
-		//		case Direction.DOWN:
-		//			targetPos = transform.position - new Vector3(0, 1.6f, 0);
-		//			break;
-		//		}
-		//	}
-		//}
-		//// 下に移動中
-		//else if (rb.velocity.y < 0)
-		//{
-		//	if (transform.position.y < targetPos.y + hokan)
-		//	{
-		//		switch (direction)
-		//		{
-		//		case Direction.LEFT:
-		//			targetPos = transform.position - new Vector3(1.92f, 0, 0);
-		//			break;
-		//		case Direction.RIGHT:
-		//			targetPos = transform.position + new Vector3(1.92f, 0, 0);
-		//			break;
-		//		case Direction.UP:
-		//			targetPos = transform.position + new Vector3(0, 1.6f, 0);
-		//			break;
-		//		case Direction.DOWN:
-		//			targetPos = transform.position - new Vector3(0, 1.6f, 0);
-		//			break;
-		//		}
-		//	}
-		//}
-		//// 右に移動中
-		//else if (rb.velocity.x > 0)
-		//{
-		//	if (transform.position.x > targetPos.x - hokan)
-		//	{
-		//		switch (direction)
-		//		{
-		//		case Direction.LEFT:
-		//			targetPos = transform.position - new Vector3(1.92f, 0, 0);
-		//			break;
-		//		case Direction.RIGHT:
-		//			targetPos = transform.position + new Vector3(1.92f, 0, 0);
-		//			break;
-		//		case Direction.UP:
-		//			targetPos = transform.position + new Vector3(0, 1.6f, 0);
-		//			break;
-		//		case Direction.DOWN:
-		//			targetPos = transform.position - new Vector3(0, 1.6f, 0);
-		//			break;
-		//		}
-		//	}
-		//}
-		//// 上に移動中
-		//else if(rb.velocity.y > 0)
-		//{
-		//	if (transform.position.y > targetPos.y - hokan)
-		//	{
-		//		switch (direction)
-		//		{
-		//		case Direction.LEFT:
-		//			targetPos = transform.position - new Vector3(1.92f, 0, 0);
-		//			break;
-		//		case Direction.RIGHT:
-		//			targetPos = transform.position + new Vector3(1.92f, 0, 0);
-		//			break;
-		//		case Direction.UP:
-		//			targetPos = transform.position + new Vector3(0, 1.6f, 0);
-		//			break;
-		//		case Direction.DOWN:
-		//			targetPos = transform.position - new Vector3(0, 1.6f, 0);
-		//			break;
-		//		}
-		//	}			
-		//}
-		//// ---------------------------------------------
-		// 動いていないからゲームオーバー
-		//else
-		//{
-		//	GameObject.FindObjectOfType<GameManager>().GameOver();
-		//}
-
-
+		if (!isCenter && Vector2.Distance(transform.position, curvePos) <= tolerance)
+		{
+			// 許容範囲に入ったら目的地を代入
+			transform.position = curvePos;
+			// 目的地更新 (自分の位置 + 目的地の方向 * 画像サイズ)
+			targetPos = finalDestination;
+			// 真ん中を通過
+			isCenter = true;
+		}
 
 		// 移動
 		rb.velocity = (targetPos - transform.position).normalized * speed;
 		// 移動速度更新
 		//speed = Mathf.Lerp(speed, afterSpeed, 0);
 	}
-
-	//private void OnTriggerEnter(Collider other)
-	//{
-	//	// パネルに当たった場合目的地設定
-	//	if (other.gameObject.CompareTag("Panel"))
-	//	{
-	//		targetPos = other.transform.position;
-	//	}
-	//}
 
 	// 進む
 	void ITrain.Go()
@@ -203,8 +100,10 @@ public class Train : MonoBehaviour, ITrain
 	// 方向を変更
 	void ITrain.Curve(Vector3 curvePos, Vector3 targetPos)
 	{
-		// (方向 * パネルスプライトのサイズ)パネルスプライトのサイズの取得方法を考える
+		isCenter = false;
+
+		// 曲がる位置とパネルの繋がっている位置を取得
 		this.curvePos = curvePos;
-		this.targetPos = targetPos;
+		this.finalDestination = targetPos;
 	}
 }
