@@ -23,7 +23,7 @@ public class Train : MonoBehaviour, ITrain
 	float complement = 0;
 
 	// 止まった時に速さを保存
-	Vector3 stopBeforSpeed = new Vector3 (0, 0, 0);
+	Vector3 stopBeforeSpeed = new Vector3 (0, 0, 0);
 
 	// 許容範囲
 	[SerializeField]
@@ -42,10 +42,10 @@ public class Train : MonoBehaviour, ITrain
 		// 物理取得
 		rb = GetComponent<Rigidbody>();
 		// 初期速度設定
-		rb.velocity = new Vector3(startSpeed, 0, 0);
+		speed = startSpeed;
 
 		afterSpeed = startSpeed;
-		stopBeforSpeed = new Vector3(startSpeed, 0, 0);
+		stopBeforeSpeed = new Vector3(startSpeed, 0, 0);
 	}
 
 	private void FixedUpdate()
@@ -76,14 +76,14 @@ public class Train : MonoBehaviour, ITrain
 	void ITrain.Go()
 	{
 		canMove = true;
-		rb.velocity = stopBeforSpeed;
+		rb.velocity = stopBeforeSpeed;
 	}
 
 	// 停止
 	void ITrain.Stop()
 	{
 		canMove = false;
-		stopBeforSpeed = rb.velocity;
+		stopBeforeSpeed = rb.velocity;
 		rb.velocity = Vector3.zero;
 	}
 
@@ -92,7 +92,7 @@ public class Train : MonoBehaviour, ITrain
 	{
 		afterSpeed += speed;
 		// 補完速度計算
-		complement = (speed + afterSpeed) / 2 / 1.92f;
+		//complement = (speed + afterSpeed) / 2 / 1.92f;
 	}
 
 	// 方向を変更

@@ -5,6 +5,9 @@ using UnityEngine;
 // パネル管理クラス
 public class PanelManager : MonoBehaviour
 {
+	// パネルのスプライト
+	[SerializeField, Tooltip("0.UP & RIGHT\n1.UP & Left\n2.LEFT & RIGHT\n3.RIGHT & DOWN\n4.LEFT & DOWN\n5.UP & DOWN")]
+	List<Sprite> panelSprites = new List<Sprite>();
 	// 生成するパネルプレハブ
 	[SerializeField]
 	GameObject panel;
@@ -30,6 +33,19 @@ public class PanelManager : MonoBehaviour
 	// スプライトのサイズ
 	static Vector2 spriteSize = new Vector2(1.92f, 1.6f);
 	public static Vector2 SpriteSize { get { return spriteSize; } }
+
+	// 直線で上がる速度
+	[SerializeField]
+	float speedUpValue = 0.4f;
+
+	// カーブで下がる速度
+	[SerializeField]
+	float speedDownValue = -0.4f;
+
+	// ゴールまでのパネルの数（X方向のみ計算）
+	[SerializeField]
+	int numberToGoal = 100;
+	int nowNumber = 3;
 
 	private void Start()
 	{
@@ -77,15 +93,51 @@ public class PanelManager : MonoBehaviour
 		// 最後に追加したオブジェクトの位置取得
 		var lastObjPos = panels[panels.Count - 1].transform.position;
 		// 生成位置取得
-		var spawnPos = new Vector2(lastObjPos.x + spriteSize.x, spriteSize.y);
+		var spawnPosX = lastObjPos.x + spriteSize.x;
+		// ゴール
+		if (nowNumber == (numberToGoal - 1))
+		{
+
+			for (int i = 0; i < spawnNum.y; ++i)
+			{
+				Instantiate(goalPanel, new Vector2(spawnPosX, spriteSize.y * i + spawnStartPos.y), Quaternion.identity);
+			}
+		}
 		for (int i = 0; i < spawnNum.y; ++i)
 		{
 			// パネル生成
-			var insObj = Instantiate(panel, new Vector2(lastObjPos.x + spriteSize.x, spriteSize.y * i + spawnStartPos.y), Quaternion.identity);
+			var insObj = Instantiate(panel, new Vector2(spawnPosX, spriteSize.y * i + spawnStartPos.y), Quaternion.identity);
 			// 生成
 			panels.Add(insObj);
 
-			// 繋がっている方向を決める
+			// 繋がっている方向を決める（-1して直進パネルを1枚として扱う）
+			var lineNumber = Random.Range(0, panelSprites.Count - 1);
+
+#if UNITY_EDITOR
+			// デバッグ
+			if (GameInstance.isDebug)
+			{
+				lineNumber = 2;
+			}
+#endif
+
+			// スプライトの設定
+			insObj.GetComponent<IPanel>().SetSprite(panelSprites[lineNumber]);
+			// 繋がっている場所を指定
+			insObj.GetComponent<IPanel>().SetLinkDirection(GameInstance.linePattern[lineNumber]);
+
+			// 変化させる速度の設定
+			if ((lineNumber == 2) || (lineNumber == 5))
+			{
+				insObj.GetComponent<IPanel>().SetChangeSpeedValue(speedUpValue);
+			}
+			else
+			{
+				insObj.GetComponent<IPanel>().SetChangeSpeedValue(speedDownValue);
+			}
 		}
+
+		// 生成した数を追加
+		++nowNumber;
 	}
 }

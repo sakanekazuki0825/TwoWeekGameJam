@@ -13,9 +13,8 @@ public class LevelManager
 		get => isLoading;
 	}
 
-	// 最低でもこの時間はロード画面を表示させる
-	[SerializeField]
-	float lowestDispTime = 0.5f;
+	// 最低でもこの時間はロード画面を表示させる（何があっても見せる！）
+	static float lowestDispTime = 0.5f;
 
 	// シーン読み込み
 	public static void LoadLevel(string levelName)
@@ -36,8 +35,9 @@ public class LevelManager
 	}
 
 	// 非同期でのシーン読み込み
-	public IEnumerator ELoadLevelAsync(string levelName)
+	public static IEnumerator ELoadLevelAsync(string levelName)
 	{
+		// ロード中
 		isLoading = true;
 		// 読み込みアイコンを表示するクラスを表示
 		GameObject.FindObjectOfType<LoadScreen>().gameObject.SetActive(true);

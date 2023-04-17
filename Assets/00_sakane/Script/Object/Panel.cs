@@ -2,7 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // パネル
-public class Panel : MonoBehaviour,IPanel
+public class Panel : MonoBehaviour, IPanel
 {
 	[SerializeField]
 	// 繋がっている方向
@@ -11,12 +11,16 @@ public class Panel : MonoBehaviour,IPanel
 	// true = 電車が乗っている
 	bool isTrain = false;
 
-	// 直線で上がる速度
-	[SerializeField]
-	float speedUpValue = 0.4f;
-	// カーブで下がる速度
-	[SerializeField]
-	float speedDownValue = 0.4f;
+	// スプライトを表示するクラス
+	SpriteRenderer spriteRenderer;
+
+	// 変化させる速度
+	float speedChangeValue = 0.4f;
+
+	private void Awake()
+	{
+		spriteRenderer = GetComponent<SpriteRenderer>();
+	}
 
 	private void OnTriggerEnter(Collider other)
 	{
@@ -35,15 +39,7 @@ public class Panel : MonoBehaviour,IPanel
 			}
 			else
 			{
-				// 直線か調べる
-				if ((linkDirections[0] - linkDirections[1]).magnitude > 1.8f)
-				{
-					other.GetComponent<ITrain>().AddSpeed(speedUpValue);
-				}
-				else
-				{
-					other.GetComponent<ITrain>().AddSpeed(speedDownValue);
-				}
+				other.GetComponent<ITrain>().AddSpeed(speedChangeValue);	
 
 				var targetPos = linkDirections[(linkDirections.IndexOf(hitDir) + 1) % 2] * PanelManager.SpriteSize;
 				// 電車の目的地（パネルが目的地設定は違和感がある）
@@ -99,5 +95,17 @@ public class Panel : MonoBehaviour,IPanel
 	bool IPanel.IsOnTrain()
 	{
 		return isTrain;
+	}
+
+	// スプライトの設定
+	void IPanel.SetSprite(Sprite sprite)
+	{
+		spriteRenderer.sprite = sprite;
+	}
+
+	// 変化させる速度の設定
+	void IPanel.SetChangeSpeedValue(float speed)
+	{
+		speedChangeValue = speed;
 	}
 }
