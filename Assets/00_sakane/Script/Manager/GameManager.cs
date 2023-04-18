@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 // ルール管理クラス
 public class GameManager : MonoBehaviour, IGameManager
@@ -8,7 +9,7 @@ public class GameManager : MonoBehaviour, IGameManager
 	//bool isGameFinish = false;
 
 	// true = ゲーム中
-	//bool isInPlay = false;
+	bool isInPlay = false;
 
 	// リザルトを表示するキャンバス
 	[SerializeField]
@@ -31,6 +32,13 @@ public class GameManager : MonoBehaviour, IGameManager
 	[SerializeField]
 	Vector3 trainPos;
 
+	// 選択できない状態にするオブジェクト
+	[SerializeField]
+	GameObject cannotSelectObj;
+	// 選択できない状態にするオブジェクトの位置
+	[SerializeField]
+	Vector3 cannotSelectObjPos = new Vector3(-11, 0, 0);
+
 	// カメラオブジェクト
 	[SerializeField]
 	GameObject cameraObj;
@@ -38,9 +46,25 @@ public class GameManager : MonoBehaviour, IGameManager
 	[SerializeField]
 	Vector3 cameraPos;
 
+	// カウントダウン
+	[SerializeField]
+	float maxCountdownTime = 3;
+	float countdownTime;
+	[SerializeField]
+	Canvas countdownCanvas;
+	[SerializeField]
+	Text countdownTxt;
+	[SerializeField]
+	string goStr = "Go";
+	[SerializeField]
+	float goTime = 1;
+
 	private void Awake()
 	{
 		GameInstance.gameManager = this;
+
+		// カウントダウン時間設定
+		countdownTime = maxCountdownTime;
 	}
 
 	private void Start()
@@ -63,6 +87,8 @@ public class GameManager : MonoBehaviour, IGameManager
 			LevelManager.GameFinish();
 		}
 #endif
+
+		
 	}
 
 	private void OnDestroy()
@@ -73,11 +99,6 @@ public class GameManager : MonoBehaviour, IGameManager
 	// ゲーム開始
 	public void GameStart()
 	{
-		// 電車生成
-		train = Instantiate(trainPrefab, trainPos, Quaternion.identity);
-		Instantiate(cameraObj, cameraPos, Quaternion.identity).GetComponent<ICameraMove>().SetTarget(train);
-		// 電車を動くことができる状態にする
-		train.GetComponent<ITrain>().Go();
 		// ゲーム開始
 		StartCoroutine(EGameStart());
 	}
@@ -91,21 +112,45 @@ public class GameManager : MonoBehaviour, IGameManager
 		// フェードイン
 		fade.FadeIn();
 
+		// プレイヤー生成
+		playerObj = Instantiate(playerPrefab);
+		// プレイヤーを止める
+		playerObj.GetComponent<IPlayer>().GameStop();
+		// 電車生成
+		train = Instantiate(trainPrefab, trainPos, Quaternion.identity);
+		Instantiate(cameraObj, cameraPos, Quaternion.identity).GetComponent<ICameraMove>().SetTarget(train);
+		Instantiate(cannotSelectObj, cannotSelectObjPos, Quaternion.identity).GetComponent<ICannotSelectPanel>().SetTarget(train);
+
 		// フェードが終わるまでループ
 		while (fade.IsFading)
 		{
 			yield return null;
 		}
 
-		// プレイヤー生成
-		playerObj = Instantiate(playerPrefab);
-		// プレイヤーを止める
-		playerObj.GetComponent<IPlayer>().GameStop();
+		// カウントダウン
+		countdownCanvas.gameObject.SetActive(true);
+		while (!isInPlay)
+		{
+			countdownTime -= Time.deltaTime;
+			countdownTxt.text = Mathf.Ceil(countdownTime).ToString();
+			if (countdownTime < 0)
+			{
+				countdownTxt.text = goStr;
+				isInPlay = true;
+			}
+			yield return null;
+		}
+
 		// プレイヤーを動くことができる状態にする
 		playerObj.GetComponent<IPlayer>().GameStart();
+		// 電車を動くことができる状態にする
+		train.GetComponent<ITrain>().Go();
+
+		yield return new WaitForSeconds(goTime);
+		countdownCanvas.gameObject.SetActive(false);
 
 		// フェードが終わったら操作できる
-		//isInPlay = true;
+		// = true;
 	}
 
 	// ゲーム終了
@@ -122,7 +167,7 @@ public class GameManager : MonoBehaviour, IGameManager
 		// リザルトを表示
 		resultCanvas.SetActive(true);
 		// 操作できない状態にする
-		//isInPlay = false;
+		isInPlay = false;
 		// フェードアウト
 		fade.FadeOut();
 

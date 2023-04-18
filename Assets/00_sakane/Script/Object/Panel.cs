@@ -39,12 +39,16 @@ public class Panel : MonoBehaviour, IPanel
 			}
 			else
 			{
-				other.GetComponent<ITrain>().AddSpeed(speedChangeValue);	
+				other.GetComponent<ITrain>().AddSpeed(speedChangeValue);
 
 				var targetPos = linkDirections[(linkDirections.IndexOf(hitDir) + 1) % 2] * PanelManager.SpriteSize;
 				// 電車の目的地（パネルが目的地設定は違和感がある）
 				other.GetComponent<ITrain>().Curve(transform.position, transform.position + new Vector3(targetPos.x, targetPos.y));
 			}
+		}
+		else if (other.gameObject.CompareTag("CannotSelectPanel"))
+		{
+			GameInstance.player.SelectPanelRemove(gameObject);
 		}
 	}
 

@@ -45,13 +45,14 @@ public class Train : MonoBehaviour, ITrain
 		// 物理取得
 		rb = GetComponent<Rigidbody>();
 		// 初期速度設定
-		speed = startSpeed;
+		//speed = startSpeed;
 
 		afterSpeed = startSpeed;
 		stopBeforeSpeed = new Vector3(startSpeed, 0, 0);
 
 		// アニメーター取得
 		animator = GetComponent<Animator>();
+		animator.speed = 0;
 	}
 
 	private void Update()

@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Panel
   - Train
+  - CannotSelectPanel
   layers:
   - Default
   - TransparentFX

@@ -28,6 +28,7 @@ public struct GameInstance
 	public static bool isDebug = true;
 #endif
 
+	public static Player player = null;
 	public static GameManager gameManager = null;
 	public static PanelManager panelManager = null;
 	public static FadeIO fadeIO = null;
