@@ -37,6 +37,12 @@ public class Train : MonoBehaviour, ITrain
 	// ターゲットの方向
 	Vector3 beforeTargetDir = new Vector3(1, 0, 0);
 
+	// 疾走感を出すやつ
+	[SerializeField]
+	ParticleSystem dashEffect;
+	[SerializeField]
+	float velMag;
+
 	// アニメーター
 	Animator animator;
 
@@ -53,6 +59,11 @@ public class Train : MonoBehaviour, ITrain
 		// アニメーター取得
 		animator = GetComponent<Animator>();
 		animator.speed = 0;
+	}
+
+	private void Start()
+	{
+		dashEffect.gameObject.SetActive(false);
 	}
 
 	private void Update()
@@ -114,6 +125,17 @@ public class Train : MonoBehaviour, ITrain
 	void ITrain.AddSpeed(float speed)
 	{
 		afterSpeed += speed;
+
+		if (afterSpeed > velMag)
+		{
+			dashEffect.gameObject.SetActive(true);
+		}
+		else
+		{
+			dashEffect.gameObject.SetActive(false);
+		}
+		var pmain = dashEffect.main;
+		pmain.simulationSpeed = (afterSpeed - 9);
 		// 補完速度計算
 		//complement = (speed + afterSpeed) / 2 / 1.92f;
 	}

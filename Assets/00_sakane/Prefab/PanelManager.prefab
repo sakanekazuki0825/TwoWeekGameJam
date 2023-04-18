@@ -56,6 +56,6 @@ MonoBehaviour:
   startHorizontalPanel: 3
   spawnNum: {x: 7, y: 5}
   spawnStartPos: {x: 0, y: -3.2}
-  speedUpValue: 0.4
-  speedDownValue: -0.4
+  speedUpValue: 0.2
+  speedDownValue: -0.2
   numberToGoal: 100

@@ -59,6 +59,10 @@ public class GameManager : MonoBehaviour, IGameManager
 	[SerializeField]
 	float goTime = 1;
 
+	// リタイヤ
+	[SerializeField]
+	Canvas retireCanvas;
+
 	private void Awake()
 	{
 		GameInstance.gameManager = this;
@@ -71,6 +75,8 @@ public class GameManager : MonoBehaviour, IGameManager
 	{
 		// リザルトを非表示にする
 		resultCanvas.SetActive(false);
+		// リタイヤを非表示にする
+		retireCanvas.gameObject.SetActive(false);
 
 		// フェードクラス取得
 		fade = GameInstance.fadeIO;
@@ -87,8 +93,6 @@ public class GameManager : MonoBehaviour, IGameManager
 			LevelManager.GameFinish();
 		}
 #endif
-
-		
 	}
 
 	private void OnDestroy()
@@ -151,6 +155,12 @@ public class GameManager : MonoBehaviour, IGameManager
 
 		// フェードが終わったら操作できる
 		// = true;
+	}
+
+	// リタイヤ
+	public void Retire()
+	{
+		retireCanvas.gameObject.SetActive(true);
 	}
 
 	// ゲーム終了
