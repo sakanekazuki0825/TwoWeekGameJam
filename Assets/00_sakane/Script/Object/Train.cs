@@ -37,6 +37,9 @@ public class Train : MonoBehaviour, ITrain
 	// ターゲットの方向
 	Vector3 beforeTargetDir = new Vector3(1, 0, 0);
 
+	// アニメーター
+	Animator animator;
+
 	private void Awake()
 	{
 		// 物理取得
@@ -46,6 +49,9 @@ public class Train : MonoBehaviour, ITrain
 
 		afterSpeed = startSpeed;
 		stopBeforeSpeed = new Vector3(startSpeed, 0, 0);
+
+		// アニメーター取得
+		animator = GetComponent<Animator>();
 	}
 
 	private void Update()
@@ -80,7 +86,8 @@ public class Train : MonoBehaviour, ITrain
 
 			beforeTargetDir = targetPos - transform.position;
 		}
-
+		// アニメーション速度更新
+		animator.speed = (speed / startSpeed);
 		// 移動
 		rb.velocity = beforeTargetDir.normalized * speed;
 		// 移動速度更新

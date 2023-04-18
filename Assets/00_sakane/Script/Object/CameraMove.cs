@@ -17,8 +17,10 @@ public class CameraMove : MonoBehaviour,ICameraMove
 
 	void Update()
 	{
+		var position = target.transform.position + offset;
+		position.y = transform.position.y;
 		// ƒJƒƒ‰‚ğŒÅ’è
-		transform.position = target.transform.position + offset;
+		transform.position = position;
 	}
 
 	void ICameraMove.SetTarget(UnityEngine.GameObject target)

@@ -29,5 +29,6 @@ public struct GameInstance
 #endif
 
 	public static GameManager gameManager = null;
+	public static PanelManager panelManager = null;
 	public static FadeIO fadeIO = null;
 }

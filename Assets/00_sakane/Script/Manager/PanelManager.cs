@@ -49,6 +49,11 @@ public class PanelManager : MonoBehaviour
 	// 生成したゴールオブジェクト
 	List<GameObject> goalObj = new List<GameObject>();
 
+	private void Awake()
+	{
+		GameInstance.panelManager = this;
+	}
+
 	private void Start()
 	{
 		// スプライトのサイズ設定
@@ -67,6 +72,11 @@ public class PanelManager : MonoBehaviour
 		{
 			PanelSpawn();
 		}
+	}
+
+	private void OnDestroy()
+	{
+		GameInstance.panelManager = null;
 	}
 
 	// 初期配置
