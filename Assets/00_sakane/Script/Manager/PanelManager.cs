@@ -46,6 +46,8 @@ public class PanelManager : MonoBehaviour
 	[SerializeField]
 	int numberToGoal = 100;
 	int nowNumber = 3;
+	// 生成したゴールオブジェクト
+	List<GameObject> goalObj = new List<GameObject>();
 
 	private void Start()
 	{
@@ -97,11 +99,16 @@ public class PanelManager : MonoBehaviour
 		// ゴール
 		if (nowNumber == (numberToGoal - 1))
 		{
-
+			// ゴールの生成は1回のみ
+			if (goalObj.Count > 0)
+			{
+				return;
+			}
 			for (int i = 0; i < spawnNum.y; ++i)
 			{
-				Instantiate(goalPanel, new Vector2(spawnPosX, spriteSize.y * i + spawnStartPos.y), Quaternion.identity);
+				goalObj.Add(Instantiate(goalPanel, new Vector2(spawnPosX, spriteSize.y * i + spawnStartPos.y), Quaternion.identity));
 			}
+			return;
 		}
 		for (int i = 0; i < spawnNum.y; ++i)
 		{
@@ -112,6 +119,14 @@ public class PanelManager : MonoBehaviour
 
 			// 繋がっている方向を決める（-1して直進パネルを1枚として扱う）
 			var lineNumber = Random.Range(0, panelSprites.Count - 1);
+
+			if(lineNumber == 2)
+			{
+				// 直線の場合ランダムで縦横決める
+				var straight = Random.Range(0, 2);
+				// 3の倍数にして、-1すると縦と横の番号になる
+				lineNumber = (straight + 1) * 3 - 1;
+			}
 
 #if UNITY_EDITOR
 			// デバッグ
@@ -127,7 +142,7 @@ public class PanelManager : MonoBehaviour
 			insObj.GetComponent<IPanel>().SetLinkDirection(GameInstance.linePattern[lineNumber]);
 
 			// 変化させる速度の設定
-			if ((lineNumber == 2) || (lineNumber == 5))
+			if (lineNumber == 2)
 			{
 				insObj.GetComponent<IPanel>().SetChangeSpeedValue(speedUpValue);
 			}

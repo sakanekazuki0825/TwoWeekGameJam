@@ -52,9 +52,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: b7533c7c934d5be4393d77661d169894, type: 3}
   - {fileID: 21300000, guid: d78099a29308d2042a8e74503653d051, type: 3}
   panel: {fileID: 6239445011731032555, guid: f2430f98a2f01c44f8cb0b3ba840f871, type: 3}
-  goalPanel: {fileID: 0}
+  goalPanel: {fileID: 3314077227424272284, guid: 75560ce7828d0c7409bc1dac0750d7d5, type: 3}
   startHorizontalPanel: 3
   spawnNum: {x: 7, y: 5}
   spawnStartPos: {x: 0, y: -3.2}
   speedUpValue: 0.4
   speedDownValue: -0.4
+  numberToGoal: 100

@@ -27,6 +27,21 @@ public class GameManager : MonoBehaviour, IGameManager
 	GameObject trainPrefab;
 	// 生成した電車
 	GameObject train;
+	// 電車生成位置
+	[SerializeField]
+	Vector3 trainPos;
+
+	// カメラオブジェクト
+	[SerializeField]
+	GameObject cameraObj;
+	// カメラの生成位置
+	[SerializeField]
+	Vector3 cameraPos;
+
+	private void Awake()
+	{
+		GameInstance.gameManager = this;
+	}
 
 	private void Start()
 	{
@@ -34,7 +49,7 @@ public class GameManager : MonoBehaviour, IGameManager
 		resultCanvas.SetActive(false);
 
 		// フェードクラス取得
-		fade = GameObject.FindObjectOfType<FadeIO>();
+		fade = GameInstance.fadeIO;
 
 		// ゲーム開始
 		GameStart();
@@ -50,11 +65,17 @@ public class GameManager : MonoBehaviour, IGameManager
 #endif
 	}
 
+	private void OnDestroy()
+	{
+		GameInstance.gameManager = null;
+	}
+
 	// ゲーム開始
 	public void GameStart()
 	{
 		// 電車生成
-		train = Instantiate(trainPrefab, new Vector3(-2, 0, 0), Quaternion.identity);
+		train = Instantiate(trainPrefab, trainPos, Quaternion.identity);
+		Instantiate(cameraObj, cameraPos, Quaternion.identity).GetComponent<ICameraMove>().SetTarget(train);
 		// 電車を動くことができる状態にする
 		train.GetComponent<ITrain>().Go();
 		// ゲーム開始
@@ -112,6 +133,7 @@ public class GameManager : MonoBehaviour, IGameManager
 		}
 
 		// シーン読み込み
+		StartCoroutine(LevelManager.ELoadLevelAsync("Title"));
 	}
 
 	public void GameOver()

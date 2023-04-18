@@ -34,8 +34,8 @@ public class Panel : MonoBehaviour, IPanel
 			var isLoad = IsLoad(hitDir);
 			if (!isLoad)
 			{
-				// ゲーム終了
-				GameObject.FindObjectOfType<GameManager>().GameOver();
+				// ゲームオーバー
+				GameInstance.gameManager.GameOver();
 			}
 			else
 			{

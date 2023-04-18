@@ -40,7 +40,8 @@ public class LevelManager
 		// ロード中
 		isLoading = true;
 		// 読み込みアイコンを表示するクラスを表示
-		GameObject.FindObjectOfType<LoadScreen>().gameObject.SetActive(true);
+		//GameObject.FindObjectOfType<LoadScreen>().gameObject.SetActive(true);
+
 		// 少しは止める（無理やり）
 		yield return new WaitForSeconds(lowestDispTime);
 		// 読み込み開始

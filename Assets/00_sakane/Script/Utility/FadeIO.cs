@@ -21,6 +21,16 @@ public class FadeIO : MonoBehaviour
 	bool isFading = false;
 	public bool IsFading { get => isFading; }
 
+	private void Awake()
+	{
+		GameInstance.fadeIO = this;
+	}
+
+	private void OnDestroy()
+	{
+		GameInstance.fadeIO = null;
+	}
+
 	// フェードイン
 	public void FadeIn()
 	{

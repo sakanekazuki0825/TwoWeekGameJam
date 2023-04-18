@@ -4,16 +4,14 @@ using UnityEngine;
 
 public class TitleManager : MonoBehaviour
 {
-	// Start is called before the first frame update
+	// フェードクラス
+	FadeIO fade;
+
 	void Start()
 	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
+		// フェードを取得してフェードイン開始
+		fade = GameInstance.fadeIO;
+		fade.FadeIn();
 	}
 
 	// ゲーム開始
@@ -25,8 +23,16 @@ public class TitleManager : MonoBehaviour
 	// ゲーム読み込みコルーチン
 	IEnumerator EGameStart()
 	{
-		// シーン読み込み開始
-		StartCoroutine(LevelManager.ELoadLevelAsync(""));
+		// フェードアウト
+		fade.FadeOut();
+		// フェードアウトが終わるまで待つ
+		while (fade.IsFading)
+		{
+			yield return null;
+		}
+
+		// フェードが終わってからシーン読み込み開始
+		StartCoroutine(LevelManager.ELoadLevelAsync("Main"));
 
 		// ロードが終わるまで待つ（なにかアニメーションさせる）
 		while (LevelManager.IsLoading)
