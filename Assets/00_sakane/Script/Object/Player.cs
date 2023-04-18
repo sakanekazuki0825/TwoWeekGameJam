@@ -21,6 +21,11 @@ public class Player : MonoBehaviour,IPlayer
 	GameObject selectPanelFrame;
 	GameObject frame;
 
+	private void Awake()
+	{
+		GameInstance.player = this;
+	}
+
 	private void Update()
 	{
 		// 操作できる状態でない場合は入力をとらない
@@ -93,6 +98,23 @@ public class Player : MonoBehaviour,IPlayer
 			}
 			// 選択していない状態にする
 			isSelect = false;
+		}
+	}
+
+	private void OnDestroy()
+	{
+		GameInstance.player = null;
+	}
+
+	// 選択中のパネルを解除
+	public void SelectPanelRemove(GameObject obj)
+	{
+		if (obj == nowSelectObj)
+		{
+			// 選択しているオブジェクトを外す
+			nowSelectObj = null;
+			// 選択中フレーム削除
+			Destroy(frame);
 		}
 	}
 

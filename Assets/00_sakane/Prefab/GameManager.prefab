@@ -47,3 +47,13 @@ MonoBehaviour:
   resultCanvas: {fileID: 0}
   playerPrefab: {fileID: 4553595751472284635, guid: 2beb7f52d9edcc44cad5e123a2d27d15, type: 3}
   trainPrefab: {fileID: 8308752648588198125, guid: 4e9417c664c433f408c58e5544a1a304, type: 3}
+  trainPos: {x: -2, y: 0, z: 0}
+  cannotSelectObj: {fileID: 8994112553826621183, guid: ce7dc164c305deb488f7acb02910d26c, type: 3}
+  cannotSelectObjPos: {x: -16, y: 0, z: 0}
+  cameraObj: {fileID: 6526248273596705637, guid: d8cab79e5f245f241b33be224ce5242a, type: 3}
+  cameraPos: {x: 5, y: 1, z: -10}
+  maxCountdownTime: 3
+  countdownCanvas: {fileID: 0}
+  countdownTxt: {fileID: 0}
+  goStr: Go
+  goTime: 1

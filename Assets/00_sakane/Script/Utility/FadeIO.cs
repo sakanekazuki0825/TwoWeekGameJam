@@ -21,6 +21,16 @@ public class FadeIO : MonoBehaviour
 	bool isFading = false;
 	public bool IsFading { get => isFading; }
 
+	private void Awake()
+	{
+		GameInstance.fadeIO = this;
+	}
+
+	private void OnDestroy()
+	{
+		GameInstance.fadeIO = null;
+	}
+
 	// フェードイン
 	public void FadeIn()
 	{
@@ -32,7 +42,7 @@ public class FadeIO : MonoBehaviour
 	{
 		isFading = true;
 		fadeImg.color = Color.black;
-		while (fadeImg.color.a <= toleranceValue)
+		while (fadeImg.color.a >= toleranceValue)
 		{
 			yield return null;
 			// アルファを抜く
@@ -52,7 +62,7 @@ public class FadeIO : MonoBehaviour
 	{
 		isFading = true;
 		fadeImg.color = new Color(0, 0, 0, 0);
-		while (fadeImg.color.a >= 1 - toleranceValue)
+		while (fadeImg.color.a <= 1 - toleranceValue)
 		{
 			yield return null;
 			// 色を濃くしていく
