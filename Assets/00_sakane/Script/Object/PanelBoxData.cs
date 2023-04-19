@@ -9,6 +9,7 @@ public class PanelBoxData : ScriptableObject
 	List<int> panelDataList = new List<int>();
 	public List<int> PanelDataList { get => panelDataList; }
 
+	#if UNITY_EDITOR
 	// CSV‚©‚çƒpƒlƒ‹‚ğ“Ç‚İ‚İ
 	[ContextMenu("CSVLoad")]
 	public void LoadData()
@@ -29,4 +30,5 @@ public class PanelBoxData : ScriptableObject
 			}
 		}
 	}
+	#endif
 }
