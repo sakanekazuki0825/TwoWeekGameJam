@@ -9,7 +9,7 @@ public class GameManager : MonoBehaviour
 	//bool isGameFinish = false;
 
 	// true = ゲーム中
-	bool isInPlay = false;
+	//bool isInPlay = false;
 
 	// リザルトを表示するキャンバス
 	[SerializeField]
@@ -136,35 +136,15 @@ public class GameManager : MonoBehaviour
 	// ゲーム終了
 	public void GameFinish()
 	{
-		StartCoroutine(EGameFinish());
-	}
-
-	// ゲーム終了コルーチン
-	IEnumerator EGameFinish()
-	{
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
 		// リザルトを表示
 		resultCanvas.SetActive(true);
-		// 操作できない状態にする
-		isInPlay = false;
-		// フェードアウト
-		fade.FadeOut();
-
-		// フェードが終わるまでループ
-		while (fade.IsFading)
-		{
-			yield return null;
-		}
-
-		// シーン読み込み
-		StartCoroutine(LevelManager.ELoadLevelAsync("Title"));
 	}
 
 	// ゲームオーバー
 	public void GameOver()
 	{
-		resultCanvas.GetComponent<IResult>().GameOver();
 		GameFinish();
 		train.GetComponent<ITrain>().Stop();
 	}
@@ -181,7 +161,7 @@ public class GameManager : MonoBehaviour
 	public void GameStop(){
 		playerObj.GetComponent<IPlayer>().GameStop();
 		train.GetComponent<ITrain>().Stop();
-		isInPlay = false;
+		//isInPlay = false;
 	}
 
 	// ゲーム再開
@@ -201,7 +181,7 @@ public class GameManager : MonoBehaviour
 			if (time <= 0)
 			{
 				isReStarting = false;
-				isInPlay = true;
+				//isInPlay = true;
 				playerObj.GetComponent<IPlayer>().GameStart();
 				train.GetComponent<ITrain>().Go();
 			}

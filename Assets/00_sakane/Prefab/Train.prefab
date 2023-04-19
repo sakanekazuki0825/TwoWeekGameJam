@@ -153,9 +153,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startSpeed: 1
   acceleration: 0.08
-  finalDestination: {x: 10, y: 0, z: 0}
   dashEffect: {fileID: 1698711113685354640}
-  velMag: 10
+  velMag: 2
 --- !u!1001 &920767232041814135
 PrefabInstance:
   m_ObjectHideFlags: 0

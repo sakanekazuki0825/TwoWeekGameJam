@@ -14,12 +14,18 @@ public class LevelManager
 	}
 
 	// 最低でもこの時間はロード画面を表示させる（何があっても見せる！）
-	static float lowestDispTime = 0.5f;
+	static float lowestDispTime = 0;
 
 	// シーン読み込み
 	public static void LoadLevel(string levelName)
 	{
 		SceneManager.LoadScene(levelName);
+	}
+
+	// 現在のシーンもう一度読み込み
+	public static void LevelReload()
+	{
+		SceneManager.LoadScene(SceneManager.GetActiveScene().name);
 	}
 
 	// ゲームやプレイ状態の終了

@@ -28,8 +28,8 @@ public struct GameInstance
 	public static bool isDebug = false;
 #endif
 
-	// マネージャー
 	public static Player player = null;
+	// マネージャー
 	public static GameManager gameManager = null;
 	public static PanelManager panelManager = null;
 
