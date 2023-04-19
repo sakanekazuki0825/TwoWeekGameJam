@@ -48,6 +48,9 @@ public class PanelManager : MonoBehaviour
 	// 生成したゴールオブジェクト
 	List<GameObject> goalObj = new List<GameObject>();
 
+	// パネル生成時に使用するボックスガチャみたいなやつ
+	List<int> panelBox = new List<int>();
+
 	private void Awake()
 	{
 		GameInstance.panelManager = this;

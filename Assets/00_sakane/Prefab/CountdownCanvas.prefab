@@ -67,7 +67,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 85a06adefc5d44b4ab28f82b1e7e7a1d, type: 3}
     m_FontSize: 14
     m_FontStyle: 0
     m_BestFit: 0
@@ -79,7 +79,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: New Text
+  m_Text: 
 --- !u!1 &8382003549584666218
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 5808123601955393571}
   - component: {fileID: 4835602705294355457}
   - component: {fileID: 6282249229015549613}
+  - component: {fileID: 8494666651921677892}
   m_Layer: 5
   m_Name: CountdownCanvas
   m_TagString: Untagged
@@ -181,3 +182,20 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8494666651921677892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8382003549584666218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7a6d381bb39e8941a09e9918e96da7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startCountDownTime: 3
+  inGameCountDownTime: 3
+  displayTime: 1
+  lastStr: Start
+  countTxt: {fileID: 6654806224152269967}
