@@ -1,17 +1,8 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Result : MonoBehaviour,IResult
+public class Result : MonoBehaviour
 {
-// 結果を表示するテキスト
-	Text resultTxt;
-
-	private void Awake()
-	{
-		resultTxt = GetComponentInChildren<Text>();
-	}
-
 	// もう一度遊ぶ
 	public void Restart()
 	{
@@ -42,11 +33,5 @@ public class Result : MonoBehaviour,IResult
 
 			yield return null;
 		}
-	}
-
-	// ゲームクリア
-	void IResult.GameClear()
-	{
-		resultTxt.text = "Result";
 	}
 }

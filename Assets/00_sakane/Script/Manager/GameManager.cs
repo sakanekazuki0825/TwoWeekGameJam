@@ -1,6 +1,5 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 // ルール管理クラス
 public class GameManager : MonoBehaviour
@@ -14,6 +13,9 @@ public class GameManager : MonoBehaviour
 	// リザルトを表示するキャンバス
 	[SerializeField]
 	GameObject resultCanvas;
+
+	[SerializeField]
+	GameObject gameOverCanvas;
 
 	// フェードをするクラス
 	FadeIO fade;
@@ -64,6 +66,7 @@ public class GameManager : MonoBehaviour
 	{
 		// リザルトを非表示にする
 		resultCanvas.SetActive(false);
+		gameOverCanvas.SetActive(false);
 
 		// フェードクラス取得
 		fade = GameInstance.fadeIO;
@@ -136,25 +139,29 @@ public class GameManager : MonoBehaviour
 	// ゲーム終了
 	public void GameFinish()
 	{
-		// プレイヤーを動かせない状態にする
-		playerObj.GetComponent<IPlayer>().GameFinish();
-		// リザルトを表示
-		resultCanvas.SetActive(true);
+		
 	}
 
 	// ゲームオーバー
 	public void GameOver()
 	{
 		GameFinish();
+		// プレイヤーを動かせない状態にする
+		playerObj.GetComponent<IPlayer>().GameFinish();
 		train.GetComponent<ITrain>().Stop();
+		// ゲームオーバーを表示
+		gameOverCanvas.SetActive(true);
 	}
 
 	// ゲームクリア
 	public void GameClear()
 	{
-		resultCanvas.GetComponent<IResult>().GameClear();
 		GameFinish();
+		// プレイヤーを動かせない状態にする
+		playerObj.GetComponent<IPlayer>().GameFinish();
 		train.GetComponent<ITrain>().Stop();
+		// リザルトを表示
+		resultCanvas.SetActive(true);
 	}
 
 	// ゲーム停止

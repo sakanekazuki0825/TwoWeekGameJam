@@ -31,7 +31,7 @@ public class PanelManager : MonoBehaviour
 
 	// スプライトのサイズ
 	static Vector2 spriteSize = new Vector2(1.92f, 1.6f);
-	public static Vector2 SpriteSize { get { return spriteSize; } }
+	public static Vector2 SpriteSize { get => spriteSize; }
 
 	// 直線で上がる速度
 	[SerializeField]
