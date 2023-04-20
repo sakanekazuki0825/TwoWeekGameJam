@@ -57,6 +57,9 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	float reStartTime = 3;
 
+	[SerializeField]
+	BackGround backGround;
+
 	private void Awake()
 	{
 		GameInstance.gameManager = this;
@@ -115,6 +118,8 @@ public class GameManager : MonoBehaviour
 		train = Instantiate(trainPrefab, trainPos, Quaternion.identity);
 		Instantiate(cameraObj, cameraPos, Quaternion.identity).GetComponent<ICameraMove>().SetTarget(train);
 		Instantiate(cannotSelectObj, cannotSelectObjPos, Quaternion.identity).GetComponent<ICannotSelectPanel>().SetTarget(train);
+
+		backGround.Spawn();
 
 		// フェードが終わるまでループ
 		while (fade.IsFading)

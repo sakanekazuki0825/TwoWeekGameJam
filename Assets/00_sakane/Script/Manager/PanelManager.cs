@@ -17,6 +17,7 @@ public class PanelManager : MonoBehaviour
 	// 最初に生成する横に移動するパネルの数
 	[SerializeField]
 	int startHorizontalPanel = 3;
+	public int StartHorizontalPanel { get => startHorizontalPanel; }
 
 	// 最初に生成する数
 	[SerializeField, Tooltip("x = 最初に横に生成する数（-3した数字）\ny = 縦に生成する数")]
@@ -30,8 +31,8 @@ public class PanelManager : MonoBehaviour
 	List<GameObject> panels = new List<GameObject>();
 
 	// スプライトのサイズ
-	static Vector2 spriteSize = new Vector2(1.92f, 1.6f);
-	public static Vector2 SpriteSize { get => spriteSize; }
+	Vector2 spriteSize = new Vector2(1.92f, 1.6f);
+	public Vector2 SpriteSize { get => spriteSize; }
 
 	// 直線で上がる速度
 	[SerializeField]
@@ -44,6 +45,7 @@ public class PanelManager : MonoBehaviour
 	// ゴールまでのパネルの数（X方向のみ計算）
 	[SerializeField]
 	int numberToGoal = 100;
+	public int NumberToGoal{ get => numberToGoal; }
 	int nowNumber = 0;
 	// 生成したゴールオブジェクト
 	List<GameObject> goalObj = new List<GameObject>();
@@ -70,7 +72,6 @@ public class PanelManager : MonoBehaviour
 
 	private void Start()
 	{
-
 		// スプライトのサイズ設定
 		spriteSize = panel.GetComponent<SpriteRenderer>().bounds.size;
 		InitSpawn();

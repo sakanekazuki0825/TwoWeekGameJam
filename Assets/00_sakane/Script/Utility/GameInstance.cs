@@ -25,7 +25,7 @@ public struct GameInstance
 		};
 
 #if UNITY_EDITOR
-	public static bool isDebug = false;
+	public static bool isDebug = true;
 #endif
 
 	public static Player player = null;
