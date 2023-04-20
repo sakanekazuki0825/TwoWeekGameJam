@@ -6,11 +6,17 @@ public class TitleManager : MonoBehaviour
 	// フェードクラス
 	FadeIO fade;
 
+	// オプション
+	[SerializeField]
+	GameObject optionCanvas;
+
 	void Start()
 	{
 		// フェードを取得してフェードイン開始
 		fade = GameInstance.fadeIO;
 		fade.FadeIn();
+		// オプションキャンバス非表示
+		optionCanvas.SetActive(false);
 	}
 
 	// ゲーム開始
@@ -38,6 +44,12 @@ public class TitleManager : MonoBehaviour
 		{
 			yield return null;
 		}
+	}
+
+	// オプション
+	public void Option()
+	{
+		optionCanvas.SetActive(true);
 	}
 
 	// ゲーム終了

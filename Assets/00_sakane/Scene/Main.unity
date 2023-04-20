@@ -280,14 +280,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6187444576096720154, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
-      propertyPath: spawnStartPos.y
-      value: -3.2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6187444576096720154, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
-      propertyPath: panelSprites.Array.size
-      value: 6
-      objectReference: {fileID: 0}
     - target: {fileID: 6187444576096720155, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -335,10 +327,6 @@ PrefabInstance:
     - target: {fileID: 6187444576096720157, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
       propertyPath: m_Name
       value: PanelManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 6187444576096720157, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
-      propertyPath: m_IsActive
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
@@ -777,30 +765,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6654806224152269967, guid: d6bd079b3167bb446911c81bc14eb120, type: 3}
-      propertyPath: m_FontData.m_MaxSize
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6654806224152269967, guid: d6bd079b3167bb446911c81bc14eb120, type: 3}
-      propertyPath: m_FontData.m_MinSize
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6654806224152269967, guid: d6bd079b3167bb446911c81bc14eb120, type: 3}
-      propertyPath: m_FontData.m_FontSize
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6654806224152269967, guid: d6bd079b3167bb446911c81bc14eb120, type: 3}
-      propertyPath: m_FontData.m_Alignment
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6654806224152269967, guid: d6bd079b3167bb446911c81bc14eb120, type: 3}
-      propertyPath: m_FontData.m_VerticalOverflow
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6654806224152269967, guid: d6bd079b3167bb446911c81bc14eb120, type: 3}
-      propertyPath: m_FontData.m_HorizontalOverflow
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 8382003549584666218, guid: d6bd079b3167bb446911c81bc14eb120, type: 3}
       propertyPath: m_Name
       value: CountdownCanvas
