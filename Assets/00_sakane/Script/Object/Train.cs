@@ -10,7 +10,7 @@ public class Train : MonoBehaviour, ITrain
 	[SerializeField]
 	float startSpeed = 4;
 	// 現在の速度
-	float speed = 1;
+	float speed = 0.1f;
 	// 最終的に到達する速度
 	float afterSpeed;
 	[SerializeField]
@@ -25,17 +25,18 @@ public class Train : MonoBehaviour, ITrain
 	// 止まった時に速さを保存
 	Vector3 stopBeforeSpeed = new Vector3 (0, 0, 0);
 
-	// 許容範囲
-	[SerializeField]
-	//float tolerance = 0.1f;
-	// true = 真ん中を通過
-	//bool isCenter = false;
 	// 最終目的地
 	Vector3 finalDestination = new Vector3(10, 0, 0);
 	// 目的地
 	Vector3 targetPos = new Vector3(10, 0, 0);
 	// ターゲットの方向
 	Vector3 beforeTargetDir = new Vector3(1, 0, 0);
+
+	// 疾走感を出すやつ
+	[SerializeField]
+	ParticleSystem dashEffect;
+	[SerializeField]
+	float velMag;
 
 	// アニメーター
 	Animator animator;
@@ -48,11 +49,17 @@ public class Train : MonoBehaviour, ITrain
 		//speed = startSpeed;
 
 		afterSpeed = startSpeed;
-		stopBeforeSpeed = new Vector3(startSpeed, 0, 0);
+		stopBeforeSpeed = new Vector3(0.01f, 0, 0);
 
 		// アニメーター取得
 		animator = GetComponent<Animator>();
 		animator.speed = 0;
+	}
+
+	private void Start()
+	{
+		dashEffect.gameObject.SetActive(false);
+		GameObject.FindObjectOfType<SpeedMeter>().SetTrainRigidbody(rb);
 	}
 
 	private void Update()
@@ -61,7 +68,7 @@ public class Train : MonoBehaviour, ITrain
 		{
 			return;
 		}
-		if (rb.velocity.magnitude == 0)
+		if (rb.velocity == Vector3.zero)
 		{
 			GameInstance.gameManager.GameOver();
 		}
@@ -89,6 +96,8 @@ public class Train : MonoBehaviour, ITrain
 		}
 		// アニメーション速度更新
 		animator.speed = (speed / startSpeed);
+		var pmain = dashEffect.main;
+		pmain.simulationSpeed = (speed / (startSpeed * 5));
 		// 移動
 		rb.velocity = beforeTargetDir.normalized * speed;
 		// 移動速度更新
@@ -114,6 +123,16 @@ public class Train : MonoBehaviour, ITrain
 	void ITrain.AddSpeed(float speed)
 	{
 		afterSpeed += speed;
+
+		if (afterSpeed > velMag)
+		{
+			dashEffect.gameObject.SetActive(true);
+		}
+		else
+		{
+			dashEffect.gameObject.SetActive(false);
+		}
+		
 		// 補完速度計算
 		//complement = (speed + afterSpeed) / 2 / 1.92f;
 	}

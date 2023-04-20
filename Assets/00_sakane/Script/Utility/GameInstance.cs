@@ -29,7 +29,10 @@ public struct GameInstance
 #endif
 
 	public static Player player = null;
+	// マネージャー
 	public static GameManager gameManager = null;
 	public static PanelManager panelManager = null;
+
 	public static FadeIO fadeIO = null;
+	public static CountDown countDown = null;
 }

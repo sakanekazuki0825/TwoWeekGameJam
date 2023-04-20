@@ -1,24 +1,37 @@
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Result : MonoBehaviour,IResult
+public class Result : MonoBehaviour
 {
-	Text resultTxt;
-
-	private void Awake()
+	// もう一度遊ぶ
+	public void Restart()
 	{
-		resultTxt = GetComponentInChildren<Text>();
+		StartCoroutine(EFinish("Main"));
 	}
 
-	// ゲームクリア
-	void IResult.GameClear()
+	// タイトルに戻る
+	public void ReturnToTitle()
 	{
-		resultTxt.text = "GameClear";
+		StartCoroutine(EFinish("Title"));
 	}
 
-	// ゲームオーバー
-	void IResult.GameOver()
+	IEnumerator EFinish(string levelName)
 	{
-		resultTxt.text = "GameOver";
+		// フェード
+		FadeIO fade = GameInstance.fadeIO;
+		fade.FadeOut();
+		while (fade.IsFading)
+		{
+			yield return null;
+		}
+
+		// 読み込み
+		StartCoroutine(LevelManager.ELoadLevelAsync(levelName));
+		while (LevelManager.IsLoading)
+		{
+			// ロード画面
+
+			yield return null;
+		}
 	}
 }

@@ -17,6 +17,7 @@ public class PanelManager : MonoBehaviour
 	// 最初に生成する横に移動するパネルの数
 	[SerializeField]
 	int startHorizontalPanel = 3;
+	public int StartHorizontalPanel { get => startHorizontalPanel; }
 
 	// 最初に生成する数
 	[SerializeField, Tooltip("x = 最初に横に生成する数（-3した数字）\ny = 縦に生成する数")]
@@ -30,8 +31,8 @@ public class PanelManager : MonoBehaviour
 	List<GameObject> panels = new List<GameObject>();
 
 	// スプライトのサイズ
-	static Vector2 spriteSize = new Vector2(1.92f, 1.6f);
-	public static Vector2 SpriteSize { get { return spriteSize; } }
+	Vector2 spriteSize = new Vector2(1.92f, 1.6f);
+	public Vector2 SpriteSize { get => spriteSize; }
 
 	// 直線で上がる速度
 	[SerializeField]
@@ -44,13 +45,29 @@ public class PanelManager : MonoBehaviour
 	// ゴールまでのパネルの数（X方向のみ計算）
 	[SerializeField]
 	int numberToGoal = 100;
-	int nowNumber = 3;
+	public int NumberToGoal{ get => numberToGoal; }
+	int nowNumber = 0;
 	// 生成したゴールオブジェクト
 	List<GameObject> goalObj = new List<GameObject>();
+
+	// パネル生成時に使用するボックスガチャみたいなやつ
+	[SerializeField]
+	PanelBoxData panelBoxData;
+	// 1ボックスのパネルの数
+	[SerializeField]
+	int oneBoxPanelNum = 20;
+	// パネルボックス
+	List<int> panelBox = new List<int>();
+	// ボックスの番号
+	int boxNumber = 0;
 
 	private void Awake()
 	{
 		GameInstance.panelManager = this;
+		for (int i = 0; i < oneBoxPanelNum; ++i)
+		{
+			panelBox.Add(panelBoxData.PanelDataList[i]);
+		}
 	}
 
 	private void Start()
@@ -126,16 +143,20 @@ public class PanelManager : MonoBehaviour
 			// 生成
 			panels.Add(insObj);
 
-			// 繋がっている方向を決める（-1して直進パネルを1枚として扱う）
-			var lineNumber = Random.Range(0, panelSprites.Count - 1);
+			//// 繋がっている方向を決める（-1して直進パネルを1枚として扱う）
+			//var lineNumber = Random.Range(0, panelSprites.Count - 1);
 
-			if(lineNumber == 2)
-			{
-				// 直線の場合ランダムで縦横決める
-				var straight = Random.Range(0, 2);
-				// 3の倍数にして、-1すると縦と横の番号になる
-				lineNumber = (straight + 1) * 3 - 1;
-			}
+			//if(lineNumber == 2)
+			//{
+			//	// 直線の場合ランダムで縦横決める
+			//	var straight = Random.Range(0, 2);
+			//	// 3の倍数にして、-1すると縦と横の番号になる
+			//	lineNumber = (straight + 1) * 3 - 1;
+			//}
+
+			// ボックスガチャシステム
+			var number = Random.Range(0, panelBox.Count);
+			var lineNumber = panelBox[number];
 
 #if UNITY_EDITOR
 			// デバッグ
@@ -151,13 +172,30 @@ public class PanelManager : MonoBehaviour
 			insObj.GetComponent<IPanel>().SetLinkDirection(GameInstance.linePattern[lineNumber]);
 
 			// 変化させる速度の設定
-			if (lineNumber == 2)
+			if (lineNumber == 2 || lineNumber == 5)
 			{
 				insObj.GetComponent<IPanel>().SetChangeSpeedValue(speedUpValue);
 			}
 			else
 			{
 				insObj.GetComponent<IPanel>().SetChangeSpeedValue(speedDownValue);
+			}
+
+			// 生成したパネルは削除
+			panelBox.Remove(panelBox[number]);
+			// パネルがなくなった場合
+			if (panelBox.Count <= 0)
+			{
+				++boxNumber;
+				var dataNumber = boxNumber * oneBoxPanelNum;
+				if (panelBoxData.PanelDataList.Count <= dataNumber)
+				{
+					dataNumber = 0;
+				}
+				for (int pn = 0; pn < oneBoxPanelNum; ++pn)
+				{
+					panelBox.Add(panelBoxData.PanelDataList[dataNumber + pn]);
+				}
 			}
 		}
 

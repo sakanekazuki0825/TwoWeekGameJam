@@ -1,19 +1,21 @@
 using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 // ルール管理クラス
-public class GameManager : MonoBehaviour, IGameManager
+public class GameManager : MonoBehaviour
 {
 	// true = ゲーム終了
 	//bool isGameFinish = false;
 
 	// true = ゲーム中
-	bool isInPlay = false;
+	//bool isInPlay = false;
 
 	// リザルトを表示するキャンバス
 	[SerializeField]
 	GameObject resultCanvas;
+
+	[SerializeField]
+	GameObject gameOverCanvas;
 
 	// フェードをするクラス
 	FadeIO fade;
@@ -48,32 +50,30 @@ public class GameManager : MonoBehaviour, IGameManager
 
 	// カウントダウン
 	[SerializeField]
-	float maxCountdownTime = 3;
-	float countdownTime;
-	[SerializeField]
 	Canvas countdownCanvas;
+	CountDown countDown;
+
+	// 再開するまでの猶予
 	[SerializeField]
-	Text countdownTxt;
+	float reStartTime = 3;
+
 	[SerializeField]
-	string goStr = "Go";
-	[SerializeField]
-	float goTime = 1;
+	BackGround backGround;
 
 	private void Awake()
 	{
 		GameInstance.gameManager = this;
-
-		// カウントダウン時間設定
-		countdownTime = maxCountdownTime;
 	}
 
 	private void Start()
 	{
 		// リザルトを非表示にする
 		resultCanvas.SetActive(false);
+		gameOverCanvas.SetActive(false);
 
 		// フェードクラス取得
 		fade = GameInstance.fadeIO;
+		countDown = GameInstance.countDown;
 
 		// ゲーム開始
 		GameStart();
@@ -87,8 +87,6 @@ public class GameManager : MonoBehaviour, IGameManager
 			LevelManager.GameFinish();
 		}
 #endif
-
-		
 	}
 
 	private void OnDestroy()
@@ -121,23 +119,19 @@ public class GameManager : MonoBehaviour, IGameManager
 		Instantiate(cameraObj, cameraPos, Quaternion.identity).GetComponent<ICameraMove>().SetTarget(train);
 		Instantiate(cannotSelectObj, cannotSelectObjPos, Quaternion.identity).GetComponent<ICannotSelectPanel>().SetTarget(train);
 
+		backGround.Spawn();
+
 		// フェードが終わるまでループ
 		while (fade.IsFading)
 		{
 			yield return null;
 		}
 
-		// カウントダウン
-		countdownCanvas.gameObject.SetActive(true);
-		while (!isInPlay)
+		countDown.gameObject.SetActive(true);
+		countDown.StartCountDown(false);
+
+		while (countDown.IsCounting)
 		{
-			countdownTime -= Time.deltaTime;
-			countdownTxt.text = Mathf.Ceil(countdownTime).ToString();
-			if (countdownTime < 0)
-			{
-				countdownTxt.text = goStr;
-				isInPlay = true;
-			}
 			yield return null;
 		}
 
@@ -145,61 +139,65 @@ public class GameManager : MonoBehaviour, IGameManager
 		playerObj.GetComponent<IPlayer>().GameStart();
 		// 電車を動くことができる状態にする
 		train.GetComponent<ITrain>().Go();
-
-		yield return new WaitForSeconds(goTime);
-		countdownCanvas.gameObject.SetActive(false);
-
-		// フェードが終わったら操作できる
-		// = true;
 	}
 
 	// ゲーム終了
 	public void GameFinish()
 	{
-		StartCoroutine(EGameFinish());
+		
 	}
 
-	// ゲーム終了コルーチン
-	IEnumerator EGameFinish()
-	{
-		// プレイヤーを動かせない状態にする
-		playerObj.GetComponent<IPlayer>().GameFinish();
-		// リザルトを表示
-		resultCanvas.SetActive(true);
-		// 操作できない状態にする
-		isInPlay = false;
-		// フェードアウト
-		fade.FadeOut();
-
-		// フェードが終わるまでループ
-		while (fade.IsFading)
-		{
-			yield return null;
-		}
-
-		// シーン読み込み
-		StartCoroutine(LevelManager.ELoadLevelAsync("Title"));
-	}
-
+	// ゲームオーバー
 	public void GameOver()
 	{
-		resultCanvas.GetComponent<IResult>().GameOver();
 		GameFinish();
+		// プレイヤーを動かせない状態にする
+		playerObj.GetComponent<IPlayer>().GameFinish();
 		train.GetComponent<ITrain>().Stop();
+		// ゲームオーバーを表示
+		gameOverCanvas.SetActive(true);
 	}
 
+	// ゲームクリア
 	public void GameClear()
 	{
-		resultCanvas.GetComponent<IResult>().GameClear();
 		GameFinish();
+		// プレイヤーを動かせない状態にする
+		playerObj.GetComponent<IPlayer>().GameFinish();
 		train.GetComponent<ITrain>().Stop();
+		// リザルトを表示
+		resultCanvas.SetActive(true);
 	}
 
-	// プレイヤーが道から外れた
-	void IGameManager.GetOffTheRoad()
+	// ゲーム停止
+	public void GameStop(){
+		playerObj.GetComponent<IPlayer>().GameStop();
+		train.GetComponent<ITrain>().Stop();
+		//isInPlay = false;
+	}
+
+	// ゲーム再開
+	public void GameReStart()
 	{
-		//// ゲームオーバー
-		//playerObj.GetComponent<IPlayer>().GameFinish();
-		//GameFinish();
+		StartCoroutine(IGameReStart());
+	}
+
+	// ゲーム再開コルーチン
+	IEnumerator IGameReStart()
+	{
+		var isReStarting = true;
+		var time = reStartTime;
+		while (isReStarting)
+		{
+			time -= Time.deltaTime;
+			if (time <= 0)
+			{
+				isReStarting = false;
+				//isInPlay = true;
+				playerObj.GetComponent<IPlayer>().GameStart();
+				train.GetComponent<ITrain>().Go();
+			}
+			yield return null;
+		}
 	}
 }

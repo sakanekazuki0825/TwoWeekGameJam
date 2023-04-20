@@ -41,7 +41,7 @@ public class Panel : MonoBehaviour, IPanel
 			{
 				other.GetComponent<ITrain>().AddSpeed(speedChangeValue);
 
-				var targetPos = linkDirections[(linkDirections.IndexOf(hitDir) + 1) % 2] * PanelManager.SpriteSize;
+				var targetPos = linkDirections[(linkDirections.IndexOf(hitDir) + 1) % 2] * GameInstance.panelManager.SpriteSize;
 				// 電車の目的地（パネルが目的地設定は違和感がある）
 				other.GetComponent<ITrain>().Curve(transform.position, transform.position + new Vector3(targetPos.x, targetPos.y));
 			}
