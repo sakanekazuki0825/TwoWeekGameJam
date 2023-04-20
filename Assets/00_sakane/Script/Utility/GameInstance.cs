@@ -36,4 +36,7 @@ public struct GameInstance
 	public static FadeIO fadeIO = null;
 	public static CountDown countDown = null;
 	public static DistanceToGoal distanceToGoal = null;
+
+	// ÉXÉRÉA
+	public static List<float> scores = new List<float>();
 }

@@ -1,6 +1,8 @@
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEngine.Rendering.DebugUI;
 
 public class Result : MonoBehaviour
 {
@@ -11,15 +13,20 @@ public class Result : MonoBehaviour
 	[SerializeField]
 	Text resultTxt;
 
-	private void OnEnable()
-	{
-		var value = (GameInstance.gameManager != null) ?
-			GameInstance.gameManager.ClearTime :
-			0;
+	// 小数点何位まで表示するのか
+	[SerializeField]
+	int decimalValue = 1;
+	// 何人まで表示するか
+	[SerializeField]
+	int placePeople = 3;
 
+	// 表示
+	public void Display()
+	{
+		var value = GameInstance.gameManager.ClearTime;
+		// 小数点1位まで表示する
 		value = Mathf.Floor(value * 10);
 		value /= 10;
-
 		nowScoreTxt.text = value.ToString();
 	}
 
