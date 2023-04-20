@@ -8,7 +8,7 @@ public class GameManager : MonoBehaviour
 	//bool isGameFinish = false;
 
 	// true = ゲーム中
-	//bool isInPlay = false;
+	bool isInPlay = false;
 
 	// リザルトを表示するキャンバス
 	[SerializeField]
@@ -60,6 +60,10 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	BackGroundSpawner backGround;
 
+	// クリア時間
+	float clearTime = 0;
+	public float ClearTime{ get => clearTime; }
+
 	private void Awake()
 	{
 		GameInstance.gameManager = this;
@@ -87,6 +91,11 @@ public class GameManager : MonoBehaviour
 			LevelManager.GameFinish();
 		}
 #endif
+
+		if (isInPlay)
+		{
+			clearTime += Time.deltaTime;
+		}
 	}
 
 	private void OnDestroy()
@@ -105,7 +114,7 @@ public class GameManager : MonoBehaviour
 	IEnumerator EGameStart()
 	{
 		// まだ操作できない
-		//isInPlay = false;
+		isInPlay = false;
 
 		// フェードイン
 		fade.FadeIn();
@@ -141,11 +150,14 @@ public class GameManager : MonoBehaviour
 		playerObj.GetComponent<IPlayer>().GameStart();
 		// 電車を動くことができる状態にする
 		train.GetComponent<ITrain>().Go();
+
+		isInPlay = true;
 	}
 
 	// ゲームオーバー
 	public void GameOver()
 	{
+		isInPlay = false;
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
 		train.GetComponent<ITrain>().Stop();
@@ -156,6 +168,7 @@ public class GameManager : MonoBehaviour
 	// ゲームクリア
 	public void GameClear()
 	{
+		isInPlay = false;
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
 		train.GetComponent<ITrain>().Stop();
@@ -164,10 +177,11 @@ public class GameManager : MonoBehaviour
 	}
 
 	// ゲーム停止
-	public void GameStop(){
+	public void GameStop()
+	{
 		playerObj.GetComponent<IPlayer>().GameStop();
 		train.GetComponent<ITrain>().Stop();
-		//isInPlay = false;
+		isInPlay = false;
 	}
 
 	// ゲーム再開
@@ -193,5 +207,6 @@ public class GameManager : MonoBehaviour
 			}
 			yield return null;
 		}
+		isInPlay = true;
 	}
 }

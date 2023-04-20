@@ -1,8 +1,28 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Result : MonoBehaviour
 {
+	// 今回のスコア
+	[SerializeField]
+	Text nowScoreTxt;
+	// 過去のスコア
+	[SerializeField]
+	Text resultTxt;
+
+	private void OnEnable()
+	{
+		var value = (GameInstance.gameManager != null) ?
+			GameInstance.gameManager.ClearTime :
+			0;
+
+		value = Mathf.Floor(value * 10);
+		value /= 10;
+
+		nowScoreTxt.text = value.ToString();
+	}
+
 	// もう一度遊ぶ
 	public void Restart()
 	{
