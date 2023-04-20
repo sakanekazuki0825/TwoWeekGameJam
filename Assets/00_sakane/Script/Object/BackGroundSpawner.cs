@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class BackGround : MonoBehaviour
+public class BackGroundSpawner : MonoBehaviour
 {
 	// 背景オブジェクト
 	[SerializeField]
@@ -11,10 +11,10 @@ public class BackGround : MonoBehaviour
 		// メインカメラの位置取得
 		var startPos = Camera.main.transform.position;
 		startPos = new Vector3(startPos.x, startPos.y, 0);
-		// 最初のオブジェクトを生成
-		Instantiate(backGroundObj, startPos, Quaternion.identity);
+		//// 最初のオブジェクトを生成
+		//Instantiate(backGroundObj, startPos, Quaternion.identity);
 		// 背景画像のサイズ取得
-		var backGroundSize = backGroundObj.GetComponent<SpriteRenderer>().bounds.size;
+		var backGroundSize = Instantiate(backGroundObj, startPos, Quaternion.identity).GetComponent<SpriteRenderer>().bounds.size;
 		// 線路画像のサイズ取得
 		var spriteSize = GameInstance.panelManager.SpriteSize;
 		// パネルが最後に生成される位置

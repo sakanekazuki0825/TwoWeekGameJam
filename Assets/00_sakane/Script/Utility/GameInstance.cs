@@ -25,7 +25,7 @@ public struct GameInstance
 		};
 
 #if UNITY_EDITOR
-	public static bool isDebug = false;
+	public static bool isDebug = true;
 #endif
 
 	public static Player player = null;
@@ -35,4 +35,5 @@ public struct GameInstance
 
 	public static FadeIO fadeIO = null;
 	public static CountDown countDown = null;
+	public static DistanceToGoal distanceToGoal = null;
 }
