@@ -975,10 +975,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1360797511524568852, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
-      propertyPath: m_FontData.m_Font
-      value: 
-      objectReference: {fileID: 12800000, guid: 85a06adefc5d44b4ab28f82b1e7e7a1d, type: 3}
     - target: {fileID: 3871956925593329172, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1066,10 +1062,6 @@ PrefabInstance:
     - target: {fileID: 3871956925593329176, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
       propertyPath: m_Name
       value: MainCanvas
-      objectReference: {fileID: 0}
-    - target: {fileID: 6215627842108897604, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
-      propertyPath: m_Name
-      value: Question
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
