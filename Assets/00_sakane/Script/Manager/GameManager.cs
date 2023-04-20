@@ -56,9 +56,9 @@ public class GameManager : MonoBehaviour
 	// 再開するまでの猶予
 	[SerializeField]
 	float reStartTime = 3;
-
+	// 背景
 	[SerializeField]
-	BackGround backGround;
+	BackGroundSpawner backGround;
 
 	private void Awake()
 	{
@@ -121,6 +121,8 @@ public class GameManager : MonoBehaviour
 
 		backGround.Spawn();
 
+		GameInstance.distanceToGoal.Train = train;
+
 		// フェードが終わるまでループ
 		while (fade.IsFading)
 		{
@@ -141,16 +143,9 @@ public class GameManager : MonoBehaviour
 		train.GetComponent<ITrain>().Go();
 	}
 
-	// ゲーム終了
-	public void GameFinish()
-	{
-		
-	}
-
 	// ゲームオーバー
 	public void GameOver()
 	{
-		GameFinish();
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
 		train.GetComponent<ITrain>().Stop();
@@ -161,7 +156,6 @@ public class GameManager : MonoBehaviour
 	// ゲームクリア
 	public void GameClear()
 	{
-		GameFinish();
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
 		train.GetComponent<ITrain>().Stop();

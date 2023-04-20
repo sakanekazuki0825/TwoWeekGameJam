@@ -74,6 +74,7 @@ public class PanelManager : MonoBehaviour
 	{
 		// スプライトのサイズ設定
 		spriteSize = panel.GetComponent<SpriteRenderer>().bounds.size;
+		GameInstance.distanceToGoal.Goal = spriteSize * NumberToGoal;
 		InitSpawn();
 	}
 
