@@ -58,6 +58,6 @@ MonoBehaviour:
   spawnStartPos: {x: 0, y: -3.2}
   speedUpValue: 0.2
   speedDownValue: -0.2
-  numberToGoal: 100
+  numberToGoal: 50
   panelBoxData: {fileID: 11400000, guid: 685bf572a9869474ab003f741b0051fe, type: 2}
   oneBoxPanelNum: 20
