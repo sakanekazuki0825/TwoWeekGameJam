@@ -5,6 +5,7 @@ public class Player : MonoBehaviour,IPlayer
 {
 	// 選択中のオブジェクト
 	GameObject nowSelectObj;
+	public GameObject NowSelectObj{ get => nowSelectObj; }
 	// 交換するオブジェクト
 	GameObject changeObj;
 

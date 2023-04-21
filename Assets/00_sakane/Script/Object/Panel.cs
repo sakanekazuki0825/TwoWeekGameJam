@@ -44,6 +44,11 @@ public class Panel : MonoBehaviour, IPanel
 				var targetPos = linkDirections[(linkDirections.IndexOf(hitDir) + 1) % 2] * GameInstance.panelManager.SpriteSize;
 				// 電車の目的地（パネルが目的地設定は違和感がある）
 				other.GetComponent<ITrain>().Curve(transform.position, transform.position + new Vector3(targetPos.x, targetPos.y));
+
+				if (GameInstance.player.NowSelectObj == gameObject)
+				{
+					GameInstance.player.SelectPanelRemove(gameObject);
+				}
 			}
 		}
 		else if (other.gameObject.CompareTag("CannotSelectPanel"))

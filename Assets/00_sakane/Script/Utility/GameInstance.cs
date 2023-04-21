@@ -1,8 +1,29 @@
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public struct GameInstance
 {
+	[RuntimeInitializeOnLoadMethod]
+	static void Initialize()
+	{
+		for (int i = 0; i < 10; ++i)
+		{
+			if (PlayerPrefs.HasKey(i.ToString()))
+			{
+				scores.Add(PlayerPrefs.GetFloat(i.ToString()));
+			}
+		}
+	}
+
+	void OnApplicationQuit()
+	{
+		foreach (var item in scores)
+		{
+			PlayerPrefs.SetFloat(scores.IndexOf(item).ToString(), item);
+		}
+	}
+
 	// •ûŒü
 	public enum Direction
 	{
