@@ -117,6 +117,9 @@ public class Train : MonoBehaviour, ITrain
 		canMove = false;
 		stopBeforeSpeed = rb.velocity;
 		rb.velocity = Vector3.zero;
+		animator.speed = 0;
+		var pmain = dashEffect.main;
+		pmain.simulationSpeed = 0;
 	}
 
 	// ë¨ìxÇè„Ç∞ÇÈ
