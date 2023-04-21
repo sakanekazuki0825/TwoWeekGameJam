@@ -27,6 +27,7 @@ public class Panel : MonoBehaviour, IPanel
 		// ƒvƒŒƒCƒ„[‚ª“–‚½‚Á‚½ê‡
 		if (other.gameObject.CompareTag("Train"))
 		{
+			isTrain = true;
 			var hitPoint = other.ClosestPoint(transform.position);
 
 			// “–‚½‚Á‚½•ûŒü‚É“¹‚ª‚ ‚é‚©’²‚×‚é

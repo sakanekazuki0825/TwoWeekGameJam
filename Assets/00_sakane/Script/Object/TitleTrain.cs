@@ -25,6 +25,8 @@ public class TitleTrain : MonoBehaviour
 	IEnumerator EMove()
 	{
 		isGoal = false;
+
+
 		while (!isGoal)
 		{
 			transform.Translate(new Vector3(speed, 0, 0));
