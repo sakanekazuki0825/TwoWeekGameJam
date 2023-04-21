@@ -30,10 +30,14 @@ public struct GameInstance
 
 	public static Player player = null;
 	// マネージャー
+	public static TitleManager titleManager = null;
 	public static GameManager gameManager = null;
 	public static PanelManager panelManager = null;
 
 	public static FadeIO fadeIO = null;
 	public static CountDown countDown = null;
 	public static DistanceToGoal distanceToGoal = null;
+
+	// スコア
+	public static List<float> scores = new List<float>();
 }

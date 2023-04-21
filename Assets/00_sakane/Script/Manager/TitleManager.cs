@@ -10,6 +10,11 @@ public class TitleManager : MonoBehaviour
 	[SerializeField]
 	GameObject optionCanvas;
 
+	private void Awake()
+	{
+		GameInstance.titleManager = this;
+	}
+
 	void Start()
 	{
 		// フェードを取得してフェードイン開始
@@ -17,6 +22,11 @@ public class TitleManager : MonoBehaviour
 		fade.FadeIn();
 		// オプションキャンバス非表示
 		optionCanvas.SetActive(false);
+	}
+
+	private void OnDestroy()
+	{
+		GameInstance.titleManager = null;
 	}
 
 	// ゲーム開始

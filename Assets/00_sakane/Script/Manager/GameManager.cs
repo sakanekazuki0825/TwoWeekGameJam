@@ -174,6 +174,7 @@ public class GameManager : MonoBehaviour
 		train.GetComponent<ITrain>().Stop();
 		// リザルトを表示
 		resultCanvas.SetActive(true);
+		resultCanvas.GetComponent<Result>().Display();
 	}
 
 	// ゲーム停止
