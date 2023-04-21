@@ -30,6 +30,7 @@ public struct GameInstance
 
 	public static Player player = null;
 	// マネージャー
+	public static TitleManager titleManager = null;
 	public static GameManager gameManager = null;
 	public static PanelManager panelManager = null;
 

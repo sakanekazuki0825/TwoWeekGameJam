@@ -24,9 +24,15 @@ public class Result : MonoBehaviour
 	public void Display()
 	{
 		var value = GameInstance.gameManager.ClearTime;
-		// 小数点1位まで表示する
-		value = Mathf.Floor(value * 10);
-		value /= 10;
+		// 小数点?位まで表示する
+		int dec = 10;
+		for (int i = 0; i < decimalValue; ++i)
+		{
+			dec *= 10;
+		}
+
+		value = Mathf.Floor(value * dec);
+		value /= dec;
 		nowScoreTxt.text = value.ToString();
 	}
 
