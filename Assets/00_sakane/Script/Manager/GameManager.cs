@@ -47,6 +47,8 @@ public class GameManager : MonoBehaviour
 	// カメラの生成位置
 	[SerializeField]
 	Vector3 cameraPos;
+	[SerializeField]
+	float xOffset = 7;
 
 	// カウントダウン
 	[SerializeField]
@@ -138,18 +140,26 @@ public class GameManager : MonoBehaviour
 			yield return null;
 		}
 
-		countDown.gameObject.SetActive(true);
-		countDown.StartCountDown(false);
+		//countDown.gameObject.SetActive(true);
+		//countDown.StartCountDown(false);
 
-		while (countDown.IsCounting)
+		//while (countDown.IsCounting)
+		//{
+		//	yield return null;
+		//}
+
+		// 電車を動くことができる状態にする
+		train.GetComponent<ITrain>().Go();
+
+		while((Camera.main.transform.position.x - train.transform.position.x) > xOffset)
 		{
 			yield return null;
 		}
+		Camera.main.transform.position = new Vector3(train.transform.position.x + xOffset, Camera.main.transform.position.y, -10);
+		Camera.main.GetComponent<ICameraMove>().SetCanMove(true);
 
 		// プレイヤーを動くことができる状態にする
 		playerObj.GetComponent<IPlayer>().GameStart();
-		// 電車を動くことができる状態にする
-		train.GetComponent<ITrain>().Go();
 
 		isInPlay = true;
 	}

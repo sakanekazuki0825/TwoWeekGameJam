@@ -61,6 +61,12 @@ public class PanelManager : MonoBehaviour
 	// ボックスの番号
 	int boxNumber = 0;
 
+	// 乗っても何も起きないタイル
+	[SerializeField]
+	GameObject tile;
+	[SerializeField]
+	int tileNumber = 3;
+
 	private void Awake()
 	{
 		GameInstance.panelManager = this;
@@ -113,6 +119,11 @@ public class PanelManager : MonoBehaviour
 		for (int i = 0; i < spawnNum.x; ++i)
 		{
 			PanelSpawn();
+		}
+		for (int i = 0; i < tileNumber; ++i)
+		{
+			var pos = panels[0].transform.position;
+			Instantiate(tile, new Vector3(pos.x - spriteSize.x * i, pos.y, pos.z), Quaternion.identity);
 		}
 	}
 

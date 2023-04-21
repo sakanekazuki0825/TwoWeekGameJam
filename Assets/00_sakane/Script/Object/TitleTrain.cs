@@ -7,14 +7,17 @@ public class TitleTrain : MonoBehaviour
 	[SerializeField]
 	float speed;
 
+	[SerializeField]
 	// ÉSÅ[ÉãÇÃà íu
-	Vector3 goalPos;
+	float goalPosX;
 	// true = ÉSÅ[Éã
 	bool isGoal = false;
 
-	private void Start()
+	RectTransform recTra;
+
+	private void Awake()
 	{
-		goalPos = transform.parent.GetComponent<RectTransform>().rect.size * 2.6f;
+		recTra = transform as RectTransform;
 	}
 
 	public void Move()
@@ -25,10 +28,11 @@ public class TitleTrain : MonoBehaviour
 	IEnumerator EMove()
 	{
 		isGoal = false;
+
 		while (!isGoal)
 		{
 			transform.Translate(new Vector3(speed, 0, 0));
-			if (transform.position.x >= goalPos.x)
+			if (recTra.position.x >= goalPosX)
 			{
 				isGoal = true;
 			}

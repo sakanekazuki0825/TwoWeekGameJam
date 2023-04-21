@@ -280,6 +280,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6187444576096720154, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
+      propertyPath: tile
+      value: 
+      objectReference: {fileID: 943200687695030246, guid: 0e1a0379d90efb146a8e91a1b32c5680, type: 3}
+    - target: {fileID: 6187444576096720154, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
+      propertyPath: tileNumber
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 6187444576096720155, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
       propertyPath: m_RootOrder
       value: 4
@@ -989,6 +997,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2435987636225060009, guid: 865de07cb8b25894db4d039116dd5e4b, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435987636225060009, guid: 865de07cb8b25894db4d039116dd5e4b, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2435987636225060009, guid: 865de07cb8b25894db4d039116dd5e4b, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2435987637162757509, guid: 865de07cb8b25894db4d039116dd5e4b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1197,6 +1217,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1183445323}
     - target: {fileID: 4069292285384749422, guid: 27a1fe1b173bb2549b05d5d8d0e442ff, type: 3}
+      propertyPath: trainPos.x
+      value: -7
+      objectReference: {fileID: 0}
+    - target: {fileID: 4069292285384749422, guid: 27a1fe1b173bb2549b05d5d8d0e442ff, type: 3}
       propertyPath: countdownTxt
       value: 
       objectReference: {fileID: 1482129143980874807}
@@ -1218,7 +1242,7 @@ PrefabInstance:
       objectReference: {fileID: 1482129143980874806}
     - target: {fileID: 4069292285384749422, guid: 27a1fe1b173bb2549b05d5d8d0e442ff, type: 3}
       propertyPath: cannotSelectObjPos.x
-      value: -18
+      value: -22.8
       objectReference: {fileID: 0}
     - target: {fileID: 4069292285384749423, guid: 27a1fe1b173bb2549b05d5d8d0e442ff, type: 3}
       propertyPath: m_RootOrder
