@@ -1,8 +1,8 @@
+using System;
 using System.Collections;
-using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using static UnityEngine.Rendering.DebugUI;
 
 public class Result : MonoBehaviour
 {
@@ -34,6 +34,27 @@ public class Result : MonoBehaviour
 		value = Mathf.Floor(value * dec);
 		value /= dec;
 		nowScoreTxt.text = value.ToString();
+
+		var scores = GameInstance.scores;
+
+		foreach (var e in scores)
+		{
+			if (resultTxt.text == "\n")
+			{
+				resultTxt.text = e.ToString() + "\n";
+			}
+			else
+			{
+				resultTxt.text += e.ToString() + "\n";
+			}
+		}
+
+		scores.Add(value);
+		Array.Sort(scores.ToArray());
+		if (scores.Count > placePeople)
+		{
+			scores.Remove(scores[scores.Count - 1]);
+		}
 	}
 
 	// ‚à‚¤ˆê“x—V‚Ô

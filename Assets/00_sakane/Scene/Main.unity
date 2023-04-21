@@ -827,15 +827,43 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5352055667001874037, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
+    - target: {fileID: 1443283664497846553, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
+      propertyPath: decimalValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1443283666014308822, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5352055667001874037, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
+    - target: {fileID: 1443283666014308822, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
       propertyPath: m_Color.g
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 5352055667001874037, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
+    - target: {fileID: 1443283666014308822, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803518919132019525, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803518919132019525, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1803518919132019525, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634042468064363082, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634042468064363082, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8634042468064363082, guid: 494c34ad2d4049a449ad262cbe3ffb8f, type: 3}
       propertyPath: m_Color.r
       value: 1
       objectReference: {fileID: 0}
