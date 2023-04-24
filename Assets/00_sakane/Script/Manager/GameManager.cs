@@ -67,6 +67,13 @@ public class GameManager : MonoBehaviour
 	float clearTime = 0;
 	public float ClearTime { get => clearTime; }
 
+	// ゲームクリアのBGM
+	[SerializeField]
+	AudioClip gameClearAudio;
+	// ゲームオーバーのBGM
+	[SerializeField]
+	AudioClip gameOverAudio;
+
 	private void Awake()
 	{
 		GameInstance.gameManager = this;
@@ -169,6 +176,9 @@ public class GameManager : MonoBehaviour
 	// ゲームオーバー
 	public void GameOver()
 	{
+		var source = Camera.main.GetComponent<AudioSource>();
+		source.clip = gameOverAudio;
+		source.Play();
 		isInPlay = false;
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
@@ -180,6 +190,9 @@ public class GameManager : MonoBehaviour
 	// ゲームクリア
 	public void GameClear()
 	{
+		var source = Camera.main.GetComponent<AudioSource>();
+		source.clip = gameClearAudio;
+		source.Play();
 		isInPlay = false;
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
