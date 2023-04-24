@@ -35,7 +35,7 @@ public class Result : MonoBehaviour
 		value /= dec;
 		nowScoreTxt.text = value.ToString();
 
-		var scores = GameInstance.scores;
+		var scores = ScoreManager.scores;
 
 		foreach (var e in scores)
 		{
@@ -71,13 +71,13 @@ public class Result : MonoBehaviour
 
 	IEnumerator EFinish(string levelName)
 	{
+		GameInstance.gameManager.Train.GetComponent<ITrain>().GoTitle();
+		yield return new WaitUntil(() => { return GameInstance.gameManager.Train.GetComponent<ITrain>().IsScreenOut(); });
+
 		// フェード
 		FadeIO fade = GameInstance.fadeIO;
 		fade.FadeOut();
-		while (fade.IsFading)
-		{
-			yield return null;
-		}
+		yield return new WaitUntil(() => { return fade.IsFading; });
 
 		// 読み込み
 		StartCoroutine(LevelManager.ELoadLevelAsync(levelName));

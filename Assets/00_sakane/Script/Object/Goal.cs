@@ -8,6 +8,7 @@ public class Goal : MonoBehaviour
 		if (other.gameObject.CompareTag("Train"))
 		{
 			GameObject.FindObjectOfType<GameManager>().GameClear();
+			other.gameObject.GetComponent<ITrain>().GameClear(transform.position);
 		}
 	}
 }

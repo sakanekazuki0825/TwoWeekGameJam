@@ -21,7 +21,15 @@ public class SpeedMeter : MonoBehaviour
 	{
 		if (trainRb != null)
 		{
-			var speed = Mathf.Floor(trainRb.velocity.magnitude * n);
+			var speed = 0f;
+			if (trainRb.velocity.magnitude % 1 >= 0.5f)
+			{
+				speed = Mathf.Ceil(trainRb.velocity.magnitude * n);
+			}
+			else
+			{
+				speed = Mathf.Floor(trainRb.velocity.magnitude * n);
+			}
 			meterTxt.text = speed.ToString();
 		}
 		else

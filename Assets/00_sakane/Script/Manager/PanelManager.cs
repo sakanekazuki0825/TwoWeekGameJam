@@ -140,11 +140,17 @@ public class PanelManager : MonoBehaviour
 			// ƒS[ƒ‹‚Ì¶¬‚Í1‰ñ‚Ì‚Ý
 			if (goalObj.Count > 0)
 			{
+				spawnPosX = goalObj[goalObj.Count - 1].transform.position.x + spriteSize.x;
+				for (int i = 0; i < spawnNum.y; ++i)
+				{
+					goalObj.Add(Instantiate(tile, new Vector2(spawnPosX, spriteSize.y * i + spawnStartPos.y), Quaternion.identity));
+				}
 				return;
 			}
 			for (int i = 0; i < spawnNum.y; ++i)
 			{
 				goalObj.Add(Instantiate(goalPanel, new Vector2(spawnPosX, spriteSize.y * i + spawnStartPos.y), Quaternion.identity));
+				Camera.main.GetComponent<ICameraMove>().SetGoalPos(spawnPosX);
 			}
 			return;
 		}

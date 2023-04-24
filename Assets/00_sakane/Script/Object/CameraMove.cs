@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class CameraMove : MonoBehaviour, ICameraMove
@@ -10,6 +9,9 @@ public class CameraMove : MonoBehaviour, ICameraMove
 	Vector3 offset = new Vector3(0, 0, 0);
 	// true = 動くことができる
 	bool canMove = false;
+
+	// ゴールの位置
+	float goalPosX;
 
 	void Update()
 	{
@@ -35,5 +37,23 @@ public class CameraMove : MonoBehaviour, ICameraMove
 		this.canMove = canMove;
 		// オフセットの設定
 		offset = transform.position - target.transform.position;
+	}
+
+	// ゴールの位置設定
+	void ICameraMove.SetGoalPos(float goalPos)
+	{
+		goalPosX = goalPos;
+		StartCoroutine(GoGoalPos());
+	}
+
+	IEnumerator GoGoalPos()
+	{
+		yield return new WaitUntil(
+			() =>
+			{
+				return transform.position.x > goalPosX;
+			});
+		transform.position = new Vector3(goalPosX, transform.position.y, transform.position.z);
+		canMove = false;
 	}
 }

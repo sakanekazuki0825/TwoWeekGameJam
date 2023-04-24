@@ -1242,7 +1242,7 @@ PrefabInstance:
       objectReference: {fileID: 1482129143980874806}
     - target: {fileID: 4069292285384749422, guid: 27a1fe1b173bb2549b05d5d8d0e442ff, type: 3}
       propertyPath: cannotSelectObjPos.x
-      value: -22.8
+      value: -23
       objectReference: {fileID: 0}
     - target: {fileID: 4069292285384749423, guid: 27a1fe1b173bb2549b05d5d8d0e442ff, type: 3}
       propertyPath: m_RootOrder

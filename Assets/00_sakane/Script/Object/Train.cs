@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 
 // 汽車クラス
@@ -23,7 +24,7 @@ public class Train : MonoBehaviour, ITrain
 	//float complement = 0;
 
 	// 止まった時に速さを保存
-	Vector3 stopBeforeSpeed = new Vector3 (0, 0, 0);
+	Vector3 stopBeforeSpeed = new Vector3(0, 0, 0);
 
 	// 最終目的地
 	Vector3 finalDestination = new Vector3(10, 0, 0);
@@ -40,6 +41,10 @@ public class Train : MonoBehaviour, ITrain
 
 	// アニメーター
 	Animator animator;
+
+	// true = スクリーンを出た
+	bool isScreenOut = false;
+	public bool IsScreenOut { get => isScreenOut; }
 
 	private void Awake()
 	{
@@ -135,7 +140,7 @@ public class Train : MonoBehaviour, ITrain
 		{
 			dashEffect.gameObject.SetActive(false);
 		}
-		
+
 		// 補完速度計算
 		//complement = (speed + afterSpeed) / 2 / 1.92f;
 	}
@@ -149,5 +154,57 @@ public class Train : MonoBehaviour, ITrain
 		this.targetPos = curvePos;
 		finalDestination = targetPos;
 		beforeTargetDir = curvePos - transform.position;
+	}
+
+	// ゲームクリア
+	void ITrain.GameClear(Vector3 goalPos)
+	{
+		StartCoroutine(EGameClear(goalPos));
+	}
+
+	// ゲームクリアコルーチン
+	IEnumerator EGameClear(Vector3 goalPos)
+	{
+		canMove = false;
+		var pmain = dashEffect.main;
+		pmain.simulationSpeed = 0;
+		//while(goalPos.x < transform.position.x)
+		//{
+		yield return new WaitUntil(
+			() =>
+			{
+				rb.velocity = (goalPos - transform.position) * speed;
+				animator.speed = rb.velocity.magnitude / startSpeed;
+				return goalPos.x <= transform.position.x + 0.01f;
+			});
+		transform.position = new Vector3(goalPos.x, transform.position.y, transform.position.z);
+		animator.speed = 0;
+		dashEffect.gameObject.SetActive(false);
+		rb.velocity = Vector3.zero;
+		//}
+	}
+
+	// タイトルへ
+	void ITrain.GoTitle()
+	{
+		StartCoroutine(EGoTitle());
+	}
+
+	IEnumerator EGoTitle()
+	{
+		var pos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 0.75f, 0, -Camera.main.transform.position.z));
+		animator.speed = startSpeed;
+		rb.velocity = new Vector3(startSpeed, 0, 0);
+		yield return new WaitUntil(
+			() =>
+			{
+				return transform.position.x >= pos.x;
+			});
+		isScreenOut = true;
+	}
+
+	bool ITrain.IsScreenOut()
+	{
+		return isScreenOut;
 	}
 }

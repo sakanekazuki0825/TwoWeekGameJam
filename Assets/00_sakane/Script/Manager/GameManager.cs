@@ -30,6 +30,7 @@ public class GameManager : MonoBehaviour
 	GameObject trainPrefab;
 	// 生成した電車
 	GameObject train;
+	public GameObject Train{ get => train; }
 	// 電車生成位置
 	[SerializeField]
 	Vector3 trainPos;
@@ -80,6 +81,7 @@ public class GameManager : MonoBehaviour
 		// フェードクラス取得
 		fade = GameInstance.fadeIO;
 		countDown = GameInstance.countDown;
+		countdownCanvas.gameObject.SetActive(false);
 
 		// ゲーム開始
 		GameStart();
@@ -181,7 +183,7 @@ public class GameManager : MonoBehaviour
 		isInPlay = false;
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
-		train.GetComponent<ITrain>().Stop();
+		//train.GetComponent<ITrain>().Stop();
 		// リザルトを表示
 		resultCanvas.SetActive(true);
 		resultCanvas.GetComponent<Result>().Display();
