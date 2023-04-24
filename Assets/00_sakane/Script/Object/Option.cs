@@ -3,53 +3,54 @@ using UnityEngine.UI;
 
 public class Option : MonoBehaviour
 {
-	[SerializeField]
-	Text timeTxt;
-
-	private void Start()
-	{
-		retireCanvas.SetActive(false);
-	}
-
-	private void Update()
-	{
-		var time = GameInstance.gameManager.ClearTime;
-		if(time % 1 >= 0.5f)
-		{
-			timeTxt.text = Mathf.Ceil(time).ToString();
-		}
-		else
-		{
-			timeTxt.text = Mathf.Floor(time).ToString();
-		}
-	}
-
 	// オプション
-	public void OptionClick()
-	{
-		retireCanvas.SetActive(true);
-		GameInstance.gameManager.GameStop();
-	}
+	[SerializeField]
+	GameObject optionCanvas;
 
-	//-----リタイヤ-----
+	// リトライキャンバス
+	[SerializeField]
+	GameObject RetryCanvas;
+
+	// 音量キャンバス
+	[SerializeField]
+	GameObject SoundSettingCanvas;
 
 	// リタイヤキャンバス
 	[SerializeField]
 	GameObject retireCanvas;
 
-	// リタイヤ
-	public void Retire()
+	private void Start()
 	{
-		StartCoroutine(LevelManager.ELoadLevelAsync("Title"));
+		optionCanvas.SetActive(false);
+		RetryCanvas.SetActive(false);
+		SoundSettingCanvas.SetActive(false);
+		retireCanvas.SetActive(false);
 	}
 
-	// リタイヤしない
-	public void NotRetire()
+	public void OptionClick()
 	{
-		retireCanvas.SetActive(false);
-		GameInstance.gameManager.GameReStart();
-		GameInstance.countDown.gameObject.SetActive(true);
-		GameInstance.countDown.StartCountDown();
+		optionCanvas.SetActive(true);
+		GameInstance.gameManager.GameStop();
 	}
-	//-----リタイヤ-----
+
+	public void ReStart()
+	{
+		optionCanvas.SetActive(false);
+		GameInstance.gameManager.GameReStart();
+	}
+
+	public void Retry()
+	{
+		RetryCanvas.SetActive(true);
+	}
+
+	public void SoundSetting()
+	{
+		SoundSettingCanvas.SetActive(true);
+	}
+
+	public void Retire()
+	{
+		retireCanvas.SetActive(true);
+	}
 }
