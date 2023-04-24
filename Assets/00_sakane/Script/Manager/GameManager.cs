@@ -30,7 +30,7 @@ public class GameManager : MonoBehaviour
 	GameObject trainPrefab;
 	// 生成した電車
 	GameObject train;
-	public GameObject Train{ get => train; }
+	public GameObject Train { get => train; }
 	// 電車生成位置
 	[SerializeField]
 	Vector3 trainPos;
@@ -65,7 +65,7 @@ public class GameManager : MonoBehaviour
 
 	// クリア時間
 	float clearTime = 0;
-	public float ClearTime{ get => clearTime; }
+	public float ClearTime { get => clearTime; }
 
 	private void Awake()
 	{
@@ -153,7 +153,7 @@ public class GameManager : MonoBehaviour
 		// 電車を動くことができる状態にする
 		train.GetComponent<ITrain>().Go();
 
-		while((Camera.main.transform.position.x - train.transform.position.x) > xOffset)
+		while ((Camera.main.transform.position.x - train.transform.position.x) > xOffset)
 		{
 			yield return null;
 		}
@@ -206,20 +206,15 @@ public class GameManager : MonoBehaviour
 	// ゲーム再開コルーチン
 	IEnumerator IGameReStart()
 	{
-		var isReStarting = true;
-		var time = reStartTime;
-		while (isReStarting)
+		countdownCanvas.gameObject.SetActive(true);
+		countDown.StartCountDown();
+		yield return new WaitUntil(
+		() =>
 		{
-			time -= Time.deltaTime;
-			if (time <= 0)
-			{
-				isReStarting = false;
-				//isInPlay = true;
-				playerObj.GetComponent<IPlayer>().GameStart();
-				train.GetComponent<ITrain>().Go();
-			}
-			yield return null;
-		}
+			return !countDown.IsCounting;
+		});
+		playerObj.GetComponent<IPlayer>().GameStart();
+		train.GetComponent<ITrain>().Go();
 		isInPlay = true;
 	}
 }

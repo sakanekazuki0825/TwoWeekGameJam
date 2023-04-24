@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 // 音量の設定
 public class SoundManager : MonoBehaviour
@@ -8,15 +9,29 @@ public class SoundManager : MonoBehaviour
 	[SerializeField]
 	AudioMixer audioMixer;
 
-	// BGMの音量設定
-	public void SetBGMVolume(float value)
+	// bgmスライダー
+	[SerializeField]
+	Slider bgmSlider;
+	// seスライダー
+	[SerializeField]
+	Slider seSlider;
+
+	public void Apply()
 	{
-		audioMixer.SetFloat("BGMVolume", value);
+		SetBGMVolume();
+		SetSEVolume();
+		gameObject.SetActive(false);
+	}
+
+	// BGMの音量設定
+	void SetBGMVolume()
+	{
+		audioMixer.SetFloat("BGM", bgmSlider.value);
 	}
 
 	// SEの音量設定
-	public void SetSEVolume(float value)
+	void SetSEVolume()
 	{
-		audioMixer.SetFloat("SE", value);
+		audioMixer.SetFloat("SE", seSlider.value);
 	}
 }

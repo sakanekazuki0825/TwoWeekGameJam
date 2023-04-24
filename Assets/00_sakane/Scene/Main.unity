@@ -1095,7 +1095,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2435987637162757513, guid: 865de07cb8b25894db4d039116dd5e4b, type: 3}
       propertyPath: m_Name
-      value: MeterCanvas
+      value: MainCanvas
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 865de07cb8b25894db4d039116dd5e4b, type: 3}
@@ -1106,6 +1106,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1879403159425603347, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 3871956925593329172, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1192,15 +1196,22 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3871956925593329176, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
       propertyPath: m_Name
-      value: MainCanvas
+      value: InGameOptionCanvas
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082195762965250694, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7282699327383191965, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162899364963258407, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
---- !u!223 &3871956925705396125 stripped
-Canvas:
-  m_CorrespondingSourceObject: {fileID: 1462224643917854009, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
-  m_PrefabInstance: {fileID: 3871956925705396124}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &4069292286141976737
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1231,7 +1242,7 @@ PrefabInstance:
     - target: {fileID: 4069292285384749422, guid: 27a1fe1b173bb2549b05d5d8d0e442ff, type: 3}
       propertyPath: retireCanvas
       value: 
-      objectReference: {fileID: 3871956925705396125}
+      objectReference: {fileID: 0}
     - target: {fileID: 4069292285384749422, guid: 27a1fe1b173bb2549b05d5d8d0e442ff, type: 3}
       propertyPath: gameOverCanvas
       value: 

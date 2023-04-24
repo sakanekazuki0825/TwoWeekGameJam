@@ -274,5 +274,5 @@ MonoBehaviour:
   startCountDownTime: 3
   inGameCountDownTime: 3
   displayTime: 1
-  lastStr: Start
+  lastStr: Go
   countTxt: {fileID: 6654806224152269967}
