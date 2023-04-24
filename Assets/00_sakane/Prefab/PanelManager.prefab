@@ -61,3 +61,6 @@ MonoBehaviour:
   numberToGoal: 50
   panelBoxData: {fileID: 11400000, guid: 685bf572a9869474ab003f741b0051fe, type: 2}
   oneBoxPanelNum: 20
+  tile: {fileID: 943200687695030246, guid: 0e1a0379d90efb146a8e91a1b32c5680, type: 3}
+  tileNumber: 4
+  crashObj: {fileID: 805118831258431400, guid: 5eaea552a6632fe4781b0d7d309b3e64, type: 3}

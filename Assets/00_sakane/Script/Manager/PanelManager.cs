@@ -67,6 +67,10 @@ public class PanelManager : MonoBehaviour
 	[SerializeField]
 	int tileNumber = 3;
 
+	// 脱線
+	[SerializeField]
+	GameObject crashObj;
+
 	private void Awake()
 	{
 		GameInstance.panelManager = this;
@@ -108,6 +112,7 @@ public class PanelManager : MonoBehaviour
 		// 最初に横に移動するパネルの生成
 		for (int i = 0; i < startHorizontalPanel; ++i)
 		{
+
 			// パネル生成
 			var insObj = Instantiate(panel, new Vector3(spawnStartPos.x + spriteSize.x * i, spawnStartPos.y + spriteSize.y * Mathf.Floor(spawnNum.y / 2), 0), Quaternion.identity);
 			// 生成したパネル保存
@@ -154,6 +159,8 @@ public class PanelManager : MonoBehaviour
 			}
 			return;
 		}
+		Instantiate(crashObj, new Vector2(spawnPosX, spawnStartPos.y - spriteSize.y), Quaternion.identity);
+		Instantiate(crashObj, new Vector2(spawnPosX, spawnStartPos.y + spriteSize.y * spawnNum.y), Quaternion.identity);
 		for (int i = 0; i < spawnNum.y; ++i)
 		{
 			// パネル生成
