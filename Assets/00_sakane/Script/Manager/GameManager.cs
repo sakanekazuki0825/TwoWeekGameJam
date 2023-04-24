@@ -56,9 +56,6 @@ public class GameManager : MonoBehaviour
 	Canvas countdownCanvas;
 	CountDown countDown;
 
-	// ÄŠJ‚·‚é‚Ü‚Å‚Ì—P—\
-	[SerializeField]
-	float reStartTime = 3;
 	// ”wŒi
 	[SerializeField]
 	BackGroundSpawner backGround;

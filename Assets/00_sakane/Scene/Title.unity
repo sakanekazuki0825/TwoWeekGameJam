@@ -423,13 +423,45 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 496228290338210864, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 496228290338210864, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 496228290338210864, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834329579296140737, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 834329579296140737, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 1767375277570285924, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 483202274}
+    - target: {fileID: 3795069350444254767, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3795069350444254767, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3795069350444254767, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5198021308863078118, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
       propertyPath: m_Name
-      value: OperationExplanationCanvas
+      value: OptionCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 5198021308863078122, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
       propertyPath: m_Pivot.x
@@ -513,6 +545,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5198021308863078122, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8993635185814987950, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8993635185814987950, guid: 034ca0adfa866884cb404e6fce82413d, type: 3}
+      propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -925,14 +965,6 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
       objectReference: {fileID: 483202274}
-    - target: {fileID: 5625675442433170377, guid: afd731d4de51fee4f83a5009f71c6b55, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: Move
-      objectReference: {fileID: 0}
-    - target: {fileID: 5625675442433170377, guid: afd731d4de51fee4f83a5009f71c6b55, type: 3}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: TitleTrain, Assembly-CSharp
-      objectReference: {fileID: 0}
     - target: {fileID: 5625675443203288983, guid: afd731d4de51fee4f83a5009f71c6b55, type: 3}
       propertyPath: m_Pivot.x
       value: 0
