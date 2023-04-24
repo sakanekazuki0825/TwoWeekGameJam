@@ -1148,8 +1148,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 1879403159425603347}
   m_HandleRect: {fileID: 5082195762965250694}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 20
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -1239,8 +1239,8 @@ MonoBehaviour:
   m_FillRect: {fileID: 7282699327383191965}
   m_HandleRect: {fileID: 8162899364963258407}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 1
+  m_MinValue: -80
+  m_MaxValue: 20
   m_WholeNumbers: 0
   m_Value: 0
   m_OnValueChanged:
@@ -2337,8 +2337,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: d988c9501b3aade4995e3f07d08fee06, type: 2}
-  bgmSlider: {fileID: 0}
-  seSlider: {fileID: 0}
+  bgmSlider: {fileID: 4603013582575748122}
+  seSlider: {fileID: 8733892114967816181}
 --- !u!1 &4818838777659265637
 GameObject:
   m_ObjectHideFlags: 0
@@ -3015,11 +3015,11 @@ RectTransform:
   m_Children:
   - {fileID: 3586697081220149964}
   m_Father: {fileID: 1223938938200611629}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 50}
+  m_AnchoredPosition: {x: 0, y: -50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &6922769804321672959
@@ -3103,7 +3103,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 399524289839631181}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7264728889300285969}
+        m_TargetAssemblyTypeName: Option, Assembly-CSharp
+        m_MethodName: SoundSetting
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &7240683511331198907
 GameObject:
   m_ObjectHideFlags: 0
@@ -3283,11 +3295,11 @@ RectTransform:
   m_Children:
   - {fileID: 4469256780852905690}
   m_Father: {fileID: 1223938938200611629}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -50}
+  m_AnchoredPosition: {x: 0, y: 50}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3155951676806188014
@@ -3572,8 +3584,8 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 3871956926581052960}
-  - {fileID: 7179252852226811698}
   - {fileID: 5416661361950206289}
+  - {fileID: 7179252852226811698}
   - {fileID: 1364938707938595942}
   - {fileID: 6305992492013432502}
   - {fileID: 6358759539944189230}

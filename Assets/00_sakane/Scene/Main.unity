@@ -997,18 +997,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2435987636225060009, guid: 865de07cb8b25894db4d039116dd5e4b, type: 3}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2435987636225060009, guid: 865de07cb8b25894db4d039116dd5e4b, type: 3}
-      propertyPath: m_Color.g
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2435987636225060009, guid: 865de07cb8b25894db4d039116dd5e4b, type: 3}
-      propertyPath: m_Color.r
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2435987637162757509, guid: 865de07cb8b25894db4d039116dd5e4b, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -1107,6 +1095,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1879403159425603347, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1879403159425603347, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
       objectReference: {fileID: 0}
@@ -1199,7 +1191,19 @@ PrefabInstance:
       value: InGameOptionCanvas
       objectReference: {fileID: 0}
     - target: {fileID: 5082195762965250694, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082195762965250694, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5082195762965250694, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_AnchorMin.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7282699327383191965, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_AnchorMax.x
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7282699327383191965, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
@@ -1207,7 +1211,15 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8162899364963258407, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162899364963258407, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
       propertyPath: m_AnchorMax.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8162899364963258407, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []

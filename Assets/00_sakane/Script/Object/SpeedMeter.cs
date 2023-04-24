@@ -30,6 +30,18 @@ public class SpeedMeter : MonoBehaviour
 			{
 				speed = Mathf.Floor(trainRb.velocity.magnitude * n);
 			}
+			if(speed < 49)
+			{
+				meterTxt.color = Color.green;
+			}
+			else if(speed < 99)
+			{
+				meterTxt.color = Color.yellow;
+			}
+			else
+			{
+				meterTxt.color = Color.red;
+			}
 			meterTxt.text = speed.ToString();
 		}
 		else

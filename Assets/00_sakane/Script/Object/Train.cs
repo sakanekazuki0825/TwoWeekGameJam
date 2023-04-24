@@ -46,6 +46,10 @@ public class Train : MonoBehaviour, ITrain
 	bool isScreenOut = false;
 	public bool IsScreenOut { get => isScreenOut; }
 
+	// 爆発エフェクト
+	[SerializeField]
+	GameObject crashEffect;
+
 	private void Awake()
 	{
 		// 物理取得
@@ -201,6 +205,12 @@ public class Train : MonoBehaviour, ITrain
 				return transform.position.x >= pos.x;
 			});
 		isScreenOut = true;
+	}
+
+	void ITrain.Crash()
+	{
+		Instantiate(crashEffect, transform.position, Quaternion.identity);
+		Destroy(gameObject);
 	}
 
 	bool ITrain.IsScreenOut()

@@ -8,5 +8,6 @@ public interface ITrain
 	void Curve(Vector3 curvePos, Vector3 targePos);
 	void GameClear(Vector3 goalPos);
 	void GoTitle();
+	void Crash();
 	bool IsScreenOut();
 }

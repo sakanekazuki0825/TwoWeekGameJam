@@ -155,6 +155,7 @@ MonoBehaviour:
   acceleration: 0.08
   dashEffect: {fileID: 1698711113685354640}
   velMag: 2
+  crashEffect: {fileID: 2508832737935942797, guid: cb3a3e19bc9ef614f9df3e4a267ade67, type: 3}
 --- !u!1001 &920767232041814135
 PrefabInstance:
   m_ObjectHideFlags: 0
