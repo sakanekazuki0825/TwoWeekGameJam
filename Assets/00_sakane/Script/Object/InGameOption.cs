@@ -1,7 +1,6 @@
 using UnityEngine;
-using UnityEngine.UI;
 
-public class Option : MonoBehaviour
+public class InGameOption : MonoBehaviour
 {
 	// ƒIƒvƒVƒ‡ƒ“
 	[SerializeField]

@@ -16,33 +16,41 @@ public class SoundManager : MonoBehaviour
 	[SerializeField]
 	Slider seSlider;
 
+	float bgmVolume = 0;
+	float seVolume = 0;
+
 	private void OnEnable()
 	{
-		var volume = 0.0f;
+		bgmVolume = PlayerPrefs.GetFloat("BGM");
+		seVolume = PlayerPrefs.GetFloat("SE");
 		// BGMの音量をスライダーに設定
-		audioMixer.GetFloat("BGMVolume",out volume);
-		bgmSlider.value = volume;
+		audioMixer.SetFloat("BGMVolume", bgmVolume);
+		bgmSlider.value = bgmVolume;
 		// SEの音量をスライダーに設定
-		audioMixer.GetFloat("SEVolume", out volume);
-		seSlider.value = volume;
+		audioMixer.SetFloat("SEVolume", seVolume);
+		seSlider.value = seVolume;
 	}
 
 	public void Apply()
 	{
 		SetBGMVolume();
 		SetSEVolume();
+		PlayerPrefs.SetFloat("BGM", bgmSlider.value);
+		PlayerPrefs.SetFloat("SE",seSlider.value);
 		gameObject.SetActive(false);
 	}
 
 	// BGMの音量設定
 	void SetBGMVolume()
 	{
-		audioMixer.SetFloat("BGMVolume", bgmSlider.value);
+		bgmVolume = bgmSlider.value;
+		audioMixer.SetFloat("BGMVolume", bgmVolume);
 	}
 
 	// SEの音量設定
 	void SetSEVolume()
 	{
-		audioMixer.SetFloat("SEVolume", seSlider.value);
+		seVolume = seSlider.value;
+		audioMixer.SetFloat("SEVolume", seVolume);
 	}
 }
