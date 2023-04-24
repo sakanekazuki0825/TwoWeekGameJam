@@ -6,4 +6,5 @@ public interface ICameraMove
 {
 	void SetTarget(GameObject target);
 	void SetCanMove(bool canMove = true);
+	void SetGoalPos(float goalPos);
 }

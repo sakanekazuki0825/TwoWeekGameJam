@@ -54,6 +54,7 @@ public class Panel : MonoBehaviour, IPanel
 		}
 		else if (other.gameObject.CompareTag("CannotSelectPanel"))
 		{
+			isTrain = true;
 			GameInstance.player.SelectPanelRemove(gameObject);
 		}
 	}
