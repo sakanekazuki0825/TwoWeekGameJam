@@ -18,7 +18,10 @@ public class CannotSelectPanel : MonoBehaviour,ICannotSelectPanel
 		var position = transform.position + offset;
 		position.y = 0;
 
-		transform.position = target.transform.position + offset;
+		if (target != null)
+		{
+			transform.position = target.transform.position + offset;
+		}
 	}
 
 	// ターゲット設定

@@ -19,10 +19,13 @@ public class CameraMove : MonoBehaviour, ICameraMove
 		{
 			return;
 		}
-		var position = target.transform.position + offset;
-		position.y = transform.position.y;
-		// カメラを固定
-		transform.position = position;
+		if (target != null)
+		{
+			var position = target.transform.position + offset;
+			position.y = transform.position.y;
+			// カメラを固定
+			transform.position = position;
+		}
 	}
 
 	// ターゲットの設定
