@@ -20,7 +20,8 @@ public class CannotSelectPanel : MonoBehaviour,ICannotSelectPanel
 
 		if (target != null)
 		{
-			transform.position = target.transform.position + offset;
+			var pos = target.transform.position + offset;
+			transform.position = new Vector3(pos.x, transform.position.y, pos.z);
 		}
 	}
 
