@@ -120,6 +120,15 @@ public class PanelManager : MonoBehaviour
 			// パネルに方向を設定
 			insObj.GetComponent<IPanel>().SetLinkDirection(new List<Vector2> { Vector2.left, Vector2.right });
 		}
+		for (int i = 0; i < spawnNum.x; ++i)
+		{
+			if (i == 2)
+			{
+				continue;
+			}
+			Instantiate(crashObj, new Vector2(spawnStartPos.x + spriteSize.x * 2, spawnStartPos.y + spriteSize.y * i), Quaternion.identity);
+		}
+
 		// 初期配置
 		for (int i = 0; i < spawnNum.x; ++i)
 		{
