@@ -13,6 +13,7 @@ public class Bomb : MonoBehaviour
 
 	public void DelObject()
 	{
+		GameInstance.gameManager.GameOver();
 		Destroy(gameObject);
 	}
 }

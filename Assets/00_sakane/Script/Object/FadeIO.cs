@@ -41,6 +41,7 @@ public class FadeIO : MonoBehaviour
 	IEnumerator EFadeIn()
 	{
 		isFading = true;
+		fadeImg.raycastTarget = true;
 		fadeImg.color = Color.black;
 		while (fadeImg.color.a >= toleranceValue)
 		{
@@ -49,6 +50,7 @@ public class FadeIO : MonoBehaviour
 			fadeImg.color -= new Color(0, 0, 0, fadeSpeed);
 		}
 		isFading = false;
+		fadeImg.raycastTarget = false;
 	}
 
 	// フェードアウト
@@ -61,6 +63,7 @@ public class FadeIO : MonoBehaviour
 	IEnumerator EFadeOut()
 	{
 		isFading = true;
+		fadeImg.raycastTarget = true;
 		fadeImg.color = new Color(0, 0, 0, 0);
 		while (fadeImg.color.a <= 1 - toleranceValue)
 		{

@@ -36,8 +36,6 @@ public class Panel : MonoBehaviour, IPanel
 			if (!isLoad)
 			{
 				other.GetComponent<ITrain>().Crash();
-				// ゲームオーバー
-				GameInstance.gameManager.GameOver();
 			}
 			else
 			{

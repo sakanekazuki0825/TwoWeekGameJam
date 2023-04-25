@@ -81,6 +81,9 @@ public class GameManager : MonoBehaviour
 	AudioClip clip;
 	AudioSource source;
 
+	[SerializeField]
+	GameObject cannotSelectUI;
+
 	private void Awake()
 	{
 		GameInstance.gameManager = this;
@@ -98,6 +101,7 @@ public class GameManager : MonoBehaviour
 		countDown = GameInstance.countDown;
 		countdownCanvas.gameObject.SetActive(false);
 		loadScreen.SetActive(false);
+		cannotSelectUI.SetActive(true);
 
 		// ゲーム開始
 		GameStart();
@@ -180,6 +184,8 @@ public class GameManager : MonoBehaviour
 		playerObj.GetComponent<IPlayer>().GameStart();
 		StartCoroutine(EWhistle());
 
+		cannotSelectUI.SetActive(false);
+
 		isInPlay = true;
 	}
 
@@ -192,7 +198,6 @@ public class GameManager : MonoBehaviour
 		isInPlay = false;
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
-		train.GetComponent<ITrain>().Stop();
 		// ゲームオーバーを表示
 		gameOverCanvas.SetActive(true);
 	}
@@ -210,7 +215,6 @@ public class GameManager : MonoBehaviour
 		// リザルトを表示
 		resultCanvas.SetActive(true);
 		resultCanvas.GetComponent<Result>().Display();
-		StopCoroutine(EWhistle());
 	}
 
 	// ゲーム停止
@@ -250,7 +254,7 @@ public class GameManager : MonoBehaviour
 	IEnumerator ELevelMove(string levelName)
 	{
 		fade.FadeOut();
-		yield return new WaitUntil(() => { return fade.IsFading; });
+		yield return new WaitUntil(() => { return !fade.IsFading; });
 
 		loadScreen.SetActive(true);
 

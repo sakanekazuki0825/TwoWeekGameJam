@@ -70,6 +70,9 @@ public class PanelManager : MonoBehaviour
 	// ’Eü
 	[SerializeField]
 	GameObject crashObj;
+	// ƒS[ƒ‹‚Ì”wŒi
+	[SerializeField]
+	GameObject goalBackGroundObj;
 
 	private void Awake()
 	{
@@ -161,6 +164,7 @@ public class PanelManager : MonoBehaviour
 				}
 				return;
 			}
+			Instantiate(goalBackGroundObj, new Vector2(spawnPosX - spriteSize.x/2, spriteSize.y), Quaternion.identity);
 			for (int i = 0; i < spawnNum.y; ++i)
 			{
 				goalObj.Add(Instantiate(goalPanel, new Vector2(spawnPosX, spriteSize.y * i + spawnStartPos.y), Quaternion.identity));

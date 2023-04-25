@@ -7,7 +7,6 @@ public class Crash : MonoBehaviour
 		if(other.gameObject.CompareTag("Train"))
 		{
 			other.GetComponent<ITrain>().Crash();
-			GameInstance.gameManager.GameOver();
 		}
 	}
 }
