@@ -22,9 +22,14 @@ public class Player : MonoBehaviour,IPlayer
 	GameObject selectPanelFrame;
 	GameObject frame;
 
+	[SerializeField]
+	AudioClip clip;
+	AudioSource audioSource;
+
 	private void Awake()
 	{
 		GameInstance.player = this;
+		audioSource = GetComponent<AudioSource>();
 	}
 
 	private void Update()
@@ -79,6 +84,7 @@ public class Player : MonoBehaviour,IPlayer
 				// オブジェクトを選択している場合
 				else
 				{
+					audioSource.PlayOneShot(clip);
 					// 交換するオブジェクト取得
 					changeObj = hit.collider.gameObject;
 					// 最初に選択したオブジェクトの位置取得

@@ -26,4 +26,9 @@ public class TitleOption : MonoBehaviour
 	{
 		soundSettingCanvas.SetActive(true);
 	}
+
+	public void Return()
+	{
+		gameObject.SetActive(false);
+	}
 }

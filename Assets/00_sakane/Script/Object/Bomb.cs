@@ -5,6 +5,7 @@ using UnityEngine;
 public class Bomb : MonoBehaviour
 {
 	Animator animator;
+
 	private void Awake()
 	{
 		animator = GetComponent<Animator>();

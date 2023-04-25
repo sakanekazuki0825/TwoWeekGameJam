@@ -4,11 +4,11 @@ public class GameOver : MonoBehaviour
 {
 	public void ReStart()
 	{
-		StartCoroutine(LevelManager.ELoadLevelAsync("Main"));
+		GameInstance.gameManager.LevelMove("Main");
 	}
 
 	public void ReturnToTitle()
 	{
-		StartCoroutine(LevelManager.ELoadLevelAsync("Title"));
+		GameInstance.gameManager.LevelMove("Title");
 	}
 }

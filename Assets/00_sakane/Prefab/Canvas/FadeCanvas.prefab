@@ -115,7 +115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   fadeImg: {fileID: 4493723125170459569}
-  fadeSpeed: 0.008
+  fadeSpeed: 0.004
   toleranceValue: 0.08
 --- !u!1 &4493723125170459574
 GameObject:

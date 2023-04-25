@@ -10,9 +10,14 @@ public class TitleManager : MonoBehaviour
 	[SerializeField]
 	GameObject optionCanvas;
 
+	// ロード画面
+	[SerializeField]
+	GameObject loadScreen;
+
 	private void Awake()
 	{
 		GameInstance.titleManager = this;
+		loadScreen.SetActive(false);
 	}
 
 	void Start()
@@ -45,6 +50,8 @@ public class TitleManager : MonoBehaviour
 		{
 			yield return null;
 		}
+
+		loadScreen.SetActive(true);
 
 		// フェードが終わってからシーン読み込み開始
 		StartCoroutine(LevelManager.ELoadLevelAsync("Main"));

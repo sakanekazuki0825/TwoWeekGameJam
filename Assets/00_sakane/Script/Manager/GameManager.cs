@@ -71,9 +71,20 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	AudioClip gameOverAudio;
 
+	// ロード画面
+	[SerializeField]
+	GameObject loadScreen;
+
+	[SerializeField]
+	float time;
+	[SerializeField]
+	AudioClip clip;
+	AudioSource source;
+
 	private void Awake()
 	{
 		GameInstance.gameManager = this;
+		source = GetComponent<AudioSource>();
 	}
 
 	private void Start()
@@ -86,6 +97,7 @@ public class GameManager : MonoBehaviour
 		fade = GameInstance.fadeIO;
 		countDown = GameInstance.countDown;
 		countdownCanvas.gameObject.SetActive(false);
+		loadScreen.SetActive(false);
 
 		// ゲーム開始
 		GameStart();
@@ -166,6 +178,7 @@ public class GameManager : MonoBehaviour
 
 		// プレイヤーを動くことができる状態にする
 		playerObj.GetComponent<IPlayer>().GameStart();
+		StartCoroutine(EWhistle());
 
 		isInPlay = true;
 	}
@@ -197,6 +210,7 @@ public class GameManager : MonoBehaviour
 		// リザルトを表示
 		resultCanvas.SetActive(true);
 		resultCanvas.GetComponent<Result>().Display();
+		StopCoroutine(EWhistle());
 	}
 
 	// ゲーム停止
@@ -226,5 +240,30 @@ public class GameManager : MonoBehaviour
 		playerObj.GetComponent<IPlayer>().GameStart();
 		train.GetComponent<ITrain>().Go();
 		isInPlay = true;
+	}
+
+	public void LevelMove(string levelName)
+	{
+		StartCoroutine(ELevelMove(levelName));
+	}
+
+	IEnumerator ELevelMove(string levelName)
+	{
+		fade.FadeOut();
+		yield return new WaitUntil(() => { return fade.IsFading; });
+
+		loadScreen.SetActive(true);
+
+		StartCoroutine(LevelManager.ELoadLevelAsync(levelName));
+	}
+
+	IEnumerator EWhistle()
+	{
+		
+		while (true)
+		{
+			yield return new WaitForSeconds(time);
+			source.PlayOneShot(clip);
+		}
 	}
 }

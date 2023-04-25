@@ -50,6 +50,8 @@ public class Train : MonoBehaviour, ITrain
 	[SerializeField]
 	GameObject crashEffect;
 
+	AudioSource source;
+
 	private void Awake()
 	{
 		// 物理取得
@@ -63,6 +65,7 @@ public class Train : MonoBehaviour, ITrain
 		// アニメーター取得
 		animator = GetComponent<Animator>();
 		animator.speed = 0;
+		source = GetComponent<AudioSource>();
 	}
 
 	private void Start()
@@ -118,6 +121,7 @@ public class Train : MonoBehaviour, ITrain
 	{
 		canMove = true;
 		rb.velocity = stopBeforeSpeed;
+		source.UnPause();
 	}
 
 	// 停止
@@ -129,6 +133,7 @@ public class Train : MonoBehaviour, ITrain
 		animator.speed = 0;
 		var pmain = dashEffect.main;
 		pmain.simulationSpeed = 0;
+		source.Pause();
 	}
 
 	// 速度を上げる
@@ -164,6 +169,7 @@ public class Train : MonoBehaviour, ITrain
 	void ITrain.GameClear(Vector3 goalPos)
 	{
 		StartCoroutine(EGameClear(goalPos));
+		source.Pause();
 	}
 
 	// ゲームクリアコルーチン
@@ -196,6 +202,7 @@ public class Train : MonoBehaviour, ITrain
 
 	IEnumerator EGoTitle()
 	{
+		source.UnPause();
 		var pos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 0.75f, 0, -Camera.main.transform.position.z));
 		animator.speed = startSpeed;
 		rb.velocity = new Vector3(startSpeed, 0, 0);

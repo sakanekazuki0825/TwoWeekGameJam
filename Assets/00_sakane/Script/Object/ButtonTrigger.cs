@@ -22,4 +22,9 @@ public class ButtonTrigger : MonoBehaviour
 	{
 		img.color = Color.white;
 	}
+
+	public void Click()
+	{
+		img.color= Color.white;
+	}
 }

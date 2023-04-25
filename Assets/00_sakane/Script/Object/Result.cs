@@ -1,6 +1,5 @@
 using System;
 using System.Collections;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -60,13 +59,13 @@ public class Result : MonoBehaviour
 	// もう一度遊ぶ
 	public void Restart()
 	{
-		StartCoroutine(EFinish("Main"));
+		GameInstance.gameManager.LevelMove("Main");
 	}
 
 	// タイトルに戻る
 	public void ReturnToTitle()
 	{
-		StartCoroutine(EFinish("Title"));
+		GameInstance.gameManager.LevelMove("Title");
 	}
 
 	IEnumerator EFinish(string levelName)

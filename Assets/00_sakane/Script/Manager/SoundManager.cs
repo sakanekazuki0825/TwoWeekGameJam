@@ -37,6 +37,10 @@ public class SoundManager : MonoBehaviour
 		SetSEVolume();
 		PlayerPrefs.SetFloat("BGM", bgmSlider.value);
 		PlayerPrefs.SetFloat("SE",seSlider.value);
+	}
+
+	public void ReturnClick()
+	{
 		gameObject.SetActive(false);
 	}
 
