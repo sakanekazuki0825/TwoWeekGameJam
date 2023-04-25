@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class HoveredTriangle : MonoBehaviour
@@ -9,6 +7,6 @@ public class HoveredTriangle : MonoBehaviour
 
 	void Update()
 	{
-		
+		transform.Rotate(0, speed, 0);
 	}
 }
