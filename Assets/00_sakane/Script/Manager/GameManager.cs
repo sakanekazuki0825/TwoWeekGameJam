@@ -196,6 +196,7 @@ public class GameManager : MonoBehaviour
 		source.clip = gameOverAudio;
 		source.Play();
 		isInPlay = false;
+		StopCoroutine(EWhistle());
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
 		// ゲームオーバーを表示
