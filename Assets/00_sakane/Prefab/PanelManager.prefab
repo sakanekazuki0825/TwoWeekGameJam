@@ -45,12 +45,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   panelSprites:
-  - {fileID: 21300000, guid: efa475be6c4802d409fc502c60127dfb, type: 3}
-  - {fileID: 21300000, guid: 62cc1829779ca05498ff19947be41783, type: 3}
-  - {fileID: 21300000, guid: 3d83058d127e07943aa76c56904d376b, type: 3}
-  - {fileID: 21300000, guid: f7a2bf2f92cf2814ea5c30934c91dd46, type: 3}
-  - {fileID: 21300000, guid: b7533c7c934d5be4393d77661d169894, type: 3}
-  - {fileID: 21300000, guid: d78099a29308d2042a8e74503653d051, type: 3}
+  - {fileID: 21300000, guid: 53bf9f831a2e09747b5014da4d0a6065, type: 3}
+  - {fileID: 21300000, guid: 320347c42db0d7745901353828b2e91c, type: 3}
+  - {fileID: 21300000, guid: 928468dc665bac1478097837eec5712f, type: 3}
+  - {fileID: 21300000, guid: 0864424d515e5434dba0049b06aa0cbf, type: 3}
+  - {fileID: 21300000, guid: 9d292710de8593840b1588284587d6a9, type: 3}
+  - {fileID: 21300000, guid: aac4127085a778442afe4be064ddce73, type: 3}
   panel: {fileID: 6239445011731032555, guid: f2430f98a2f01c44f8cb0b3ba840f871, type: 3}
   goalPanel: {fileID: 3314077227424272284, guid: 75560ce7828d0c7409bc1dac0750d7d5, type: 3}
   startHorizontalPanel: 3
@@ -64,3 +64,4 @@ MonoBehaviour:
   tile: {fileID: 943200687695030246, guid: 0e1a0379d90efb146a8e91a1b32c5680, type: 3}
   tileNumber: 4
   crashObj: {fileID: 805118831258431400, guid: 5eaea552a6632fe4781b0d7d309b3e64, type: 3}
+  goalBackGroundObj: {fileID: 229662657486496710, guid: 35b8330dcaa9992428af38dbbd913cf0, type: 3}
