@@ -276,10 +276,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6187444576096720154, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
-      propertyPath: goalBackGroundObj
-      value: 
-      objectReference: {fileID: 229662657486496710, guid: 35b8330dcaa9992428af38dbbd913cf0, type: 3}
     - target: {fileID: 6187444576096720155, guid: eb50f731f67a87a4cbab42d78b9f8bcb, type: 3}
       propertyPath: m_RootOrder
       value: 4
