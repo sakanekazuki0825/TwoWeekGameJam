@@ -13,8 +13,8 @@ GameObject:
   - component: {fileID: -5372936080872597316}
   - component: {fileID: 8308752648588198127}
   - component: {fileID: 8308752648588198126}
-  - component: {fileID: -3086150639730352746}
   - component: {fileID: 802094483084396731}
+  - component: {fileID: -3086150639730352746}
   m_Layer: 0
   m_Name: Train
   m_TagString: Train
@@ -140,23 +140,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 7.8, y: 3.6772087, z: 0.2}
   m_Center: {x: 0, y: -1.8113958, z: 0}
---- !u!114 &-3086150639730352746
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8308752648588198125}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 577427e1e5c52b04e891fa49c3b44cb0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  startSpeed: 1
-  acceleration: 0.08
-  dashEffect: {fileID: 1698711113685354640}
-  velMag: 2
-  crashEffect: {fileID: 2508832737935942797, guid: cb3a3e19bc9ef614f9df3e4a267ade67, type: 3}
 --- !u!82 &802094483084396731
 AudioSource:
   m_ObjectHideFlags: 0
@@ -253,6 +236,23 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3086150639730352746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8308752648588198125}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 577427e1e5c52b04e891fa49c3b44cb0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startSpeed: 1
+  acceleration: 0.08
+  dashEffect: {fileID: 1698711113685354640}
+  velMag: 2
+  crashEffect: {fileID: 2508832737935942797, guid: cb3a3e19bc9ef614f9df3e4a267ade67, type: 3}
 --- !u!1001 &920767232041814135
 PrefabInstance:
   m_ObjectHideFlags: 0

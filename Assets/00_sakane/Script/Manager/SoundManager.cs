@@ -1,3 +1,4 @@
+using System.ComponentModel;
 using UnityEngine;
 using UnityEngine.Audio;
 using UnityEngine.UI;
@@ -19,10 +20,39 @@ public class SoundManager : MonoBehaviour
 	float bgmVolume = 0;
 	float seVolume = 0;
 
+	[SerializeField]
+	float initialBGMVolume = -20.0f;
+	[SerializeField]
+	float initialSEVolume = -20.0f;
+
+	private void OnDisable()
+	{
+		if (PlayerPrefs.HasKey("BGM"))
+		{
+			bgmVolume = PlayerPrefs.GetFloat("BGM");
+			audioMixer.SetFloat("BGMVolume", bgmVolume);
+		}
+		else
+		{
+			PlayerPrefs.SetFloat("BGM", initialBGMVolume);
+			bgmVolume = initialBGMVolume;
+			audioMixer.SetFloat("BGMVolume", bgmVolume);
+		}
+		if (PlayerPrefs.HasKey("SE"))
+		{
+			seVolume = PlayerPrefs.GetFloat("SE");
+			audioMixer.SetFloat("SEVolume", seVolume);
+		}
+		else
+		{
+			PlayerPrefs.SetFloat("SE", initialSEVolume);
+			seVolume = initialSEVolume;
+			audioMixer.SetFloat("SEVolume", seVolume);
+		}
+	}
+
 	private void OnEnable()
 	{
-		bgmVolume = PlayerPrefs.GetFloat("BGM");
-		seVolume = PlayerPrefs.GetFloat("SE");
 		// BGMの音量をスライダーに設定
 		audioMixer.SetFloat("BGMVolume", bgmVolume);
 		bgmSlider.value = bgmVolume;

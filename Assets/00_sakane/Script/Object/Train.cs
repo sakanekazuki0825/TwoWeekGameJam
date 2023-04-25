@@ -105,6 +105,8 @@ public class Train : MonoBehaviour, ITrain
 			//isCenter = true;
 
 			beforeTargetDir = targetPos - transform.position;
+
+			animator.SetFloat("speed", rb.velocity.y);
 		}
 		// アニメーション速度更新
 		animator.speed = (speed / startSpeed);
