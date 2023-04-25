@@ -210,6 +210,7 @@ public class GameManager : MonoBehaviour
 		source.clip = gameClearAudio;
 		source.Play();
 		isInPlay = false;
+		StopCoroutine (EWhistle());
 		// ƒvƒŒƒCƒ„[‚ğ“®‚©‚¹‚È‚¢ó‘Ô‚É‚·‚é
 		playerObj.GetComponent<IPlayer>().GameFinish();
 		//train.GetComponent<ITrain>().Stop();
