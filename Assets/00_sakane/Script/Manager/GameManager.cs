@@ -84,6 +84,8 @@ public class GameManager : MonoBehaviour
 	[SerializeField]
 	GameObject cannotSelectUI;
 
+	Coroutine coroutine;
+
 	private void Awake()
 	{
 		GameInstance.gameManager = this;
@@ -182,7 +184,7 @@ public class GameManager : MonoBehaviour
 
 		// プレイヤーを動くことができる状態にする
 		playerObj.GetComponent<IPlayer>().GameStart();
-		StartCoroutine(EWhistle());
+		coroutine = StartCoroutine(EWhistle());
 
 		cannotSelectUI.SetActive(false);
 
@@ -196,7 +198,7 @@ public class GameManager : MonoBehaviour
 		source.clip = gameOverAudio;
 		source.Play();
 		isInPlay = false;
-		StopCoroutine(EWhistle());
+		StopCoroutine(coroutine);
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
 		// ゲームオーバーを表示
@@ -210,7 +212,7 @@ public class GameManager : MonoBehaviour
 		source.clip = gameClearAudio;
 		source.Play();
 		isInPlay = false;
-		StopCoroutine (EWhistle());
+		StopCoroutine (coroutine);
 		// プレイヤーを動かせない状態にする
 		playerObj.GetComponent<IPlayer>().GameFinish();
 		//train.GetComponent<ITrain>().Stop();
