@@ -117,11 +117,11 @@ public class PanelManager : MonoBehaviour
 		{
 
 			// パネル生成
-			var insObj = Instantiate(panel, new Vector3(spawnStartPos.x + spriteSize.x * i, spawnStartPos.y + spriteSize.y * Mathf.Floor(spawnNum.y / 2), 0), Quaternion.identity);
+			var insObj = Instantiate(tile, new Vector3(spawnStartPos.x + spriteSize.x * i, spawnStartPos.y + spriteSize.y * Mathf.Floor(spawnNum.y / 2), 0), Quaternion.identity);
 			// 生成したパネル保存
 			panels.Add(insObj);
 			// パネルに方向を設定
-			insObj.GetComponent<IPanel>().SetLinkDirection(new List<Vector2> { Vector2.left, Vector2.right });
+			//insObj.GetComponent<IPanel>().SetLinkDirection(new List<Vector2> { Vector2.left, Vector2.right });
 		}
 		for (int i = 0; i < spawnNum.x; ++i)
 		{
