@@ -10,6 +10,9 @@ public class TitleManager : MonoBehaviour
 	[SerializeField]
 	GameObject optionCanvas;
 
+	[SerializeField]
+	GameObject operationCanvas;
+
 	// ロード画面
 	[SerializeField]
 	GameObject loadScreen;
@@ -17,7 +20,6 @@ public class TitleManager : MonoBehaviour
 	private void Awake()
 	{
 		GameInstance.titleManager = this;
-		loadScreen.SetActive(false);
 	}
 
 	void Start()
@@ -26,6 +28,8 @@ public class TitleManager : MonoBehaviour
 		fade = GameInstance.fadeIO;
 		fade.FadeIn();
 		// オプションキャンバス非表示
+		loadScreen.SetActive(false);
+		operationCanvas.SetActive(false);
 		optionCanvas.SetActive(false);
 	}
 
@@ -67,6 +71,12 @@ public class TitleManager : MonoBehaviour
 	public void Option()
 	{
 		optionCanvas.SetActive(true);
+	}
+
+	// 操作説明
+	public void Operation()
+	{
+		operationCanvas.SetActive(true);
 	}
 
 	// ゲーム終了
