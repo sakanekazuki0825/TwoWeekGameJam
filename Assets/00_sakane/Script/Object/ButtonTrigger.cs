@@ -12,6 +12,11 @@ public class ButtonTrigger : MonoBehaviour
     // ƒ{ƒ^ƒ“‚Ì‰æ‘œ
     Image img;
 
+	float animSpeed = 0.02f;
+	bool isAnim = false;
+
+	Vector3 defaultScale;
+
 	private void Awake()
 	{
 		img = GetComponent<Image>();
@@ -19,24 +24,34 @@ public class ButtonTrigger : MonoBehaviour
 		{
 			triangle.SetActive(false);
 		}
+		defaultScale = transform.localScale;
 	}
 
 	public void Hovered()
     {
-		img.color = Color.gray;
-		if (triangle != null)
+		var colorValue = 0.85f;
+		img.color = new Color(colorValue, colorValue, colorValue);
+		StartCoroutine(EHoveredAnim());
+	}
+
+	IEnumerator EHoveredAnim()
+	{
+		isAnim = true;
+		var time = 0.0f;
+		while (isAnim)
 		{
-			triangle.SetActive(true);
+			time += animSpeed;
+			var value = (Mathf.Sin(time) + 1) * 0.1f + defaultScale.x;
+			transform.localScale = new Vector3(value, value, transform.localScale.z);
+			yield return null;
 		}
 	}
 
 	public void UnHvered()
 	{
 		img.color = Color.white;
-		if (triangle != null)
-		{
-			triangle.SetActive(false);
-		}
+		isAnim = false;
+		transform.localScale = defaultScale;
 	}
 
 	public void Click()

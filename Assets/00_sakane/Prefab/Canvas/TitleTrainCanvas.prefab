@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 6528020161261179699}
   - component: {fileID: 4020697236400583384}
   m_Layer: 5
-  m_Name: Line (10)
+  m_Name: Line11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 6532745027242238012}
   - component: {fileID: 6532745027242238003}
   m_Layer: 5
-  m_Name: Line (5)
+  m_Name: Line5
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -107,7 +107,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6532745027848579490}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -164,7 +164,7 @@ GameObject:
   - component: {fileID: 6532745027321652398}
   - component: {fileID: 6532745027321652397}
   m_Layer: 5
-  m_Name: Line (7)
+  m_Name: Line3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -183,7 +183,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6532745027848579490}
-  m_RootOrder: 7
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -240,7 +240,7 @@ GameObject:
   - component: {fileID: 6532745027575222236}
   - component: {fileID: 6532745027575222227}
   m_Layer: 5
-  m_Name: Line (3)
+  m_Name: Line9
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -259,7 +259,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6532745027848579490}
-  m_RootOrder: 3
+  m_RootOrder: 8
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -316,7 +316,7 @@ GameObject:
   - component: {fileID: 6532745027780292576}
   - component: {fileID: 6532745027780292583}
   m_Layer: 5
-  m_Name: Line (4)
+  m_Name: Line10
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -335,7 +335,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6532745027848579490}
-  m_RootOrder: 4
+  m_RootOrder: 9
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -392,7 +392,7 @@ GameObject:
   - component: {fileID: 6532745027820149654}
   - component: {fileID: 6532745027820149653}
   m_Layer: 5
-  m_Name: Line (2)
+  m_Name: Line8
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -411,7 +411,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6532745027848579490}
-  m_RootOrder: 2
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -487,16 +487,16 @@ RectTransform:
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 1587722645324520480}
+  - {fileID: 6532745028197021938}
+  - {fileID: 6532745027321652396}
+  - {fileID: 6532745028481865184}
+  - {fileID: 6532745027242238002}
   - {fileID: 6532745028696116476}
   - {fileID: 6532745029200926262}
   - {fileID: 6532745027820149652}
   - {fileID: 6532745027575222226}
   - {fileID: 6532745027780292582}
-  - {fileID: 6532745027242238002}
-  - {fileID: 6532745028481865184}
-  - {fileID: 6532745027321652396}
-  - {fileID: 6532745028197021938}
-  - {fileID: 1587722645324520480}
   - {fileID: 1902909661781333289}
   - {fileID: 6532745028881033556}
   m_Father: {fileID: 0}
@@ -580,7 +580,7 @@ GameObject:
   - component: {fileID: 6532745028197021948}
   - component: {fileID: 6532745028197021939}
   m_Layer: 5
-  m_Name: Line (8)
+  m_Name: Line2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -599,7 +599,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6532745027848579490}
-  m_RootOrder: 8
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -656,7 +656,7 @@ GameObject:
   - component: {fileID: 6532745028481865186}
   - component: {fileID: 6532745028481865185}
   m_Layer: 5
-  m_Name: Line (6)
+  m_Name: Line4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -675,7 +675,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6532745027848579490}
-  m_RootOrder: 6
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -732,7 +732,7 @@ GameObject:
   - component: {fileID: 6532745028696116478}
   - component: {fileID: 6532745028696116477}
   m_Layer: 5
-  m_Name: Line
+  m_Name: Line6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -751,7 +751,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6532745027848579490}
-  m_RootOrder: 0
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -967,7 +967,7 @@ GameObject:
   - component: {fileID: 6532745029200926256}
   - component: {fileID: 6532745029200926263}
   m_Layer: 5
-  m_Name: Line (1)
+  m_Name: Line7
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -986,7 +986,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6532745027848579490}
-  m_RootOrder: 1
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -1043,7 +1043,7 @@ GameObject:
   - component: {fileID: 5671296524078110725}
   - component: {fileID: 6774692517376054607}
   m_Layer: 5
-  m_Name: Line (9)
+  m_Name: Line1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1062,7 +1062,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6532745027848579490}
-  m_RootOrder: 9
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}

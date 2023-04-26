@@ -1,71 +1,80 @@
 using System.Collections;
 using UnityEngine;
 
-// ‹DÔƒNƒ‰ƒX
+// æ±½è»Šã‚¯ãƒ©ã‚¹
 public class Train : MonoBehaviour, ITrain
 {
-	// •¨—
+	// ç‰©ç†
 	Rigidbody rb;
 
-	// Å‰‚Ì‘¬“x
+	// æœ€åˆã®é€Ÿåº¦
 	[SerializeField]
 	float startSpeed = 4;
-	// Œ»İ‚Ì‘¬“x
+	// ç¾åœ¨ã®é€Ÿåº¦
 	float speed = 0.1f;
-	// ÅI“I‚É“’B‚·‚é‘¬“x
+	// æœ€çµ‚çš„ã«åˆ°é”ã™ã‚‹é€Ÿåº¦
 	float afterSpeed;
 	[SerializeField]
 	float acceleration = 0.08f;
 
-	// true = ˆÚ“®‚Å‚«‚é
+	// true = ç§»å‹•ã§ãã‚‹
 	bool canMove = false;
 
-	// •âŠ®‘¬“x
+	// è£œå®Œé€Ÿåº¦
 	//float complement = 0;
 
-	// ~‚Ü‚Á‚½‚É‘¬‚³‚ğ•Û‘¶
+	// æ­¢ã¾ã£ãŸæ™‚ã«é€Ÿã•ã‚’ä¿å­˜
 	Vector3 stopBeforeSpeed = new Vector3(0, 0, 0);
 
-	// ÅI–Ú“I’n
+	// æœ€çµ‚ç›®çš„åœ°
 	Vector3 finalDestination = new Vector3(10, 0, 0);
-	// –Ú“I’n
+	// ç›®çš„åœ°
 	Vector3 targetPos = new Vector3(10, 0, 0);
-	// ƒ^[ƒQƒbƒg‚Ì•ûŒü
+	// ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã®æ–¹å‘
 	Vector3 beforeTargetDir = new Vector3(1, 0, 0);
 
-	// ¾‘–Š´‚ğo‚·‚â‚Â
+	// ç–¾èµ°æ„Ÿã‚’å‡ºã™ã‚„ã¤
 	[SerializeField]
 	ParticleSystem dashEffect;
 	[SerializeField]
 	float velMag;
 
-	// ƒAƒjƒ[ƒ^[
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼
 	Animator animator;
 
-	// true = ƒXƒNƒŠ[ƒ“‚ğo‚½
+	// true = ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã‚’å‡ºãŸ
 	bool isScreenOut = false;
 	public bool IsScreenOut { get => isScreenOut; }
 
-	// ”š”­ƒGƒtƒFƒNƒg
+	// çˆ†ç™ºã‚¨ãƒ•ã‚§ã‚¯ãƒˆ
 	[SerializeField]
 	GameObject crashEffect;
 
 	AudioSource source;
 
+	BoxCollider boxCol;
+
+	Vector3 leftFacingCenter = new Vector3(0, 0.8f, 0);
+	Vector3 leftFacingSize = new Vector3(8, 4, 0.2f);
+
+	Vector3 upFacingCenter = new Vector3(0, 0, 0);
+	Vector3 upFacingSize = new Vector3(3, 6.5f, 0.2f);
+
 	private void Awake()
 	{
-		// •¨—æ“¾
+		// ç‰©ç†å–å¾—
 		rb = GetComponent<Rigidbody>();
-		// ‰Šú‘¬“xİ’è
+		// åˆæœŸé€Ÿåº¦è¨­å®š
 		//speed = startSpeed;
 
 		afterSpeed = startSpeed;
 		stopBeforeSpeed = new Vector3(0.01f, 0, 0);
 
-		// ƒAƒjƒ[ƒ^[æ“¾
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚¿ãƒ¼å–å¾—
 		animator = GetComponent<Animator>();
 		animator.speed = 0;
 		source = GetComponent<AudioSource>();
+		boxCol = GetComponent<BoxCollider>();
 	}
 
 	private void Start()
@@ -88,7 +97,7 @@ public class Train : MonoBehaviour, ITrain
 
 	private void FixedUpdate()
 	{
-		// ˆÚ“®‚Å‚«‚éó‘Ô‚©’²‚×‚é
+		// ç§»å‹•ã§ãã‚‹çŠ¶æ…‹ã‹èª¿ã¹ã‚‹
 		if (!canMove)
 		{
 			return;
@@ -97,28 +106,40 @@ public class Train : MonoBehaviour, ITrain
 		if ((targetPos - transform.position).normalized != beforeTargetDir.normalized)
 		//if (!isCenter && Vector2.Distance(transform.position, curvePos) <= (tolerance /** startSpeed / speed*/))
 		{
-			// ‹–—e”ÍˆÍ‚É“ü‚Á‚½‚ç–Ú“I’n‚ğ‘ã“ü
+			// è¨±å®¹ç¯„å›²ã«å…¥ã£ãŸã‚‰ç›®çš„åœ°ã‚’ä»£å…¥
 			transform.position = targetPos;
-			// –Ú“I’nXV (©•ª‚ÌˆÊ’u + –Ú“I’n‚Ì•ûŒü * ‰æ‘œƒTƒCƒY)
+			// ç›®çš„åœ°æ›´æ–° (è‡ªåˆ†ã®ä½ç½® + ç›®çš„åœ°ã®æ–¹å‘ * ç”»åƒã‚µã‚¤ã‚º)
 			targetPos = finalDestination;
-			// ^‚ñ’†‚ğ’Ê‰ß
+			// çœŸã‚“ä¸­ã‚’é€šé
 			//isCenter = true;
 
 			beforeTargetDir = targetPos - transform.position;
+			if((beforeTargetDir.normalized.y > 0.5f) || (beforeTargetDir.normalized.y < -0.5f))
+			{
+				boxCol.center = upFacingCenter;
+				boxCol.size = upFacingSize;
+			}
+			else
+			{
+				boxCol.center = leftFacingCenter;
+				boxCol.size = leftFacingSize;
+			}
 		}
-		// ƒAƒjƒ[ƒVƒ‡ƒ“‘¬“xXV
+
+		animator.SetFloat("speed", beforeTargetDir.y);
+		// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é€Ÿåº¦æ›´æ–°
 		animator.speed = (speed / startSpeed);
 		var pmain = dashEffect.main;
 		pmain.simulationSpeed = (speed / (startSpeed * 5));
-		// ˆÚ“®
+		// ç§»å‹•
 		rb.velocity = beforeTargetDir.normalized * speed;
-		// ˆÚ“®‘¬“xXV
+		// ç§»å‹•é€Ÿåº¦æ›´æ–°
 		speed = Mathf.Lerp(speed, afterSpeed, acceleration);
 
 		animator.SetFloat("speed", beforeTargetDir.y);
 	}
 
-	// i‚Ş
+	// é€²ã‚€
 	void ITrain.Go()
 	{
 		canMove = true;
@@ -126,7 +147,7 @@ public class Train : MonoBehaviour, ITrain
 		source.UnPause();
 	}
 
-	// ’â~
+	// åœæ­¢
 	void ITrain.Stop()
 	{
 		canMove = false;
@@ -138,7 +159,7 @@ public class Train : MonoBehaviour, ITrain
 		source.Pause();
 	}
 
-	// ‘¬“x‚ğã‚°‚é
+	// é€Ÿåº¦ã‚’ä¸Šã’ã‚‹
 	void ITrain.AddSpeed(float speed)
 	{
 		afterSpeed += speed;
@@ -152,29 +173,29 @@ public class Train : MonoBehaviour, ITrain
 			dashEffect.gameObject.SetActive(false);
 		}
 
-		// •âŠ®‘¬“xŒvZ
+		// è£œå®Œé€Ÿåº¦è¨ˆç®—
 		//complement = (speed + afterSpeed) / 2 / 1.92f;
 	}
 
-	// •ûŒü‚ğ•ÏX
+	// æ–¹å‘ã‚’å¤‰æ›´
 	void ITrain.Curve(Vector3 curvePos, Vector3 targetPos)
 	{
 		//isCenter = false;
 
-		// ‹È‚ª‚éˆÊ’u‚Æƒpƒlƒ‹‚ÌŒq‚ª‚Á‚Ä‚¢‚éˆÊ’u‚ğæ“¾
+		// æ›²ãŒã‚‹ä½ç½®ã¨ãƒ‘ãƒãƒ«ã®ç¹‹ãŒã£ã¦ã„ã‚‹ä½ç½®ã‚’å–å¾—
 		this.targetPos = curvePos;
 		finalDestination = targetPos;
 		beforeTargetDir = curvePos - transform.position;
 	}
 
-	// ƒQ[ƒ€ƒNƒŠƒA
+	// ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢
 	void ITrain.GameClear(Vector3 goalPos)
 	{
 		StartCoroutine(EGameClear(goalPos));
 		source.Pause();
 	}
 
-	// ƒQ[ƒ€ƒNƒŠƒAƒRƒ‹[ƒ`ƒ“
+	// ã‚²ãƒ¼ãƒ ã‚¯ãƒªã‚¢ã‚³ãƒ«ãƒ¼ãƒãƒ³
 	IEnumerator EGameClear(Vector3 goalPos)
 	{
 		canMove = false;
@@ -196,7 +217,7 @@ public class Train : MonoBehaviour, ITrain
 		//}
 	}
 
-	// ƒ^ƒCƒgƒ‹‚Ö
+	// ã‚¿ã‚¤ãƒˆãƒ«ã¸
 	void ITrain.GoTitle()
 	{
 		StartCoroutine(EGoTitle());
