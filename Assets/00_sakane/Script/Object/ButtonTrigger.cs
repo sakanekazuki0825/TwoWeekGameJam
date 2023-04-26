@@ -29,7 +29,7 @@ public class ButtonTrigger : MonoBehaviour
 
 	public void Hovered()
     {
-		var colorValue = 0.75f;
+		var colorValue = 0.85f;
 		img.color = new Color(colorValue, colorValue, colorValue);
 		StartCoroutine(EHoveredAnim());
 	}

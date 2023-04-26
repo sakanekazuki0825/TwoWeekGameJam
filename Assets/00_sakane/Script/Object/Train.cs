@@ -52,6 +52,14 @@ public class Train : MonoBehaviour, ITrain
 
 	AudioSource source;
 
+	BoxCollider boxCol;
+
+	Vector3 leftFacingCenter = new Vector3(0, 0.8f, 0);
+	Vector3 leftFacingSize = new Vector3(8, 4, 0.2f);
+
+	Vector3 upFacingCenter = new Vector3(0, 0, 0);
+	Vector3 upFacingSize = new Vector3(3, 6.5f, 0.2f);
+
 	private void Awake()
 	{
 		// 物理取得
@@ -66,6 +74,7 @@ public class Train : MonoBehaviour, ITrain
 		animator = GetComponent<Animator>();
 		animator.speed = 0;
 		source = GetComponent<AudioSource>();
+		boxCol = GetComponent<BoxCollider>();
 	}
 
 	private void Start()
@@ -105,7 +114,20 @@ public class Train : MonoBehaviour, ITrain
 			//isCenter = true;
 
 			beforeTargetDir = targetPos - transform.position;
+
+			if((beforeTargetDir.normalized.y > 0.5f) || (beforeTargetDir.normalized.y < -0.5f))
+			{
+				boxCol.center = upFacingCenter;
+				boxCol.size = upFacingSize;
+			}
+			else
+			{
+				boxCol.center = leftFacingCenter;
+				boxCol.size = leftFacingSize;
+			}
 		}
+
+		animator.SetFloat("speed", beforeTargetDir.y);
 		// アニメーション速度更新
 		animator.speed = (speed / startSpeed);
 		var pmain = dashEffect.main;
@@ -114,8 +136,6 @@ public class Train : MonoBehaviour, ITrain
 		rb.velocity = beforeTargetDir.normalized * speed;
 		// 移動速度更新
 		speed = Mathf.Lerp(speed, afterSpeed, acceleration);
-
-		animator.SetFloat("speed", beforeTargetDir.y);
 	}
 
 	// 進む

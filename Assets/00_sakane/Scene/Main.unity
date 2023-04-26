@@ -337,6 +337,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6736104784117157408, guid: 9d3f8063d2528b74f968cf60cb757ce9, type: 3}
+      propertyPath: m_Color.b
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736104784117157408, guid: 9d3f8063d2528b74f968cf60cb757ce9, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6736104784117157408, guid: 9d3f8063d2528b74f968cf60cb757ce9, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6736104785646134705, guid: 9d3f8063d2528b74f968cf60cb757ce9, type: 3}
       propertyPath: m_Name
       value: LoadScreenCanvas
@@ -963,6 +975,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6654806224152269967, guid: d6bd079b3167bb446911c81bc14eb120, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654806224152269967, guid: d6bd079b3167bb446911c81bc14eb120, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6654806224152269967, guid: d6bd079b3167bb446911c81bc14eb120, type: 3}
+      propertyPath: m_Color.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8382003549584666218, guid: d6bd079b3167bb446911c81bc14eb120, type: 3}
       propertyPath: m_Name
       value: CountdownCanvas
@@ -1162,6 +1186,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 399524289839631181, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 4351805eb54a8df418d07d3bc95aea2b, type: 3}
     - target: {fileID: 1879403159425603347, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1269,6 +1297,14 @@ PrefabInstance:
     - target: {fileID: 5082195762965250694, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
       propertyPath: m_AnchorMin.x
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7179252852226811698, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 277.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7179252852226811698, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 89.1
       objectReference: {fileID: 0}
     - target: {fileID: 7282699327383191965, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
       propertyPath: m_AnchorMax.x

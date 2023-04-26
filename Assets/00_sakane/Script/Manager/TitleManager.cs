@@ -10,8 +10,13 @@ public class TitleManager : MonoBehaviour
 	[SerializeField]
 	GameObject optionCanvas;
 
+	// 操作説明
 	[SerializeField]
 	GameObject operationCanvas;
+
+	// ゲーム終了
+	//[SerializeField]
+	//GameObject quitCanvas;
 
 	// ロード画面
 	[SerializeField]
@@ -31,6 +36,7 @@ public class TitleManager : MonoBehaviour
 		loadScreen.SetActive(false);
 		operationCanvas.SetActive(false);
 		optionCanvas.SetActive(false);
+		//quitCanvas.SetActive(false);
 	}
 
 	private void OnDestroy()
@@ -82,6 +88,7 @@ public class TitleManager : MonoBehaviour
 	// ゲーム終了
 	public void GameQuit()
 	{
+		//quitCanvas.SetActive(true);
 		LevelManager.GameFinish();
 	}
 }
