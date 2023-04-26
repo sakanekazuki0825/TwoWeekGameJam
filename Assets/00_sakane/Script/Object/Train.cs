@@ -105,8 +105,6 @@ public class Train : MonoBehaviour, ITrain
 			//isCenter = true;
 
 			beforeTargetDir = targetPos - transform.position;
-
-			animator.SetFloat("speed", rb.velocity.y);
 		}
 		// アニメーション速度更新
 		animator.speed = (speed / startSpeed);
@@ -116,6 +114,8 @@ public class Train : MonoBehaviour, ITrain
 		rb.velocity = beforeTargetDir.normalized * speed;
 		// 移動速度更新
 		speed = Mathf.Lerp(speed, afterSpeed, acceleration);
+
+		animator.SetFloat("speed", beforeTargetDir.y);
 	}
 
 	// 進む
