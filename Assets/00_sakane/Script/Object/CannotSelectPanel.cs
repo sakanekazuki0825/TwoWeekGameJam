@@ -26,6 +26,7 @@ public class CannotSelectPanel : MonoBehaviour,ICannotSelectPanel
 			var pos = target.transform.position - new Vector3(0.1f, 0, 0);
 			var number = pos.x / GameInstance.panelManager.SpriteSize.x;
 			number = Mathf.Floor(number);
+			++number;
 			pos = new Vector3(GameInstance.panelManager.SpriteSize.x * number - GameInstance.panelManager.SpriteSize.x / 2, 0, pos.z);
 
 			transform.position = new Vector3(pos.x - 0.01f,transform.position.y, pos.z);
