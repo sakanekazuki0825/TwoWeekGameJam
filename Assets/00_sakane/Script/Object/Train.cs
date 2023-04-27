@@ -93,6 +93,7 @@ public class Train : MonoBehaviour, ITrain
 		{
 			GameInstance.gameManager.GameOver();
 		}
+		animator.SetFloat("speed", beforeTargetDir.normalized.y);
 	}
 
 	private void FixedUpdate()
@@ -124,9 +125,16 @@ public class Train : MonoBehaviour, ITrain
 				boxCol.center = leftFacingCenter;
 				boxCol.size = leftFacingSize;
 			}
+			if (beforeTargetDir.x < 0)
+			{
+				transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180, transform.eulerAngles.z);
+			}
+			else
+			{
+				transform.eulerAngles = Vector3.zero;
+			}
 		}
 
-		animator.SetFloat("speed", beforeTargetDir.y);
 		// アニメーション速度更新
 		animator.speed = (speed / startSpeed);
 		var pmain = dashEffect.main;
@@ -163,6 +171,11 @@ public class Train : MonoBehaviour, ITrain
 	void ITrain.AddSpeed(float speed)
 	{
 		afterSpeed += speed;
+
+		if (afterSpeed < 0)
+		{
+			afterSpeed = 0;
+		}
 
 		if (afterSpeed > velMag)
 		{

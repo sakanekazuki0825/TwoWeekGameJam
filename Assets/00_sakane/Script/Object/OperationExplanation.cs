@@ -30,15 +30,11 @@ public class OperationExplanation : MonoBehaviour
 		explanation.sprite = explanations[0];
 	}
 
-	private void Update()
+	public void Change()
 	{
-		// 左クリックで画像切替
-		if (Input.GetMouseButtonDown(0))
-		{
-			++number;
-			number = number % explanations.Count;
-			explanation.sprite = explanations[number];
-		}
+		++number;
+		number = number % explanations.Count;
+		explanation.sprite = explanations[number];
 	}
 
 	// タイトルに戻る

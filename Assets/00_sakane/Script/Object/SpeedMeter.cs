@@ -32,11 +32,11 @@ public class SpeedMeter : MonoBehaviour
 			}
 			if(speed < 49)
 			{
-				meterTxt.color = Color.green;
+				meterTxt.color = new Color(61f / 255f, 131f / 255f, 38f / 255f);
 			}
 			else if(speed < 99)
 			{
-				meterTxt.color = Color.yellow;
+				meterTxt.color = new Color(205f / 255f, 127f / 255f, 9f / 255f);
 			}
 			else
 			{

@@ -226,9 +226,11 @@ public class PanelManager : MonoBehaviour
 			{
 				++boxNumber;
 				var dataNumber = boxNumber * oneBoxPanelNum;
+				// 設定されているパネルの数が生成したいパネルの数より少なければ
 				if (panelBoxData.PanelDataList.Count <= dataNumber)
 				{
 					dataNumber = 0;
+					boxNumber = 0;
 				}
 				for (int pn = 0; pn < oneBoxPanelNum; ++pn)
 				{

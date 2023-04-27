@@ -25,30 +25,15 @@ public class SoundManager : MonoBehaviour
 	[SerializeField]
 	float initialSEVolume = -20.0f;
 
+	float beforeBGMVolume;
+	float beforeSEVolume;
+
 	private void OnDisable()
 	{
-		if (PlayerPrefs.HasKey("BGM"))
-		{
-			bgmVolume = PlayerPrefs.GetFloat("BGM");
-			audioMixer.SetFloat("BGMVolume", bgmVolume);
-		}
-		else
-		{
-			PlayerPrefs.SetFloat("BGM", initialBGMVolume);
-			bgmVolume = initialBGMVolume;
-			audioMixer.SetFloat("BGMVolume", bgmVolume);
-		}
-		if (PlayerPrefs.HasKey("SE"))
-		{
-			seVolume = PlayerPrefs.GetFloat("SE");
-			audioMixer.SetFloat("SEVolume", seVolume);
-		}
-		else
-		{
-			PlayerPrefs.SetFloat("SE", initialSEVolume);
-			seVolume = initialSEVolume;
-			audioMixer.SetFloat("SEVolume", seVolume);
-		}
+		bgmVolume = PlayerPrefs.GetFloat("BGM", -20);
+		audioMixer.SetFloat("BGMVolume", bgmVolume);
+		seVolume = PlayerPrefs.GetFloat("SE", -20);
+		audioMixer.SetFloat("SEVolume", seVolume);
 	}
 
 	private void OnEnable()
@@ -59,6 +44,9 @@ public class SoundManager : MonoBehaviour
 		// SEの音量をスライダーに設定
 		audioMixer.SetFloat("SEVolume", seVolume);
 		seSlider.value = seVolume;
+
+		beforeBGMVolume = bgmVolume;
+		beforeSEVolume = seVolume;
 	}
 
 	public void Apply()
@@ -66,11 +54,13 @@ public class SoundManager : MonoBehaviour
 		SetBGMVolume();
 		SetSEVolume();
 		PlayerPrefs.SetFloat("BGM", bgmSlider.value);
-		PlayerPrefs.SetFloat("SE",seSlider.value);
+		PlayerPrefs.SetFloat("SE", seSlider.value);
 	}
 
 	public void ReturnClick()
 	{
+		audioMixer.SetFloat("BGM", beforeBGMVolume);
+		audioMixer.SetFloat("SE", beforeSEVolume);
 		gameObject.SetActive(false);
 	}
 
@@ -78,13 +68,23 @@ public class SoundManager : MonoBehaviour
 	void SetBGMVolume()
 	{
 		bgmVolume = bgmSlider.value;
-		audioMixer.SetFloat("BGMVolume", bgmVolume);
+		beforeBGMVolume = bgmVolume;
 	}
 
 	// SEの音量設定
 	void SetSEVolume()
 	{
 		seVolume = seSlider.value;
-		audioMixer.SetFloat("SEVolume", seVolume);
+		beforeSEVolume = seVolume;
+	}
+
+	public void ApplyBGMVolume()
+	{
+		audioMixer.SetFloat("BGM", bgmSlider.value);
+	}
+	
+	public void ApplySEVolume()
+	{
+		audioMixer.SetFloat("SE", seSlider.value);
 	}
 }

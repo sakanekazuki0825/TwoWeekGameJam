@@ -86,6 +86,11 @@ public class GameManager : MonoBehaviour
 
 	Coroutine coroutine;
 
+	[SerializeField]
+	Texture2D noOperationCursorSprite;
+	[SerializeField]
+	Texture2D operationCursorSprite;
+
 	private void Awake()
 	{
 		GameInstance.gameManager = this;
@@ -104,6 +109,7 @@ public class GameManager : MonoBehaviour
 		countdownCanvas.gameObject.SetActive(false);
 		loadScreen.SetActive(false);
 		cannotSelectUI.SetActive(true);
+		Cursor.SetCursor(noOperationCursorSprite, Vector2.zero, CursorMode.Auto);
 
 		// ÉQÅ[ÉÄäJén
 		GameStart();
@@ -187,6 +193,7 @@ public class GameManager : MonoBehaviour
 		coroutine = StartCoroutine(EWhistle());
 
 		cannotSelectUI.SetActive(false);
+		Cursor.SetCursor(operationCursorSprite, Vector2.zero, CursorMode.Auto);
 
 		isInPlay = true;
 	}
@@ -226,6 +233,7 @@ public class GameManager : MonoBehaviour
 	{
 		playerObj.GetComponent<IPlayer>().GameStop();
 		train.GetComponent<ITrain>().Stop();
+		//StopCoroutine(coroutine);
 		isInPlay = false;
 	}
 
