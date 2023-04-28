@@ -7,7 +7,7 @@ public interface ITrain
 	void AddSpeed(float speed);
 	void Curve(Vector3 curvePos, Vector3 targePos);
 	void GameClear(Vector3 goalPos);
-	void GoTitle();
+	void GoTitle(string levelName);
 	void Crash();
 	bool IsScreenOut();
 }

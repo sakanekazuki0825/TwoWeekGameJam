@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -59,6 +60,10 @@ public class Train : MonoBehaviour, ITrain
 
 	Vector3 upFacingCenter = new Vector3(0, 0, 0);
 	Vector3 upFacingSize = new Vector3(3, 6.5f, 0.2f);
+
+	bool isGoToTitle = false;
+
+	string levelName;
 
 	private void Awake()
 	{
@@ -199,6 +204,7 @@ public class Train : MonoBehaviour, ITrain
 		this.targetPos = curvePos;
 		finalDestination = targetPos;
 		beforeTargetDir = curvePos - transform.position;
+		dashEffect.gameObject.SetActive(Convert.ToBoolean((beforeTargetDir.y + 1) % 2));
 	}
 
 	// ゲームクリア
@@ -227,27 +233,34 @@ public class Train : MonoBehaviour, ITrain
 		animator.speed = 0;
 		dashEffect.gameObject.SetActive(false);
 		rb.velocity = Vector3.zero;
+
+		yield return new WaitUntil(() => { return isGoToTitle; });
+
+		source.UnPause();
+		var pos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 0.75f, 0, -Camera.main.transform.position.z));
+		animator.speed = startSpeed;
+		rb.velocity = new Vector3(startSpeed, 0, 0);
+		yield return new WaitForSeconds(2);
+		GameInstance.gameManager.LevelMove(levelName);
 		//}
 	}
 
 	// タイトルへ
-	void ITrain.GoTitle()
+	void ITrain.GoTitle(string levelName)
 	{
-		StartCoroutine(EGoTitle());
+		//StartCoroutine(EGoTitle(levelName));
+		this.levelName = levelName;
+		isGoToTitle = true;
 	}
 
-	IEnumerator EGoTitle()
+	IEnumerator EGoTitle(string levelName)
 	{
 		source.UnPause();
 		var pos = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width * 0.75f, 0, -Camera.main.transform.position.z));
 		animator.speed = startSpeed;
 		rb.velocity = new Vector3(startSpeed, 0, 0);
-		yield return new WaitUntil(
-			() =>
-			{
-				return transform.position.x >= pos.x;
-			});
-		isScreenOut = true;
+		yield return new WaitForSeconds(2);
+		GameInstance.gameManager.LevelMove(levelName);
 	}
 
 	void ITrain.Crash()

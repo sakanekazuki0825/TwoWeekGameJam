@@ -12,7 +12,7 @@ public class ButtonTrigger : MonoBehaviour
     // ƒ{ƒ^ƒ“‚Ì‰æ‘œ
     Image img;
 
-	float animSpeed = 0.02f;
+	float animSpeed = 0.07f;
 	bool isAnim = false;
 
 	Vector3 defaultScale;

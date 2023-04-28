@@ -80,11 +80,11 @@ public class SoundManager : MonoBehaviour
 
 	public void ApplyBGMVolume()
 	{
-		audioMixer.SetFloat("BGM", bgmSlider.value);
+		audioMixer.SetFloat("BGMVolume", bgmSlider.value);
 	}
 	
 	public void ApplySEVolume()
 	{
-		audioMixer.SetFloat("SE", seSlider.value);
+		audioMixer.SetFloat("SEVolume", seSlider.value);
 	}
 }

@@ -19,6 +19,14 @@ public class Result : MonoBehaviour
 	[SerializeField]
 	int placePeople = 3;
 
+	[SerializeField]
+	GameObject noSelectObj;
+
+	private void Awake()
+	{
+		noSelectObj.SetActive(false);
+	}
+
 	// 表示
 	public void Display()
 	{
@@ -38,18 +46,11 @@ public class Result : MonoBehaviour
 
 		foreach (var e in scores)
 		{
-			if (resultTxt.text == "\n")
-			{
-				resultTxt.text = e.ToString() + "\n";
-			}
-			else
-			{
-				resultTxt.text += e.ToString() + "\n";
-			}
+			resultTxt.text += e.ToString() + "\n";
 		}
 
 		scores.Add(value);
-		Array.Sort(scores.ToArray());
+		scores.Sort();
 		if (scores.Count > placePeople)
 		{
 			scores.Remove(scores[scores.Count - 1]);
@@ -59,32 +60,20 @@ public class Result : MonoBehaviour
 	// もう一度遊ぶ
 	public void Restart()
 	{
-		GameInstance.gameManager.LevelMove("Main");
+		EFinish("Main");
 	}
 
 	// タイトルに戻る
 	public void ReturnToTitle()
 	{
-		GameInstance.gameManager.LevelMove("Title");
+		EFinish("Title");
 	}
 
-	IEnumerator EFinish(string levelName)
+	void EFinish(string levelName)
 	{
-		GameInstance.gameManager.Train.GetComponent<ITrain>().GoTitle();
-		yield return new WaitUntil(() => { return GameInstance.gameManager.Train.GetComponent<ITrain>().IsScreenOut(); });
-
-		// フェード
-		FadeIO fade = GameInstance.fadeIO;
-		fade.FadeOut();
-		yield return new WaitUntil(() => { return fade.IsFading; });
-
-		// 読み込み
-		StartCoroutine(LevelManager.ELoadLevelAsync(levelName));
-		while (LevelManager.IsLoading)
-		{
-			// ロード画面
-
-			yield return null;
-		}
+		noSelectObj.SetActive(true);
+		GameInstance.gameManager.Train.GetComponent<ITrain>().GoTitle(levelName);
+		GameInstance.gameManager.NotSelectUI();
+		gameObject.SetActive(false);
 	}
 }

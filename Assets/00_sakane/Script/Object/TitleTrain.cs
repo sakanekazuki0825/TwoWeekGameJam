@@ -53,7 +53,9 @@ public class TitleTrain : MonoBehaviour
 			{
 				return recTra.localPosition.x > stopPosX;
 			});
-		GetComponent<Animator>().speed = 0;
+		var anim = GetComponent<Animator>();
+		anim.speed = 0;
+		anim.Play(anim.GetCurrentAnimatorClipInfo(0)[0].clip.name,0,0);
 		nowSpeed = 0;
 	}
 

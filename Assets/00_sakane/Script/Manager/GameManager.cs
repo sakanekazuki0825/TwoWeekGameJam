@@ -282,4 +282,9 @@ public class GameManager : MonoBehaviour
 			source.PlayOneShot(clip);
 		}
 	}
+
+	public void NotSelectUI()
+	{
+		cannotSelectUI.SetActive(true);
+	}
 }

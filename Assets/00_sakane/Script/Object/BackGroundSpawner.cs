@@ -10,7 +10,7 @@ public class BackGroundSpawner : MonoBehaviour
 	{
 		// メインカメラの位置取得
 		var startPos = Camera.main.transform.position;
-		startPos = new Vector3(startPos.x, startPos.y, 0);
+		startPos = new Vector3(startPos.x, startPos.y + 0.03f, 0);
 		//// 最初のオブジェクトを生成
 		//Instantiate(backGroundObj, startPos, Quaternion.identity);
 		// 背景画像のサイズ取得

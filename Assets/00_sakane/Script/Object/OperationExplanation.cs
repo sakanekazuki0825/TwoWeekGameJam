@@ -13,6 +13,9 @@ public class OperationExplanation : MonoBehaviour
 	[SerializeField]
 	Image explanation;
 
+	[SerializeField]
+	Text page;
+
 	// ‰æ‘œ”Ô†
 	int number = 0;
 
@@ -35,6 +38,10 @@ public class OperationExplanation : MonoBehaviour
 		++number;
 		number = number % explanations.Count;
 		explanation.sprite = explanations[number];
+		if (page != null)
+		{
+			page.text = (number + 1).ToString() + "/" + explanations.Count.ToString();
+		}
 	}
 
 	// ƒ^ƒCƒgƒ‹‚É–ß‚é
