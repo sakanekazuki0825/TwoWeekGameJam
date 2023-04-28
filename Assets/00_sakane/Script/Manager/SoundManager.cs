@@ -20,11 +20,6 @@ public class SoundManager : MonoBehaviour
 	float bgmVolume = 0;
 	float seVolume = 0;
 
-	[SerializeField]
-	float initialBGMVolume = -20.0f;
-	[SerializeField]
-	float initialSEVolume = -20.0f;
-
 	float beforeBGMVolume;
 	float beforeSEVolume;
 
