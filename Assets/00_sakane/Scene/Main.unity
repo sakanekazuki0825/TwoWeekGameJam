@@ -1326,6 +1326,34 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4603013582575748122, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603013582575748122, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603013582575748122, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3871956925705396125}
+    - target: {fileID: 4603013582575748122, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603013582575748122, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ApplyBGMVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603013582575748122, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4603013582575748122, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 5082195762965250694, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -1362,8 +1390,47 @@ PrefabInstance:
       propertyPath: m_AnchorMin.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8733892114967816181, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733892114967816181, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733892114967816181, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 3871956925705396125}
+    - target: {fileID: 8733892114967816181, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733892114967816181, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: ApplySEVolume
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733892114967816181, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: SoundManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 8733892114967816181, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+--- !u!114 &3871956925705396125 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 8786100219332016003, guid: 8f7f25f0a6271e24ea00d63bc67659e6, type: 3}
+  m_PrefabInstance: {fileID: 3871956925705396124}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 266b8c95c2df56c42a8caa01046b38c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4069292286141976737
 PrefabInstance:
   m_ObjectHideFlags: 0

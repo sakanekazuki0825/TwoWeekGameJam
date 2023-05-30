@@ -17,22 +17,17 @@ public class SoundManager : MonoBehaviour
 	[SerializeField]
 	Slider seSlider;
 
-	float bgmVolume = 0;
-	float seVolume = 0;
-
-	[SerializeField]
-	float initialBGMVolume = -20.0f;
-	[SerializeField]
-	float initialSEVolume = -20.0f;
+	float bgmVolume = -40;
+	float seVolume = -40;
 
 	float beforeBGMVolume;
 	float beforeSEVolume;
 
 	private void OnDisable()
 	{
-		bgmVolume = PlayerPrefs.GetFloat("BGM", -20);
+		bgmVolume = PlayerPrefs.GetFloat("BGM", -40);
 		audioMixer.SetFloat("BGMVolume", bgmVolume);
-		seVolume = PlayerPrefs.GetFloat("SE", -20);
+		seVolume = PlayerPrefs.GetFloat("SE", -40);
 		audioMixer.SetFloat("SEVolume", seVolume);
 	}
 
